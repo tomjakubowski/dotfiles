@@ -1,0 +1,5 @@
+[user]
+	email = tom@crystae.net
+	name = Tom Jakubowski
+[push]
+	default = simple
