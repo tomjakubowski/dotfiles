@@ -7,33 +7,28 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
-        colors = true
-        interval = 5
+    colors = true
+    interval = 5
 }
 
 order += "disk /"
-order += "wireless wlp1s0"
-order += "battery 0"
+order += "wireless wlp3s0"
 order += "load"
 order += "tztime local"
 
-wireless wlp1s0 {
-        format_up = "W: (%quality at %essid) %ip"
-        format_down = "W: down"
-}
-
-battery 0 {
-        format = "%status %percentage %remaining"
+wireless wlp3s0 {
+    format_up = "W: (%quality at %essid) %ip"
+    format_down = "W: down"
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+    format = "%Y-%m-%d %H:%M:%S"
 }
 
 load {
-        format = "%1min"
+    format = "%1min"
 }
 
 disk "/" {
-        format = "%avail"
+    format = "%avail"
 }
