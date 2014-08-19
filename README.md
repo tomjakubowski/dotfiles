@@ -1,1 +1,1 @@
-dotfiles for c720
+dotfiles for desktop PC
