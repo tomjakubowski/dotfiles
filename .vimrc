@@ -6,6 +6,8 @@ set ruler
 set showcmd
 set incsearch
 
+execute pathogen#infect()
+
 filetype plugin indent on
 
 set number
