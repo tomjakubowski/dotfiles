@@ -61,5 +61,5 @@ nmap <leader>H :set list!<CR>
 
 nmap <leader>M :make<CR>
 
-set foldmethod=syntax
+set foldmethod=manual
 set nofoldenable
