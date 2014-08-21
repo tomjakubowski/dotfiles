@@ -6,6 +6,8 @@ set ruler
 set showcmd
 set incsearch
 
+execute pathogen#infect()
+
 filetype plugin indent on
 
 set number
@@ -14,7 +16,6 @@ set nowrap
 set hidden
 set expandtab
 set tabstop=4 softtabstop=4 shiftwidth=4
-set sidescroll=10
 set whichwrap=b,s,<,>,[,]
 set viminfo=
 set modeline
@@ -56,8 +57,8 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " <leader>H to show hidden chars
 nmap <leader>H :set list!<CR>
-
 nmap <leader>M :make<CR>
+nmap <silent> <leader>c :bp\|bd #<CR>
 
-set foldmethod=syntax
+set foldmethod=manual
 set nofoldenable
