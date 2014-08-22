@@ -62,3 +62,5 @@ nmap <silent> <leader>c :bp\|bd #<CR>
 
 set foldmethod=manual
 set nofoldenable
+
+let g:ctrlp_custom_ignore = 'node_modules'
