@@ -22,6 +22,8 @@ set modeline
 set modelines=3
 set mouse=a
 set ttymouse=xterm2
+set noerrorbells visualbell t_vb=
+
 let mapleader=","
 nmap <leader>V :tabedit $MYVIMRC<CR>
 
@@ -38,7 +40,7 @@ if has ('gui_running')
     set guioptions=acM
     set mousefocus
     set guifont=Source\ Code\ Pro\ 9
-    autocmd GUIEnter * set t_vb=
+    autocmd GUIEnter * set vb t_vb=
 endif
 
 " Strip trailing whitespace
@@ -66,3 +68,6 @@ set nofoldenable
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files --exclude-standard -c -o .']
 let g:ctrlp_custom_ignore = 'node_modules'
+
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
