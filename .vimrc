@@ -23,6 +23,7 @@ set modelines=3
 set mouse=a
 set ttymouse=xterm2
 set noerrorbells visualbell t_vb=
+set esckeys
 
 let mapleader=","
 nmap <leader>V :tabedit $MYVIMRC<CR>
