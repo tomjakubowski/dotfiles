@@ -13,12 +13,18 @@ general {
 
 order += "disk /"
 order += "wireless wlp3s0"
+order += "battery 0"
 order += "load"
 order += "tztime local"
 
 wireless wlp3s0 {
     format_up = "W: (%quality at %essid) %ip"
     format_down = "W: down"
+}
+
+battery 0 {
+    format = "%status %percentage %remaining %consumption"
+    low_threshold = 20
 }
 
 tztime local {
