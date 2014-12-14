@@ -5,13 +5,12 @@ set backspace=indent,eol,start
 set ruler
 set showcmd
 set incsearch
+set hlsearch
 
 execute pathogen#infect()
 
 filetype plugin indent on
 
-set number
-set relativenumber
 set nowrap
 set hidden
 set expandtab
@@ -25,8 +24,7 @@ set ttymouse=xterm2
 set noerrorbells visualbell t_vb=
 set esckeys
 
-let mapleader=","
-nmap <leader>V :tabedit $MYVIMRC<CR>
+set laststatus=2
 
 set exrc
 set secure
@@ -41,7 +39,10 @@ if has ('gui_running')
     set guioptions=acM
     set mousefocus
     set guifont=Source\ Code\ Pro\ 9
-    autocmd GUIEnter * set vb t_vb=
+    augroup gui
+        autocmd!
+        autocmd GUIEnter * set vb t_vb=
+    augroup END
 endif
 
 " Strip trailing whitespace
@@ -57,7 +58,14 @@ function! <SID>StripTrailingWhitespaces()
   let @/=_s
   call cursor(l, c)
 endfunction
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+augroup all
+    autocmd!
+    autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+augroup END
+
+let mapleader="\\"
+nmap <leader>V :tabedit $MYVIMRC<CR>
 
 " <leader>H to show hidden chars
 nmap <leader>H :set list!<CR>
