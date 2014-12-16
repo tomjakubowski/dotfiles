@@ -38,7 +38,7 @@ set colorcolumn=90
 if has ('gui_running')
     set guioptions=acM
     set mousefocus
-    set guifont=Source\ Code\ Pro\ 9
+    set guifont=Tamsyn\ 9
     augroup gui
         autocmd!
         autocmd GUIEnter * set vb t_vb=
