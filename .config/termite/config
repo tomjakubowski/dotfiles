@@ -35,39 +35,39 @@ size_hints = true
 #modify_other_keys = false
 
 [colors]
-# Base16 Ocean
+# Base16 Eighties
 # Scheme: Chris Kempson (http://chriskempson.com)
 
-foreground      = #c0c5ce
-foreground_bold = #c0c5ce
-cursor          = #c0c5ce
-background      = #2b303b
+foreground      = #d3d0c8
+foreground_bold = #d3d0c8
+cursor          = #d3d0c8
+background      = #2d2d2d
 
 # 16 color space
-color0  = #2b303b
-color1  = #bf616a
-color2  = #a3be8c
-color3  = #ebcb8b
-color4  = #8fa1b3
-color5  = #b48ead
-color6  = #96b5b4
-color7  = #c0c5ce
-color8  = #65737e
-color9  = #bf616a
-color10 = #a3be8c
-color11 = #ebcb8b
-color12 = #8fa1b3
-color13 = #b48ead
-color14 = #96b5b4
-color15 = #eff1f5
+color0  = #2d2d2d
+color1  = #f2777a
+color2  = #99cc99
+color3  = #ffcc66
+color4  = #6699cc
+color5  = #cc99cc
+color6  = #66cccc
+color7  = #d3d0c8
+color8  = #747369
+color9  = #f2777a
+color10 = #99cc99
+color11 = #ffcc66
+color12 = #6699cc
+color13 = #cc99cc
+color14 = #66cccc
+color15 = #f2f0ec
 
 # 256 color space
-color16 = #d08770
-color17 = #ab7967
-color18 = #343d46
-color19 = #4f5b66
-color20 = #a7adba
-color21 = #dfe1e8
+color16 = #f99157
+color17 = #d27b53
+color18 = #393939
+color19 = #515151
+color20 = #a09f93
+color21 = #e8e6df
 
 [hints]
 #font = Source Code Pro 12

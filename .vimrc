@@ -32,7 +32,7 @@ set secure
 syntax enable
 set background=dark
 let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-ocean
+colorscheme base16-eighties
 set colorcolumn=90
 
 if has ('gui_running')
