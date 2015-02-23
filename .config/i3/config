@@ -177,8 +177,8 @@ bar {
 }
 
 # class                 border  backgr. text    indicator
-client.focused          $base04 $base0d $base07 $base0b
-client.focused_inactive $base02 $base02 $base07 $base01
+client.focused          $base0d $base0d $base07 $base0b
+client.focused_inactive $base04 $base02 $base07 $base01
 client.unfocused        $base02 $base00 $base03 $base00
 client.urgent           $base09 $base08 $base07 $base0a
 #client.placeholder      #000000 #0c0c0c #ffffff #000000
