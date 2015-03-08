@@ -77,6 +77,3 @@ set nofoldenable
 
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files --exclude-standard -c -o .']
 let g:ctrlp_custom_ignore = 'node_modules'
-
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
