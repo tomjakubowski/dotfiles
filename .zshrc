@@ -19,6 +19,7 @@ autoload run-help
 
 # Aliases
 alias ls='ls -h --color=auto'
+alias irc="abduco -A irc zsh -c 'weechat -d $XDG_CONFIG_HOME/weechat'"
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 
 # Prompt
