@@ -14,7 +14,7 @@ compinit
 # End of lines added by compinstall
 
 # Sane help
-unalias run-help
+unalias run-help 2>/dev/null || true
 autoload run-help
 
 # Aliases
@@ -26,3 +26,7 @@ alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 autoload -U colors && colors
 PROMPT="%F{blue}%n@%m%f:%~
 %# "
+
+# base16 color shell script
+BASE16_SHELL="$HOME/scripts/base16-eighties.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
