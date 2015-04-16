@@ -19,7 +19,7 @@ font xft:Tamsyn 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec x-terminal-emulator
 
 # start a floating terminal
 bindsym $mod+Shift+Return exec termite --class "Termite floating"
@@ -186,3 +186,5 @@ client.focused_inactive $base04 $base02 $base07 $base01
 client.unfocused        $base02 $base00 $base03 $base00
 client.urgent           $base09 $base08 $base07 $base0a
 #client.placeholder      #000000 #0c0c0c #ffffff #000000
+
+exec --no-startup-id ~/scripts/i3-local-extras
