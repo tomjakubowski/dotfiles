@@ -4,3 +4,5 @@ NPM_PACKAGES="$HOME/.npm-packages"
 
 NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 PATH="$HOME/bin:$NPM_PACKAGES/bin:$HOME/.rbenv/bin:/usr/local/bin:$PATH"
+
+[[ -f $HOME/.zshenv_local ]] && source $HOME/.zshenv_local

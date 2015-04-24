@@ -27,6 +27,9 @@ autoload -U colors && colors
 PROMPT="%F{blue}%n@%m%f:%~
 %# "
 
+# functions
+function beep() { eval $* ; printf "\a" }
+
 # base16 color shell script
 BASE16_SHELL="$HOME/scripts/base16-eighties.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
