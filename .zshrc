@@ -21,6 +21,7 @@ autoload run-help
 alias ls='ls -h --color=auto'
 alias irc="abduco -A irc zsh -c 'weechat -d $XDG_CONFIG_HOME/weechat'"
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
+alias e="emacsclient -c -n"
 
 # Prompt
 autoload -U colors && colors
@@ -32,6 +33,10 @@ PATH="$HOME/.local/bin:$HOME/bin:$NPM_PACKAGES/bin:$HOME/.rbenv/bin:/usr/local/b
 
 # functions
 function beep() { eval $* ; printf "\a" }
+function E() {
+    local fullpath=$(readlink -f ${@[-1]})
+    emacsclient -c -n -e "(find-file \"/sudo::${fullpath}\")"
+}
 
 # base16 color shell script
 BASE16_SHELL="$HOME/scripts/base16-eighties.dark.sh"
