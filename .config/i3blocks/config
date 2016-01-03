@@ -11,7 +11,7 @@ instance=1
 interval=5
 
 [wifi]
-command=/usr/lib/i3blocks/wifi
+command=~/.local/share/i3blocks/wifi
 instance=wlp3s0
 interval=5
 
