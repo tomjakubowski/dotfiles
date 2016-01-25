@@ -1,1 +1,1 @@
-dotfiles for desktop PC
+dotfiles
