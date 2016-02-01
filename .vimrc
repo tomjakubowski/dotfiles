@@ -7,8 +7,6 @@ set showcmd
 set incsearch
 set hlsearch
 
-execute pathogen#infect()
-
 filetype plugin indent on
 
 set nowrap
@@ -31,8 +29,8 @@ set secure
 
 syntax enable
 set background=dark
-let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-eighties
+"let base16colorspace=256  " Access colors present in 256 colorspace
+"colorscheme base16-eighties
 set colorcolumn=90
 
 if has ('gui_running')
@@ -74,6 +72,3 @@ nmap <silent> <leader>c :bp\|bd #<CR>
 
 set foldmethod=manual
 set nofoldenable
-
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files --exclude-standard -c -o .']
-let g:ctrlp_custom_ignore = 'node_modules'
