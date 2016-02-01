@@ -1,9 +1,14 @@
 [user]
-	email = tom@crystae.net
-	name = Tom Jakubowski
+  email = tom@crystae.net
+  name = Tom Jakubowski
 [push]
-	default = simple
+  default = simple
 [core]
-    editor = "vim"
+  editor = "vim"
+
 [transfer]
-    fsckObjects = true
+  fsckObjects = true
+[fetch]
+  fsckObjects = true
+[receive]
+  fsckObjects = true
