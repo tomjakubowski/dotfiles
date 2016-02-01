@@ -1,4 +1,6 @@
-export XDG_CONFIG_HOME='~/.config'
+if [[ -z "$XDG_CONFIG_HOME" ]]; then
+    export XDG_CONFIG_HOME="$HOME/.config"
+fi
 export MPV_HOME="$XDG_CONFIG_HOME/mpv"
 export NPM_PACKAGES="$HOME/.npm-packages"
 
