@@ -9,6 +9,8 @@ if [[ -z "$XDG_RUNTIME_DIR" ]]; then
     chmod 700 "XDG_RUNTIME_DIR"
 fi
 
+export SUDO_EDITOR="vim"
+
 export MPV_HOME="$XDG_CONFIG_HOME/mpv"
 
 # TODO: I could have a '.zshenv.d' directory that the various stow
