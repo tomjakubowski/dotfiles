@@ -148,7 +148,10 @@ bindsym $mod+Control+l exec "i3lock -c 333333"
 
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB-
-bindsym XF86AudioMute exec amixer -q set Speaker toggle
+bindsym XF86AudioMute        exec amixer -q set Speaker toggle
+
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5%
+bindsym XF86MonBrightnessUp   exec xbacklight -inc 5%
 
 # base16-eighties
 set $base00 #2d2d2d
