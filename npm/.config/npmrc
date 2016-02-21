@@ -1,0 +1,5 @@
+# -*- mode: conf-unix; -*-
+
+cache=~/.cache/npm
+# prefix=~/.local
+spin=false

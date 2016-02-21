@@ -10,9 +10,13 @@ if [[ -z "$XDG_RUNTIME_DIR" ]]; then
 fi
 
 export MPV_HOME="$XDG_CONFIG_HOME/mpv"
-export NPM_PACKAGES="$HOME/.npm-packages"
 
+# TODO: I could have a '.zshenv.d' directory that the various stow
+# packages install things like this into.
+export npm_config_userconfig="$XDG_CONFIG_HOME/npmrc"
+export npm_config_prefix="$HOME/.local/"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+
 export CARGO_INSTALL_ROOT="$HOME/.local"
 export ABDUCO_SOCKET_DIR="$XDG_RUNTIME_DIR"
 
