@@ -28,9 +28,6 @@ autoload -U colors && colors
 PROMPT="%F{blue}%n@%m%f:%~
 %# "
 
-# gotta set PATH here because on Arch it's clobbered by /etc/zsh/zprofile in login shells.
-PATH="$HOME/.local/bin:$HOME/bin:$NPM_PACKAGES/bin:$HOME/.rbenv/bin:/usr/local/bin:$PATH"
-
 # functions
 function beep() { eval $* ; printf "\a" }
 function E() {
