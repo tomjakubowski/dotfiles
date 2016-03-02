@@ -18,7 +18,11 @@ unalias run-help 2>/dev/null || true
 autoload run-help
 
 # Aliases
-alias ls='ls -h --color=auto'
+if (( $+commands[gls] )); then
+    alias ls='gls -h --color=auto'
+else
+    alias ls ='ls -h --color=auto'
+fi
 alias irc="abduco -A irc zsh -c 'weechat -d $XDG_CONFIG_HOME/weechat'"
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 alias e="emacsclient -c -n"

@@ -1,4 +1,6 @@
 umask 077
-eval $(keychain --eval --agents gpg,ssh --clear --quiet --timeout 10)
 
-systemctl --user import-environment
+(( $+commands[keychain] )) && eval $(keychain --eval --agents gpg,ssh \
+                                              --quiet --timeout 10)
+
+(( $+commands[systemctl] )) && systemctl --user import-environment
