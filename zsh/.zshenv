@@ -22,12 +22,5 @@ export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 export CARGO_INSTALL_ROOT="$HOME/.local"
 export ABDUCO_SOCKET_DIR="$XDG_RUNTIME_DIR"
 
-typeset -U path
-path=("$HOME/.local/bin"
-      "$HOME/bin"
-      "$NPM_PACKAGES/bin"
-      "$HOME/.rbenv/bin"
-      "/usr/local/bin"
-      $path[@])
 
 [[ -f $HOME/.zshenv_local ]] && source $HOME/.zshenv_local

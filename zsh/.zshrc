@@ -42,3 +42,13 @@ function E() {
 # base16 color shell script
 BASE16_SHELL="$HOME/scripts/base16-eighties.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
+# set path here to work around sadness on arch linux.
+path=("$HOME/.local/bin"
+      "$HOME/bin"
+      "$GOPATH/bin"
+      "$NPM_PACKAGES/bin"
+      "$HOME/.rbenv/bin"
+      "/usr/local/bin"
+      $path[@])
+typeset -U path
