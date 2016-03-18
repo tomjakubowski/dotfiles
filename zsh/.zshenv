@@ -22,4 +22,6 @@ export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 export CARGO_INSTALL_ROOT="$HOME/.local"
 export ABDUCO_SOCKET_DIR="$XDG_RUNTIME_DIR"
 
+export GOPATH="$HOME/gocode"
+
 [[ -f $HOME/.zshenv_local ]] && source $HOME/.zshenv_local

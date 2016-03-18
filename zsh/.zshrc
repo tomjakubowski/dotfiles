@@ -31,7 +31,7 @@ autoload run-help
 if (( $+commands[gls] )); then
     alias ls='gls -h --color=auto'
 else
-    alias ls ='ls -h --color=auto'
+    alias ls='ls -h --color=auto'
 fi
 alias irc="abduco -A irc zsh -c 'weechat -d $XDG_CONFIG_HOME/weechat'"
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
@@ -52,3 +52,13 @@ function E() {
 # base16 color shell script
 BASE16_SHELL="$HOME/scripts/base16-eighties.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
+# set path here to work around sadness on arch linux.
+path=("$HOME/.local/bin"
+      "$HOME/bin"
+      "$GOPATH/bin"
+      "$NPM_PACKAGES/bin"
+      "$HOME/.rbenv/bin"
+      "/usr/local/bin"
+      $path[@])
+typeset -U path
