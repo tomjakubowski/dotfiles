@@ -13,6 +13,16 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# le path
+
+typeset -U path
+path=("$HOME/.local/bin"
+      "$HOME/bin"
+      "$NPM_PACKAGES/bin"
+      "$HOME/.rbenv/bin"
+      "/usr/local/bin"
+      $path[@])
+
 # Sane help
 unalias run-help 2>/dev/null || true
 autoload run-help
