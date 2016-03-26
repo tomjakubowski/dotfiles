@@ -1,4 +1,4 @@
-umask 077
+umask 022
 
 (( $+commands[keychain] )) && eval $(keychain --eval --agents gpg,ssh \
                                               --quiet --timeout 10)
