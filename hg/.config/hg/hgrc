@@ -1,5 +1,9 @@
 [ui]
 username = Tom Jakubowski <tom@crystae.net>
 
+[alias]
+__mystatus = status
+status = !hg __mystatus $(hg root) $HG_ARGS
+
 [extensions]
 color =
