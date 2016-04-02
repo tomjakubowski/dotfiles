@@ -9,6 +9,8 @@ if [[ -z "$XDG_RUNTIME_DIR" ]]; then
     chmod 700 "$XDG_RUNTIME_DIR"
 fi
 
+# vim is slightly more likely to work than emacsclient
+export EDITOR="vim"
 export SUDO_EDITOR="vim"
 
 export MPV_HOME="$XDG_CONFIG_HOME/mpv"
