@@ -15,8 +15,7 @@ export SUDO_EDITOR="vim"
 
 export MPV_HOME="$XDG_CONFIG_HOME/mpv"
 
-# TODO: I could have a '.zshenv.d' directory that the various stow
-# packages install things like this into.
+# TODO: Move some of these into .config/zshenv.d directory
 export npm_config_userconfig="$XDG_CONFIG_HOME/npmrc"
 export npm_config_prefix="$HOME/.local/"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
@@ -27,3 +26,8 @@ export ABDUCO_SOCKET_DIR="$XDG_RUNTIME_DIR"
 export GOPATH="$HOME/gocode"
 
 [[ -f $HOME/.zshenv_local ]] && source $HOME/.zshenv_local
+if [[ -d "$XDG_CONFIG_HOME/zshenv.d" ]]; then
+    for file in $XDG_CONFIG_HOME/zshenv.d/*.zsh; do
+        source $file
+    done
+fi
