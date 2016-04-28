@@ -27,7 +27,7 @@ export GOPATH="$HOME/gocode"
 
 [[ -f $HOME/.zshenv_local ]] && source $HOME/.zshenv_local
 if [[ -d "$XDG_CONFIG_HOME/zshenv.d" ]]; then
-    for file in $XDG_CONFIG_HOME/zshenv.d/*.zsh; do
+    for file in $XDG_CONFIG_HOME/zshenv.d/*.zsh(N); do
         source $file
     done
 fi

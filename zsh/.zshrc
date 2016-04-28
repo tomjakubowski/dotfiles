@@ -62,3 +62,9 @@ path=("$HOME/.local/bin"
       "/usr/local/bin"
       $path[@])
 typeset -U path
+
+if [[ -d "$XDG_CONFIG_HOME/zshrc.d" ]]; then
+    for file in $XDG_CONFIG_HOME/zshrc.d/*.{zsh,sh}(N); do
+        source $file
+    done
+fi
