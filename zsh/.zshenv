@@ -8,6 +8,10 @@ if [[ -z "$XDG_RUNTIME_DIR" ]]; then
     fi
     chmod 700 "$XDG_RUNTIME_DIR"
 fi
+if [[ -z "$XDG_CACHE_HOME" ]]; then
+    export XDG_CACHE_HOME="$HOME/.cache"
+fi
+
 
 # vim is slightly more likely to work than emacsclient
 export EDITOR="vim"
