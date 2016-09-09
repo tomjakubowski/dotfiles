@@ -1,5 +1,2 @@
-# -*- mode: conf-unix; -*-
-
-cache=~/.cache/npm
-# prefix=~/.local
+cache=${XDG_CACHE_HOME}/npm
 spin=false
