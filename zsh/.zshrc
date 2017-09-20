@@ -48,6 +48,15 @@ function E() {
     local fullpath=$(readlink -f ${@[-1]})
     emacsclient -c -n -e "(find-file \"/sudo::${fullpath}\")"
 }
+function nmpath() {
+    local nmbin="$PWD/node_modules/.bin"
+    if [[ -d $nmbin ]];
+    then
+        path+=($nmbin)
+    else
+        echo "Couldn't find $nmbin, not adding to path!"
+    fi
+}
 
 # base16 color shell script
 BASE16_SHELL="$HOME/scripts/base16-eighties.dark.sh"
