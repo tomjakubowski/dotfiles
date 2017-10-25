@@ -2,4 +2,8 @@
 
 (use-modules (ice-9 readline))
 
+(if (and (equal? (major-version) "2")
+         (equal? (minor-version) "2"))
+    (add-to-load-path "/opt/guile/share/guile/site/2.2"))
+
 (activate-readline)
