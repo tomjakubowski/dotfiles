@@ -58,10 +58,6 @@ function nmpath() {
     fi
 }
 
-# base16 color shell script
-BASE16_SHELL="$HOME/scripts/base16-eighties.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-
 # set path here to work around sadness on arch linux.
 path=("$HOME/.local/bin"
       "$HOME/bin"
