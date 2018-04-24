@@ -35,4 +35,4 @@ fi
 
 # fuck it :(
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
-[[ -f "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
+[[ -f "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh" --no-use
