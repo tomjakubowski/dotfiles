@@ -20,9 +20,6 @@ export SUDO_EDITOR="vim"
 export MPV_HOME="$XDG_CONFIG_HOME/mpv"
 
 # TODO: Move some of these into .config/zshenv.d directory
-export npm_config_userconfig="$XDG_CONFIG_HOME/npmrc"
-export npm_config_prefix="$HOME/.local/"
-export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
 export CARGO_INSTALL_ROOT="$HOME/.local"
 export ABDUCO_SOCKET_DIR="$XDG_RUNTIME_DIR"
