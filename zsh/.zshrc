@@ -28,11 +28,6 @@ unalias run-help 2>/dev/null || true
 autoload run-help
 
 # Aliases
-if (( $+commands[gls] )); then
-    alias ls='gls -h --color=auto'
-else
-    alias ls='ls -h --color=auto'
-fi
 alias irc="abduco -A irc zsh -c 'weechat -d $XDG_CONFIG_HOME/weechat'"
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 alias e="emacsclient -c -n"
@@ -56,6 +51,20 @@ function nmpath() {
     else
         echo "Couldn't find $nmbin, not adding to path!"
     fi
+}
+
+LSCMD=ls
+if (( ${+commands[gls]} )); then
+    LSCMD=gls
+fi
+
+DOTFILES_HOME=$HOME/dotfiles
+function ls() {
+    LSFLAGS=("-h" "--color=auto")
+    if [[ "$PWD/" = "$DOTFILES_HOME"/* ]]; then
+        LSFLAGS+=("-A")
+    fi
+    command "$LSCMD" ${^LSFLAGS} "$@"
 }
 
 # set path here to work around sadness on arch linux.
