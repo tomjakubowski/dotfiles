@@ -61,7 +61,10 @@ fi
 DOTFILES_HOME=$HOME/dotfiles
 function ls() {
     LSFLAGS=("-h" "--color=auto")
-    if [[ "$PWD/" = "$DOTFILES_HOME"/* ]]; then
+    # If we wanted to match the dotfiles dir itself, the LHS would be "$PWD/"
+    # But it turns out we only really want the dotfiles one level down from
+    # that in the dotfiles dir tree anyway.
+    if [[ "$PWD" = "$DOTFILES_HOME"/* ]]; then
         LSFLAGS+=("-A")
     fi
     command "$LSCMD" ${^LSFLAGS} "$@"
