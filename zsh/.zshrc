@@ -13,16 +13,6 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# le path
-
-typeset -U path
-path=("$HOME/.local/bin"
-      "$HOME/bin"
-      "$NPM_PACKAGES/bin"
-      "$HOME/.rbenv/bin"
-      "/usr/local/bin"
-      $path[@])
-
 # Sane help
 unalias run-help 2>/dev/null || true
 autoload run-help
@@ -71,14 +61,13 @@ function ls() {
 }
 
 # set path here to work around sadness on arch linux.
+typeset -U path
 path=("$HOME/.local/bin"
       "$HOME/bin"
       "$GOPATH/bin"
-      "$NPM_PACKAGES/bin"
       "$HOME/.rbenv/bin"
       "/usr/local/bin"
       $path[@])
-typeset -U path
 
 if [[ -d "$XDG_CONFIG_HOME/zshrc.d" ]]; then
     for file in $XDG_CONFIG_HOME/zshrc.d/*.{zsh,sh}(N); do
