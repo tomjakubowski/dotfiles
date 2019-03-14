@@ -24,7 +24,7 @@ alias e="emacsclient -c -n"
 
 # Prompt
 autoload -U colors && colors
-PROMPT="%F{blue}%n@%m%f:%~
+PROMPT="%F{green}%n@%m%f:%~
 %# "
 
 # functions
@@ -46,6 +46,9 @@ function nmpath() {
 LSCMD=ls
 if (( ${+commands[gls]} )); then
     LSCMD=gls
+fi
+if (( ${+commands[dircolors]} )); then
+    eval $(dircolors ~/.local/share/dircolors/solarized-ansi-universal)
 fi
 
 function ls() {
