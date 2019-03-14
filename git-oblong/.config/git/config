@@ -1,0 +1,27 @@
+[user]
+	email = tjakubowski@oblong.com
+	name = Tom Jakubowski
+
+[push]
+	default = simple
+[core]
+	editor = "vim"
+	untrackedCache = true
+
+[transfer]
+	fsckObjects = true
+
+[fetch]
+	fsckObjects = true
+
+[receive]
+	fsckObjects = true
+
+[pull]
+	rebase = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
