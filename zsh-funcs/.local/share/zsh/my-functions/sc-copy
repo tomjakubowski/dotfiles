@@ -1,0 +1,3 @@
+LOCAL_COPY=pbcopy
+
+ssh tjakubowski@tjakubowski-sc DISPLAY=:0 xsel -b | pbcopy
