@@ -16,3 +16,9 @@ to install to another directory:
 cd ~/dotfiles
 stow -t DESTINATION PACKAGE ...
 ```
+
+to "unstow":
+
+```bash
+stow -D PACKAGE ...
+```
