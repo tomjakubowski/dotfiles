@@ -21,6 +21,8 @@ set mouse=a
 set ttymouse=xterm2
 set noerrorbells visualbell t_vb=
 set esckeys
+set number
+set relativenumber
 
 set laststatus=2
 
