@@ -30,6 +30,7 @@ let mapleader=","
 nnoremap <leader>H :set list!<CR>
 nnoremap <leader>V :tabedit $MYVIMRC<CR>
 nnoremap <F5> :Neomake<CR>
+set pastetoggle=<F2>
 
 " Live reload vimrc
 augroup reload_vimrc
@@ -47,6 +48,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-unimpaired'
   Plug 'neomake/neomake'
+  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+  Plug 'vim-airline/vim-airline'
 call plug#end()
 
 " neomake
