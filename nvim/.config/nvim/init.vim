@@ -8,6 +8,7 @@ set tabstop=2 softtabstop=2 shiftwidth=2
 " presentation
 set nowrap
 set colorcolumn=89
+set signcolumn=yes
 
 " buffers
 set hidden
@@ -49,6 +50,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'neomake/neomake'
   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+  Plug 'neoclide/coc-rls'
   Plug 'vim-airline/vim-airline'
 call plug#end()
 
