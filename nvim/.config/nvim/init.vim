@@ -23,14 +23,13 @@ if exists('g:gui_oni')
   set noshowcmd
 endif
 
-" Mappings
-
+" Key mappings
 let mapleader=","
 
 " <leader>H to show hidden chars
-nmap <leader>H :set list!<CR>
-nmap <leader>M :make<CR>
-nmap <leader>V :tabedit $MYVIMRC<CR>
+nnoremap <leader>H :set list!<CR>
+nnoremap <leader>V :tabedit $MYVIMRC<CR>
+nnoremap <F5> :Neomake<CR>
 
 " Live reload vimrc
 augroup reload_vimrc
@@ -40,5 +39,12 @@ augroup END
 
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
+  Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'neomake/neomake'
 call plug#end()
+
+" neomake
+call neomake#configure#automake('nw', 750)
+
