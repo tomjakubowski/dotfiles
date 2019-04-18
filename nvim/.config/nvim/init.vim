@@ -39,6 +39,10 @@ augroup END
 
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
+  " Automatically install missing plugins on startup
+  if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+   autocmd VimEnter * PlugInstall | q
+  endif
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-unimpaired'
