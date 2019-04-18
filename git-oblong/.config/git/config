@@ -1,27 +1,30 @@
 [user]
-	email = tjakubowski@oblong.com
-	name = Tom Jakubowski
+email = tjakubowski@oblong.com
+name = Tom Jakubowski
 
 [push]
-	default = simple
+default = simple
+
 [core]
-	editor = "vim"
-	untrackedCache = true
-
-[transfer]
-	fsckObjects = true
-
-[fetch]
-	fsckObjects = true
-
-[receive]
-	fsckObjects = true
+editor = "vim"
+untrackedCache = true
 
 [pull]
-	rebase = true
+rebase = true
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
+
+[transfer]
+fsckObjects = true
+[fetch]
+fsckObjects = true
+[receive]
+fsckObjects = true
+
+[credential]
+helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+
