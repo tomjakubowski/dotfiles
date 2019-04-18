@@ -1,13 +1,9 @@
-" init.vim
-
 " general
-set syntax
 set noswapfile
 set smartcase
 
 set expandtab
 set tabstop=2 softtabstop=2 shiftwidth=2
-set shada
 
 " presentation
 set nowrap
@@ -35,3 +31,14 @@ let mapleader=","
 nmap <leader>H :set list!<CR>
 nmap <leader>M :make<CR>
 nmap <leader>V :tabedit $MYVIMRC<CR>
+
+" Live reload vimrc
+augroup reload_vimrc
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+
+" Plugins
+call plug#begin('~/.local/share/nvim/plugged')
+  Plug 'tpope/vim-fugitive'
+call plug#end()
