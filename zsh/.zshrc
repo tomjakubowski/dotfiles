@@ -46,22 +46,22 @@ function nmpath() {
 LSCMD=ls
 if (( ${+commands[gls]} )); then
     LSCMD=gls
+    function ls() {
+        local dotfiles_home=$HOME/dotfiles
+        local lsflags=("-h" "--color=auto")
+        # If we wanted to match the dotfiles dir itself, the LHS would be "$PWD/"
+        # But it turns out we only really want the dotfiles one level down from
+        # that in the dotfiles dir tree anyway.
+        if [[ "$PWD" = "$dotfiles_home"/* ]]; then
+            lsflags+=("-A")
+        fi
+        command "$LSCMD" ${^lsflags} "$@"
+    }
+
 fi
 if (( ${+commands[dircolors]} )); then
     eval $(dircolors ~/.local/share/dircolors/solarized-ansi-universal)
 fi
-
-function ls() {
-    local dotfiles_home=$HOME/dotfiles
-    local lsflags=("-h" "--color=auto")
-    # If we wanted to match the dotfiles dir itself, the LHS would be "$PWD/"
-    # But it turns out we only really want the dotfiles one level down from
-    # that in the dotfiles dir tree anyway.
-    if [[ "$PWD" = "$dotfiles_home"/* ]]; then
-        lsflags+=("-A")
-    fi
-    command "$LSCMD" ${^lsflags} "$@"
-}
 
 # set path here to work around sadness on arch linux.
 typeset -U path
