@@ -1,0 +1,7 @@
+local hosts
+hosts=(10.137.124.200 10.137.124.201 10.137.124.202)
+
+for host in "${hosts[@]}"
+do
+    ssh "oblong@$host" -- "${@}"
+done
