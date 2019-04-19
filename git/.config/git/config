@@ -6,7 +6,6 @@
 [push]
 	default = simple
 [core]
-	editor = "vim"
 	untrackedCache = true
 
 [transfer]
