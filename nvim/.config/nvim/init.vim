@@ -5,16 +5,38 @@ set smartcase
 set expandtab
 set tabstop=2 softtabstop=2 shiftwidth=2
 
+" Plugins
+call plug#begin('~/.local/share/nvim/plugged')
+  Plug 'arcticicestudio/nord-vim'
+  Plug 'neomake/neomake'
+  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+  Plug 'neoclide/coc-rls'
+  Plug 'rust-lang/rust.vim'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'vim-airline/vim-airline'
+call plug#end()
+
 " presentation
 set nowrap
 set colorcolumn=89
 set signcolumn=yes
+colorscheme nord
+let g:nord_italic = 1
+let g:nord_underline = 1
+if &term == "xterm-kitty"
+  set termguicolors
+endif
 
 " buffers
 set hidden
 
 " Enable GUI mouse behavior
 set mouse=a
+
+" Use ripgrep
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 
 " If using Oni's externalized statusline, hide vim's native statusline, 
 if exists('g:gui_oni')
@@ -30,7 +52,9 @@ let mapleader=","
 " <leader>H to show hidden chars
 nnoremap <leader>H :set list!<CR>
 nnoremap <leader>V :tabedit $MYVIMRC<CR>
+nnoremap <leader>g :silent lgrep<Space>
 nnoremap <F5> :Neomake<CR>
+
 set pastetoggle=<F2>
 
 " Live reload vimrc
@@ -38,22 +62,9 @@ augroup reload_vimrc
   autocmd!
   autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
-
-" Plugins
-call plug#begin('~/.local/share/nvim/plugged')
-  " Automatically install missing plugins on startup
-  if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
-   autocmd VimEnter * PlugInstall | q
-  endif
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-unimpaired'
-  Plug 'neomake/neomake'
-  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-  Plug 'neoclide/coc-rls'
-  Plug 'vim-airline/vim-airline'
-call plug#end()
-
+"
 " neomake
 call neomake#configure#automake('nw', 750)
 
+" rust
+let g:rustfmt_autosave = 1
