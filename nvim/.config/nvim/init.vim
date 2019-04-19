@@ -53,8 +53,7 @@ let mapleader=","
 nnoremap <leader>H :set list!<CR>
 nnoremap <leader>V :tabedit $MYVIMRC<CR>
 nnoremap <leader>g :silent lgrep<Space>
-nnoremap <F5> :Neomake<CR>
-
+nnoremap <F5> :make<CR>
 set pastetoggle=<F2>
 
 " Live reload vimrc
