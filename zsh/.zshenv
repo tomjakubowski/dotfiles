@@ -1,15 +1,15 @@
 if [[ -z "$XDG_CONFIG_HOME" ]]; then
-    export XDG_CONFIG_HOME="$HOME/.config"
+  export XDG_CONFIG_HOME="$HOME/.config"
 fi
 if [[ -z "$XDG_RUNTIME_DIR" ]]; then
-    export XDG_RUNTIME_DIR="$HOME/.run"
-    if ! [ -d "$XDG_RUNTIME_DIR" ]; then
-        mkdir -p "$XDG_RUNTIME_DIR"
-    fi
-    chmod 700 "$XDG_RUNTIME_DIR"
+  export XDG_RUNTIME_DIR="$HOME/.run"
+  if ! [ -d "$XDG_RUNTIME_DIR" ]; then
+    mkdir -p "$XDG_RUNTIME_DIR"
+  fi
+  chmod 700 "$XDG_RUNTIME_DIR"
 fi
 if [[ -z "$XDG_CACHE_HOME" ]]; then
-    export XDG_CACHE_HOME="$HOME/.cache"
+  export XDG_CACHE_HOME="$HOME/.cache"
 fi
 
 
@@ -28,9 +28,9 @@ export GOPATH="$HOME/gocode"
 
 [[ -f "$HOME/.zshenv_local" ]] && source "$HOME/.zshenv_local"
 if [[ -d "$XDG_CONFIG_HOME/zshenv.d" ]]; then
-    for file in $XDG_CONFIG_HOME/zshenv.d/*.zsh(N); do
-        source "$file"
-    done
+  for file in $XDG_CONFIG_HOME/zshenv.d/*.zsh(N); do
+    source "$file"
+  done
 fi
 
 # fuck it :(

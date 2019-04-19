@@ -30,17 +30,17 @@ PROMPT="%F{green}%n@%m%f:%~
 # functions
 function beep() { eval $* ; printf "\a" }
 function E() {
-    local fullpath=$(readlink -f ${@[-1]})
-    emacsclient -c -n -e "(find-file \"/sudo::${fullpath}\")"
+  local fullpath=$(readlink -f ${@[-1]})
+  emacsclient -c -n -e "(find-file \"/sudo::${fullpath}\")"
 }
 function nmpath() {
-    local nmbin="$PWD/node_modules/.bin"
-    if [[ -d $nmbin ]];
-    then
-        path+=($nmbin)
-    else
-        echo "Couldn't find $nmbin, not adding to path!"
-    fi
+  local nmbin="$PWD/node_modules/.bin"
+  if [[ -d $nmbin ]];
+  then
+    path+=($nmbin)
+  else
+    echo "Couldn't find $nmbin, not adding to path!"
+  fi
 }
 
 LSCMD=ls
@@ -53,7 +53,7 @@ if (( ${+commands[gls]} )); then
     # But it turns out we only really want the dotfiles one level down from
     # that in the dotfiles dir tree anyway.
     if [[ "$PWD" = "$dotfiles_home"/* ]]; then
-        lsflags+=("-A")
+      lsflags+=("-A")
     fi
     command "$LSCMD" ${^lsflags} "$@"
   }
@@ -66,7 +66,7 @@ elif [[ "$(ls --version)" != "*coreutils*" ]]; then
     # But it turns out we only really want the dotfiles one level down from
     # that in the dotfiles dir tree anyway.
     if [[ "$PWD" = "$dotfiles_home"/* ]]; then
-        lsflags+=("-A")
+      lsflags+=("-A")
     fi
     command "$LSCMD" ${^lsflags} "$@"
   }
@@ -79,14 +79,14 @@ fi
 # set path here to work around sadness on arch linux.
 typeset -U path
 path=("$HOME/.local/bin"
-      "$HOME/bin"
-      "$GOPATH/bin"
-      "$HOME/.rbenv/bin"
-      "/usr/local/bin"
-      $path[@])
+"$HOME/bin"
+"$GOPATH/bin"
+"$HOME/.rbenv/bin"
+"/usr/local/bin"
+$path[@])
 
 if [[ -d "$XDG_CONFIG_HOME/zshrc.d" ]]; then
-    for file in $XDG_CONFIG_HOME/zshrc.d/*.{zsh,sh}(N); do
-        source $file
-    done
+  for file in $XDG_CONFIG_HOME/zshrc.d/*.{zsh,sh}(N); do
+    source $file
+  done
 fi
