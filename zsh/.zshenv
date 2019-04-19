@@ -12,10 +12,17 @@ if [[ -z "$XDG_CACHE_HOME" ]]; then
   export XDG_CACHE_HOME="$HOME/.cache"
 fi
 
+typeset -U path
+path=("$HOME/.local/bin"
+      "/usr/local/bin"
+      $path[@])
 
 # vim is slightly more likely to work than emacsclient
 export EDITOR="vim"
-export SUDO_EDITOR="vim"
+if (( ${+commands[nvim]} )); then
+  export EDITOR="nvim"
+fi
+export SUDO_EDITOR="$EDITOR"
 
 export MPV_HOME="$XDG_CONFIG_HOME/mpv"
 

@@ -76,15 +76,6 @@ if (( ${+commands[dircolors]} )); then
   eval $(dircolors ~/.local/share/dircolors/solarized-ansi-universal)
 fi
 
-# set path here to work around sadness on arch linux.
-typeset -U path
-path=("$HOME/.local/bin"
-"$HOME/bin"
-"$GOPATH/bin"
-"$HOME/.rbenv/bin"
-"/usr/local/bin"
-$path[@])
-
 if [[ -d "$XDG_CONFIG_HOME/zshrc.d" ]]; then
   for file in $XDG_CONFIG_HOME/zshrc.d/*.{zsh,sh}(N); do
     source $file
