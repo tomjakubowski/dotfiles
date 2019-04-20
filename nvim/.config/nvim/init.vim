@@ -60,6 +60,7 @@ nnoremap <leader>V :tabedit $MYVIMRC<CR>
 nnoremap <leader>g :silent lgrep<Space>
 nnoremap <F5> :make<CR>
 nnoremap <C-x><C-j> :Explore<CR>
+nnoremap <C-p> :GitFiles -co<CR>
 set pastetoggle=<F2>
 
 " uppercase current word.  thanks, steve losh!
@@ -86,7 +87,6 @@ augroup terminal_etc
 augroup END
 
 " fzf
-nnoremap <C-p> :GitFiles<CR>
 augroup fzf
   autocmd! 
   autocmd FileType fzf set laststatus=0 noshowmode noruler
