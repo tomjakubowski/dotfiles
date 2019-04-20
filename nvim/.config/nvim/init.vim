@@ -60,6 +60,7 @@ nnoremap <leader>V :tabedit $MYVIMRC<CR>
 nnoremap <leader>g :silent lgrep<Space>
 nnoremap <F5> :make<CR>
 nnoremap <C-x><C-j> :Explore<CR>
+nnoremap <C-b> :Buffers<CR>
 nnoremap <C-p> :GitFiles -co<CR>
 set pastetoggle=<F2>
 
