@@ -29,7 +29,7 @@ set signcolumn=yes
 colorscheme nord
 let g:nord_italic = 1
 let g:nord_underline = 1
-if &term == "xterm-kitty"
+if $TERM == "xterm-kitty"
   set termguicolors
 endif
 
@@ -79,7 +79,13 @@ augroup terminal_etc
 augroup END
 
 " fzf
-nnoremap <C-p> :Files<CR>
+nnoremap <C-p> :GitFiles<CR>
+augroup fzf
+  autocmd! 
+  autocmd FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+augroup END
 
 " netrw
 let g:netrw_sort_sequence="[\/]$,*"
+
