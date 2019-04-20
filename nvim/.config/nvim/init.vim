@@ -13,8 +13,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'neomake/neomake'
   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
   Plug 'neoclide/coc-rls'
+  Plug 'radenling/vim-dispatch-neovim'
   Plug 'rust-lang/rust.vim'
   Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-unimpaired'
   Plug 'vim-airline/vim-airline'
