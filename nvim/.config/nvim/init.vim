@@ -90,6 +90,8 @@ augroup END
 " netrw
 let g:netrw_sort_sequence="[\/]$,*"
 
-" asyncrun: vim-fugitive integration
+" asyncrun
+let g:asyncrun_open = 8
+" vim-fugitive integration
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
