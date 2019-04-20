@@ -17,6 +17,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'skywind3000/asyncrun.vim'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-surround'
   Plug 'tpope/vim-unimpaired'
   Plug 'vim-airline/vim-airline'
 call plug#end()
@@ -28,8 +29,7 @@ set nowrap
 set colorcolumn=89
 set signcolumn=yes
 colorscheme nord
-let g:nord_italic = 1
-let g:nord_underline = 1
+let [g:nord_italic, g:nord_underline] = [1, 1]
 if $TERM == "xterm-kitty"
   set termguicolors
 endif
@@ -62,6 +62,11 @@ nnoremap <F5> :make<CR>
 nnoremap <C-x><C-j> :Explore<CR>
 set pastetoggle=<F2>
 
+" uppercase current word.  thanks, steve losh!
+inoremap <c-u> <esc>viwUgi
+
+" TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
+
 " Live reload vimrc
 augroup reload_vimrc
   autocmd!
@@ -90,6 +95,7 @@ augroup END
 
 " netrw
 let g:netrw_sort_sequence="[\/]$,*"
+let g:netrw_list_hide='^\.git$'
 
 " asyncrun
 let g:asyncrun_open = 8
