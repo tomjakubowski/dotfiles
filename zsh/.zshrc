@@ -1,13 +1,20 @@
-HISTFILE=~/.histfile
-HISTSIZE=100000
-SAVEHIST=100000
-setopt appendhistory
 setopt beep
 setopt extendedglob
 setopt nomatch
-unsetopt autocd
-unsetopt notify
+
 bindkey -e
+
+# History options
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt appendhistory
+setopt extended_history
+setopt hist_ignore_space
+setopt hist_lex_words
+setopt hist_verify
+setopt inc_append_history_time
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/tom/.zshrc'
 
