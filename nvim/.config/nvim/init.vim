@@ -13,10 +13,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'neomake/neomake'
   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
   Plug 'neoclide/coc-rls'
-  Plug 'radenling/vim-dispatch-neovim'
   Plug 'rust-lang/rust.vim'
+  Plug 'skywind3000/asyncrun.vim'
   Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-unimpaired'
   Plug 'vim-airline/vim-airline'
@@ -90,4 +89,7 @@ augroup END
 
 " netrw
 let g:netrw_sort_sequence="[\/]$,*"
+
+" asyncrun: vim-fugitive integration
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
