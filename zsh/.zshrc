@@ -90,3 +90,5 @@ if [[ -d "$XDG_CONFIG_HOME/zshrc.d" ]]; then
     source $file
   done
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

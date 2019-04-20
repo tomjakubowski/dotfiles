@@ -8,6 +8,8 @@ set tabstop=2 softtabstop=2 shiftwidth=2
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
   Plug 'arcticicestudio/nord-vim'
+  Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
   Plug 'neomake/neomake'
   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
   Plug 'neoclide/coc-rls'
@@ -19,6 +21,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 call plug#end()
 
 " presentation
+set number
+set relativenumber
 set nowrap
 set colorcolumn=89
 set signcolumn=yes
@@ -67,3 +71,15 @@ call neomake#configure#automake('nw', 750)
 
 " rust
 let g:rustfmt_autosave = 1
+
+" neovim terminal setup
+augroup terminal_etc
+  au! 
+  autocmd TermOpen * setlocal nonumber norelativenumber
+augroup END
+
+" fzf
+nnoremap <C-p> :Files<CR>
+
+" netrw
+let g:netrw_sort_sequence="[\/]$,*"
