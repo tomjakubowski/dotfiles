@@ -17,6 +17,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'skywind3000/asyncrun.vim'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-sensible'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-unimpaired'
   Plug 'vim-airline/vim-airline'
@@ -24,9 +25,10 @@ call plug#end()
 
 " presentation
 set number
+set numberwidth=3
 set relativenumber
 set nowrap
-set colorcolumn=89
+set colorcolumn=100
 set signcolumn=yes
 colorscheme nord
 let [g:nord_italic, g:nord_underline] = [1, 1]
@@ -41,7 +43,9 @@ set hidden
 set mouse=a
 
 " Use ripgrep
-set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+endif
 
 " If using Oni's externalized statusline, hide vim's native statusline, 
 if exists('g:gui_oni')
@@ -60,9 +64,11 @@ nnoremap <leader>V :tabedit $MYVIMRC<CR>
 nnoremap <leader>g :silent lgrep<Space>
 nnoremap <F5> :make<CR>
 nnoremap <C-x><C-j> :Explore<CR>
-nnoremap <C-b> :Buffers<CR>
-nnoremap <C-p> :GitFiles -co<CR>
-set pastetoggle=<F2>
+nnoremap <C-f> :Buffers<CR>
+nnoremap <C-p> :GitFiles -co --exclude-standard<CR>
+" emacs-compatible bindings <3
+nnoremap <C-x>b :Buffers<CR>
+nnoremap <C-x><C-f> :Buffers<CR>
 
 " uppercase current word.  thanks, steve losh!
 inoremap <c-u> <esc>viwUgi
@@ -99,8 +105,9 @@ let g:netrw_sort_sequence="[\/]$,*"
 let g:netrw_list_hide='^\.git$'
 
 " asyncrun
-let g:asyncrun_open = 8
+let g:asyncrun_open = 0
 " vim-fugitive integration
-command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+" broken, doesn't refresh status window 
+"command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 autocmd FileType gitcommit :inoremap <buffer> <C-c><C-c> <esc>:wq<cr>
