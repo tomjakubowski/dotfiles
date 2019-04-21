@@ -103,3 +103,4 @@ let g:asyncrun_open = 8
 " vim-fugitive integration
 command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
+autocmd FileType gitcommit :inoremap <buffer> <C-c><C-c> <esc>:wq<cr>
