@@ -60,7 +60,8 @@ let mapleader=","
 
 " <leader>H to show hidden chars
 nnoremap <leader>H :set list!<CR>
-nnoremap <leader>V :tabedit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>ev :tabedit $MYVIMRC<CR>
 nnoremap <leader>g :silent lgrep<Space>
 nnoremap <F5> :make<CR>
 nnoremap <C-x><C-j> :Explore<CR>
@@ -73,16 +74,9 @@ nnoremap <C-x><C-f> :Buffers<CR>
 " uppercase current word.  thanks, steve losh!
 inoremap <c-u> <esc>viwUgi
 
-" TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-
-" Live reload vimrc
-augroup reload_vimrc
-  autocmd!
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END
-"
 " neomake
 call neomake#configure#automake('nw', 750)
+let g:neomake_html_enabled_makers = []
 
 " rust
 let g:rustfmt_autosave = 1
@@ -111,3 +105,4 @@ let g:asyncrun_open = 0
 "command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 autocmd FileType gitcommit :inoremap <buffer> <C-c><C-c> <esc>:wq<cr>
+autocmd FileType fugitive :nmap <tab> =
