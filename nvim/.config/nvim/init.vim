@@ -105,4 +105,6 @@ let g:asyncrun_open = 0
 "command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 autocmd FileType gitcommit :inoremap <buffer> <C-c><C-c> <esc>:wq<cr>
+autocmd FileType gitcommit :nnoremap <buffer> <C-c><C-c> :wq<cr>
+" FIXME: the next one should be doable without a recursive mapping
 autocmd FileType fugitive :nmap <tab> =
