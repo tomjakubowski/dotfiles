@@ -8,6 +8,7 @@ set tabstop=2 softtabstop=2 shiftwidth=2
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
   Plug 'arcticicestudio/nord-vim'
+  Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'neomake/neomake'
@@ -20,7 +21,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-sensible'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-unimpaired'
-  Plug 'vim-airline/vim-airline'
 call plug#end()
 
 " presentation
