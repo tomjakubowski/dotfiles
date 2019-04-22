@@ -23,3 +23,8 @@
 	required = true
 [credential]
 	helper = tom
+
+[alias]
+  co = "checkout"
+  p = "pull"
+  P = "push"

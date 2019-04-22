@@ -26,3 +26,8 @@ fsckObjects = true
 
 [credential]
 helper = tjakubowski
+
+[alias]
+  co = "checkout"
+  p = "pull"
+  P = "push"
