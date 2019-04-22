@@ -8,6 +8,8 @@ set tabstop=2 softtabstop=2 shiftwidth=2
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
   Plug 'arcticicestudio/nord-vim'
+  Plug 'cespare/vim-toml'
+  Plug 'fatih/vim-go'
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
