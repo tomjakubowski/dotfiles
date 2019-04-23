@@ -33,6 +33,9 @@ set nowrap
 set colorcolumn=100
 set signcolumn=yes
 colorscheme nord
+if exists('g:lightline_colorscheme')
+  let g:lightline.colorscheme = 'nord'
+endif
 let [g:nord_italic, g:nord_underline] = [1, 1]
 if $TERM == "xterm-kitty"
   set termguicolors
