@@ -13,6 +13,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/goyo.vim'
   Plug 'neomake/neomake'
   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
   Plug 'rust-lang/rust.vim'
@@ -113,3 +114,5 @@ autocmd FileType gitcommit :inoremap <buffer> <C-c><C-c> <esc>:wq<cr>
 autocmd FileType gitcommit :nnoremap <buffer> <C-c><C-c> :wq<cr>
 " FIXME: the next one should be doable without a recursive mapping
 autocmd FileType fugitive :nmap <tab> =
+
+autocmd BufNewFile,BufRead buildshim,buildshim-osx set ft=sh
