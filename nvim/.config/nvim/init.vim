@@ -9,6 +9,7 @@ set tabstop=2 softtabstop=2 shiftwidth=2
 call plug#begin('~/.local/share/nvim/plugged')
   Plug 'arcticicestudio/nord-vim'
   Plug 'cespare/vim-toml'
+  Plug 'editorconfig/editorconfig-vim'
   Plug 'fatih/vim-go'
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
@@ -62,7 +63,7 @@ endif
 
 " Key mappings
 let mapleader=","
-
+" NORMAL mode
 " <leader>H to show hidden chars
 nnoremap <leader>H :set list!<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
@@ -75,7 +76,7 @@ nnoremap <C-p> :GitFiles -co --exclude-standard<CR>
 " emacs-compatible bindings <3
 nnoremap <C-x>b :Buffers<CR>
 nnoremap <C-x><C-f> :Buffers<CR>
-
+" INSERT mode
 " uppercase current word.  thanks, steve losh!
 inoremap <c-u> <esc>viwUgi
 
