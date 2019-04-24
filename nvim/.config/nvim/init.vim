@@ -15,7 +15,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'junegunn/fzf.vim'
   Plug 'neomake/neomake'
   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-  Plug 'neoclide/coc-rls'
   Plug 'rust-lang/rust.vim'
   Plug 'skywind3000/asyncrun.vim'
   Plug 'tpope/vim-commentary'
@@ -85,6 +84,7 @@ let g:neomake_html_enabled_makers = []
 
 " rust
 let g:rustfmt_autosave = 1
+let g:coc_global_extensions = ["coc-rls"]
 
 " neovim terminal setup
 augroup terminal_etc
