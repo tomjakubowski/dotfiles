@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+
+"""wraps rg to locate magic numbers in hex or dec"""
+
+from subprocess import Popen
+import sys
+
+
+def main(args):
+    """magnum"""
+    num = int(args[1])
+    rx_dec = '{:d}'.format(num)
+    rx_hex = '0x0*{:x}'.format(num)
+    combined = r'\b{}|{}\b'.format(rx_dec, rx_hex)
+    Popen(['rg', combined])
+
+
+if __name__ == "__main__":
+    main(sys.argv)
