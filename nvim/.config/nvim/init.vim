@@ -53,13 +53,8 @@ if executable("rg")
   set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 endif
 
-" If using Oni's externalized statusline, hide vim's native statusline, 
-if exists('g:gui_oni')
-  set noshowmode
-  set noruler
-  set laststatus=0
-  set noshowcmd
-endif
+" this is way faster
+let g:EditorConfig_core_mode = 'external_command'
 
 " Key mappings
 let mapleader=","
@@ -90,13 +85,13 @@ let g:coc_global_extensions = ["coc-rls"]
 
 " neovim terminal setup
 augroup terminal_etc
-  au! 
+  au!
   autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
 
 " fzf
 augroup fzf
-  autocmd! 
+  autocmd!
   autocmd FileType fzf set laststatus=0 noshowmode noruler
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 augroup END
@@ -108,7 +103,7 @@ let g:netrw_list_hide='^\.git$'
 " asyncrun
 let g:asyncrun_open = 0
 " vim-fugitive integration
-" broken, doesn't refresh status window 
+" broken, doesn't refresh status window
 "command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 
 autocmd FileType gitcommit :inoremap <buffer> <C-c><C-c> <esc>:wq<cr>
