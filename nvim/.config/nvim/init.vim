@@ -15,8 +15,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
-  Plug 'neomake/neomake'
-  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
   Plug 'rust-lang/rust.vim'
   Plug 'skywind3000/asyncrun.vim'
   Plug 'tpope/vim-commentary'
@@ -24,6 +22,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-sensible'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-unimpaired'
+  Plug 'w0rp/ale'
 call plug#end()
 
 " presentation
@@ -56,6 +55,8 @@ endif
 " this is way faster
 let g:EditorConfig_core_mode = 'external_command'
 
+" FIXME: probably need to set these only after plugins load, to avoid plugins
+" clobbering them (like vim-sensible is doing now to C-u)
 " Key mappings
 let mapleader=","
 " NORMAL mode
@@ -75,13 +76,8 @@ nnoremap <C-x><C-f> :Buffers<CR>
 " uppercase current word.  thanks, steve losh!
 inoremap <c-u> <esc>viwUgi
 
-" neomake
-call neomake#configure#automake('nw', 750)
-let g:neomake_html_enabled_makers = []
-
 " rust
 let g:rustfmt_autosave = 1
-let g:coc_global_extensions = ["coc-rls"]
 
 " neovim terminal setup
 augroup terminal_etc
