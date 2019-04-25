@@ -109,6 +109,6 @@ let g:asyncrun_open = 0
 autocmd FileType gitcommit :inoremap <buffer> <C-c><C-c> <esc>:wq<cr>
 autocmd FileType gitcommit :nnoremap <buffer> <C-c><C-c> :wq<cr>
 " FIXME: the next one should be doable without a recursive mapping
-autocmd FileType fugitive :nmap <tab> =
+autocmd FileType fugitive :nmap <buffer> <tab> =
 
 autocmd BufNewFile,BufRead buildshim,buildshim-osx set ft=sh
