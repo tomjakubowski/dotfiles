@@ -51,6 +51,7 @@ set mouse=a
 " Use ripgrep
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+  let $FZF_DEFAULT_COMMAND='rg --files --hidden'
 endif
 
 " this is way faster
@@ -69,7 +70,7 @@ nnoremap <leader>g :silent lgrep<Space>
 nnoremap <F5> :make<CR>
 nnoremap <C-x><C-j> :Explore<CR>
 nnoremap <C-f> :Buffers<CR>
-nnoremap <C-p> :GitFiles -co --exclude-standard<CR>
+nnoremap <C-p> :Files<CR>
 " emacs-compatible bindings <3
 nnoremap <C-x>b :Buffers<CR>
 nnoremap <C-x><C-f> :Buffers<CR>
