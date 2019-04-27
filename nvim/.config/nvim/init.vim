@@ -17,6 +17,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'junegunn/goyo.vim'
   Plug 'rust-lang/rust.vim'
   Plug 'skywind3000/asyncrun.vim'
+  Plug 'tikhomirov/vim-glsl'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-sensible'
