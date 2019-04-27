@@ -1,5 +1,3 @@
-# -*- indent-tabs-mode: t; -*-
-
 [user]
 	email = tom@crystae.net
 	name = Tom Jakubowski
@@ -28,3 +26,4 @@
   co = "checkout"
   p = "pull"
   P = "push"
+  rb = "rebase"
