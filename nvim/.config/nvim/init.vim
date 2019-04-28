@@ -50,7 +50,7 @@ set mouse=a
 " Use ripgrep
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-  let $FZF_DEFAULT_COMMAND='rg --files --hidden'
+  let $FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git"'
 endif
 
 " this is way faster
