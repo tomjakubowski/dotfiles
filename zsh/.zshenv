@@ -33,6 +33,8 @@ export ABDUCO_SOCKET_DIR="$XDG_RUNTIME_DIR"
 
 export GOPATH="$HOME/gocode"
 
+export TOM_UNAME=$(uname)
+
 [[ -f "$HOME/.zshenv_local" ]] && source "$HOME/.zshenv_local"
 if [[ -d "$XDG_CONFIG_HOME/zshenv.d" ]]; then
   for file in $XDG_CONFIG_HOME/zshenv.d/*.zsh(N); do
