@@ -31,3 +31,12 @@ to "unstow":
 ```bash
 stow -D PACKAGE ...
 ```
+
+## Brew bundle
+
+[homebrew-bundle README](https://github.com/Homebrew/homebrew-bundle/blob/master/README.md)
+
+```bash
+brew bundle
+brew bundle dump
+```
