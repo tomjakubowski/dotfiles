@@ -78,6 +78,9 @@ nnoremap <C-x><C-f> :Buffers<CR>
 " uppercase current word.  thanks, steve losh!
 inoremap <c-u> <esc>viwUgi
 
+" ale
+let g:ale_fix_on_save = 1
+
 " rust
 let g:rustfmt_autosave = 1
 let g:ale_rust_cargo_check_tests = 1
