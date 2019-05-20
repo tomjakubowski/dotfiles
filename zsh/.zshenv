@@ -33,6 +33,7 @@ export ABDUCO_SOCKET_DIR="$XDG_RUNTIME_DIR"
 
 export GOPATH="$HOME/gocode"
 
+export TOM_HOST=$(hostname)
 export TOM_UNAME=$(uname)
 
 [[ -f "$HOME/.zshenv_local" ]] && source "$HOME/.zshenv_local"
