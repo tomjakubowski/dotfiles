@@ -15,6 +15,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
+  Plug 'leafgarland/typescript-vim'
   Plug 'rust-lang/rust.vim'
   Plug 'tikhomirov/vim-glsl'
   Plug 'tpope/vim-commentary'
@@ -110,3 +111,8 @@ autocmd FileType gitcommit :nnoremap <buffer> <C-c><C-c> :wq<cr>
 autocmd FileType fugitive :nmap <buffer> <tab> =
 
 autocmd BufNewFile,BufRead buildshim,buildshim-osx set ft=sh
+augroup svelte
+  autocmd!
+  autocmd BufNewFile,BufRead *.svelte set ft=html
+  autocmd BufNewFile,BufRead *.svelte let b:ale_linters = []
+augroup END
