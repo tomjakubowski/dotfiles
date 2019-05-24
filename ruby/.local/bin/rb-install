@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -ex
+
+ruby-build "$1" "$HOME/opt/rubies/$1"
