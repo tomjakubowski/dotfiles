@@ -7,7 +7,6 @@ set tabstop=2 softtabstop=2 shiftwidth=2
 
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'arcticicestudio/nord-vim'
   Plug 'cespare/vim-toml'
   Plug 'editorconfig/editorconfig-vim'
@@ -81,13 +80,6 @@ inoremap <c-u> <esc>viwUgi
 
 " ale
 let g:ale_fix_on_save = 1
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
-
-" rust
-let g:rustfmt_autosave = 1
-let g:ale_rust_cargo_check_tests = 1
 
 " neovim terminal setup
 augroup terminal_etc
