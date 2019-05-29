@@ -57,8 +57,6 @@ endif
 " this is way faster
 let g:EditorConfig_core_mode = 'external_command'
 
-" FIXME: probably need to set these only after plugins load, to avoid plugins
-" clobbering them (like vim-sensible is doing now to C-u)
 " Key mappings
 let mapleader=","
 " NORMAL mode
