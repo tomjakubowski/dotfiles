@@ -43,6 +43,8 @@ if $TERM == "xterm-kitty"
   set termguicolors
 endif
 
+set foldmethod=syntax
+
 " buffers
 set hidden
 
@@ -73,6 +75,8 @@ nnoremap <C-p> :Files<CR>
 " emacs-compatible bindings <3
 nnoremap <C-x>b :Buffers<CR>
 nnoremap <C-x><C-f> :Files<CR>
+nnoremap <Space> za
+
 " INSERT mode
 " uppercase current word.  thanks, steve losh!
 inoremap <c-u> <esc>viwUgi
