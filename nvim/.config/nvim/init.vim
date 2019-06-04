@@ -2,8 +2,10 @@
 set noswapfile
 set smartcase
 
+" tabs spaces wrapping
 set expandtab
 set tabstop=2 softtabstop=2 shiftwidth=2
+set formatoptions+=n
 
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
@@ -32,7 +34,7 @@ set number
 set numberwidth=3
 set relativenumber
 set nowrap
-set colorcolumn=100
+set colorcolumn=+0
 set signcolumn=yes
 colorscheme nord
 if exists('g:lightline_colorscheme')
@@ -43,7 +45,11 @@ if $TERM == "xterm-kitty"
   set termguicolors
 endif
 
+" Folding
 set foldmethod=syntax
+set foldlevelstart=0
+nnoremap <Space> za
+vnoremap <Space> za
 
 " buffers
 set hidden
@@ -60,7 +66,7 @@ endif
 " this is way faster
 let g:EditorConfig_core_mode = 'external_command'
 
-" Key mappings
+" ----- random key mappings
 let mapleader=","
 " NORMAL mode
 " <leader>H to show hidden chars
@@ -75,7 +81,6 @@ nnoremap <C-p> :Files<CR>
 " emacs-compatible bindings <3
 nnoremap <C-x>b :Buffers<CR>
 nnoremap <C-x><C-f> :Files<CR>
-nnoremap <Space> za
 
 " INSERT mode
 " uppercase current word.  thanks, steve losh!
