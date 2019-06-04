@@ -8,3 +8,4 @@
 .*.swo
 
 doc/tags
+compile_commands.json
