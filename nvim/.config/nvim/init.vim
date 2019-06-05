@@ -46,8 +46,8 @@ if $TERM == "xterm-kitty"
 endif
 
 " Folding
-set foldmethod=syntax
-" set foldlevelstart=1
+" set foldmethod=syntax
+" set foldlevelstart=-1
 nnoremap <Space> za
 vnoremap <Space> za
 
