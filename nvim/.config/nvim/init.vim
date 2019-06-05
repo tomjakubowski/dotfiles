@@ -47,7 +47,7 @@ endif
 
 " Folding
 set foldmethod=syntax
-set foldlevelstart=1
+" set foldlevelstart=1
 nnoremap <Space> za
 vnoremap <Space> za
 
