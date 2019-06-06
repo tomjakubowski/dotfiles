@@ -45,11 +45,14 @@ if $TERM == "xterm-kitty"
   set termguicolors
 endif
 
+let mapleader=","
+
 " Folding
-" set foldmethod=syntax
-" set foldlevelstart=-1
+set foldmethod=indent
+" I'll override this for certain file types
+set foldlevelstart=99
 nnoremap <Space> za
-vnoremap <Space> za
+nnoremap <Space> za
 
 " buffers
 set hidden
@@ -66,8 +69,6 @@ endif
 " this is way faster
 let g:EditorConfig_core_mode = 'external_command'
 
-" ----- random key mappings
-let mapleader=","
 " NORMAL mode
 " <leader>H to show hidden chars
 nnoremap <leader>H :set list!<CR>
@@ -88,6 +89,9 @@ inoremap <c-u> <esc>viwUgi
 
 " ale
 let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \}
 set omnifunc=ale#completion#OmniFunc
 
 " fzf
