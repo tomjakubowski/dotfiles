@@ -90,12 +90,6 @@ inoremap <c-u> <esc>viwUgi
 let g:ale_fix_on_save = 1
 set omnifunc=ale#completion#OmniFunc
 
-" neovim terminal setup
-augroup terminal_etc
-  au!
-  autocmd TermOpen * setlocal nonumber norelativenumber
-augroup END
-
 " fzf
 augroup fzf
   autocmd!
@@ -107,18 +101,11 @@ augroup END
 let g:netrw_sort_sequence="[\/]$,*"
 let g:netrw_list_hide='^\.git$'
 
-" asyncrun
-let g:asyncrun_open = 0
-" vim-fugitive integration
-" broken, doesn't refresh status window
-"command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
-
 autocmd FileType gitcommit :inoremap <buffer> <C-c><C-c> <esc>:wq<cr>
 autocmd FileType gitcommit :nnoremap <buffer> <C-c><C-c> :wq<cr>
 " FIXME: the next one should be doable without a recursive mapping
 autocmd FileType fugitive :nmap <buffer> <tab> =
 
-autocmd BufNewFile,BufRead buildshim,buildshim-osx set ft=sh
 augroup svelte
   autocmd!
   autocmd BufNewFile,BufRead *.svelte set ft=html
