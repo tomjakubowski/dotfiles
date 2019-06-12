@@ -73,7 +73,7 @@ let g:EditorConfig_core_mode = 'external_command'
 " <leader>H to show hidden chars
 nnoremap <leader>H :set list!<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <leader>ev :tabedit $MYVIMRC<CR>
+nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
 nnoremap <leader>g :silent lgrep<Space>
 nnoremap <F5> :make<CR>
 nnoremap <C-x><C-j> :Explore<CR>
@@ -92,7 +92,7 @@ let g:ale_fix_on_save = 1
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \}
-set omnifunc=ale#completion#OmniFunc
+imap <C-Space> <Plug>(ale_complete)
 
 " fzf
 augroup fzf
