@@ -66,9 +66,6 @@ if executable("rg")
   let $FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git"'
 endif
 
-" this is way faster
-let g:EditorConfig_core_mode = 'external_command'
-
 " NORMAL mode
 " <leader>H to show hidden chars
 nnoremap <leader>H :set list!<CR>
