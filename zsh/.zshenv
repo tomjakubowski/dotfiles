@@ -47,5 +47,5 @@ fi
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 if (( ${+commands[sccache]} )); then
-  export RUSTC_WRAPPER=sccache
+  export RUSTC_WRAPPER=${commands[sccache]}
 fi
