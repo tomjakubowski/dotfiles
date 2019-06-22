@@ -97,6 +97,7 @@ let g:ale_disable_lsp = 1
 
 " LanguageClient-neovim
 let g:LanguageClient_serverCommands = {
+  \ 'cpp': ['clangd'],
   \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
   \ }
 nnoremap <F6> :call LanguageClient_contextMenu()<CR>
