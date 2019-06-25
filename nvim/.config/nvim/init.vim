@@ -30,6 +30,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-sensible'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-unimpaired'
+  Plug 'wellle/targets.vim'
   Plug 'w0rp/ale'
 call plug#end()
 
@@ -97,7 +98,7 @@ let g:ale_disable_lsp = 1
 
 " LanguageClient-neovim
 let g:LanguageClient_serverCommands = {
-  \ 'cpp': ['clangd'],
+  \ 'cpp': ['ccls'],
   \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
   \ }
 nnoremap <F6> :call LanguageClient_contextMenu()<CR>

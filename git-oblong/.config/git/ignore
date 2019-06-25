@@ -9,3 +9,5 @@
 
 doc/tags
 compile_commands.json
+
+.ccls-cache/
