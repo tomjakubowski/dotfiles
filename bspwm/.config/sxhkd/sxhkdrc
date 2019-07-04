@@ -1,0 +1,47 @@
+# Terminal
+super + Return
+  kitty
+
+# Floating terminal
+super + shift + Return
+  kitty --class=kitty-floating
+
+# Launcher
+super + @space
+  rofi -show run
+
+# Reload sxhkd config
+super + Escape
+  pkill -USR1 -x sxhkd
+
+# quit/restart bspwm
+super + shift + alt + {q,r}
+  bspc {quit,wm -r}
+
+# close/kill node
+super + {_,shift + }q
+  bspc node -{c,k}
+
+# monocle
+super + m
+  bspc desktop -l next
+
+# state/flags
+# set window state
+super + {t,shift + t,s,f}
+  bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+# set node flags
+super + ctrl + {m,x,y,z}
+  bspc node -g {marked,locked,sticky,private}
+
+# focus/swap
+super + {_,shift + }{j,k,l,semicolon}
+  bspc node -{f,s} {west,south,north,east}
+
+# desktops
+super + {1-9,0}
+  bspc desktop ^{1-9,0} -f
+
+# lock
+super + l
+  light-locker-command -l
