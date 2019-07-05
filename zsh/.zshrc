@@ -36,6 +36,14 @@ autoload -U colors && colors
 PROMPT="%F{green}%n@%m%f:%~
 %# "
 
+case ${TERM} in
+  xterm*)
+    precmd () {
+      print -Pn "\e]0;%n@%m: %~\a"
+    }
+    ;;
+esac
+
 # functions
 function beep() { eval $* ; printf "\a" }
 function E() {
