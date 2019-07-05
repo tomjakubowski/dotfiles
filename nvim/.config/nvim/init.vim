@@ -42,11 +42,13 @@ set relativenumber
 set nowrap
 set colorcolumn=+0
 set signcolumn=yes
+let [g:nord_italic, g:nord_underline] = [1, 1]
+let g:nord_bold_vertical_split_line = 1
+let g:nord_uniform_diff_background = 1
 colorscheme nord
 if exists('g:lightline_colorscheme')
   let g:lightline.colorscheme = 'nord'
 endif
-let [g:nord_italic, g:nord_underline] = [1, 1]
 if $TERM == "xterm-kitty"
   set termguicolors
 endif
