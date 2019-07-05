@@ -35,6 +35,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 call plug#end()
 
 " presentation
+set title
 set number
 set numberwidth=3
 set relativenumber
