@@ -1,7 +1,8 @@
 #!/bin/bash
 
 bspc monitor -d I II III IV V VI VII VIII IX
-bspc config window_gap 12
+bspc config window_gap 10
+bspc config border_width 2
 
 bspc rule -a mpv state=floating
 bspc rule -a kitty-floating state=floating
