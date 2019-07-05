@@ -39,8 +39,11 @@ super + {_,shift + }{j,k,l,semicolon}
   bspc node -{f,s} {west,south,north,east}
 
 # desktops
-super + {1-9,0}
-  bspc desktop ^{1-9,0} -f
+super + {1-9}
+  bspc desktop ^{1-9} -f
+
+super + shift + {1-9}
+  bspc node focused -d ^{1-9}
 
 # lock
 super + l
