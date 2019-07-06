@@ -1,5 +1,12 @@
 #!/bin/bash
 
+lxsession &
+sxhkd &
+
+compton --config /dev/null &
+polybar example &
+light-locker &
+
 bspc monitor -d I II III IV V VI VII VIII IX
 bspc config window_gap 10
 bspc config border_width 2
@@ -7,12 +14,7 @@ bspc config border_width 2
 bspc rule -a mpv state=floating
 bspc rule -a kitty-floating state=floating
 
-cmd_guard lxsession &
-sxhkd &
-
-compton --config /dev/null &
-polybar example &
-light-locker &
+bspc config top_padding 24
 
 wallpaper="${HOME}/.local/share/wallpaper"
 wallpaper_conf="${wallpaper}.conf"

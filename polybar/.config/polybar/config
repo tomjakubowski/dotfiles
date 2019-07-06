@@ -38,14 +38,21 @@ nord13 = #ebcb8b
 nord14 = #a3be8c
 nord15 = #b48ead
 
+error = ${colors.nord11}
+danger = ${colors.nord12}
+warning = ${colors.nord13}
+success = ${colors.nord14}
+
 ;background = ${xrdb:color0:#222}
 background = ${colors.nord0}
 background-alt = ${colors.nord1}
 ;foreground = ${xrdb:color7:#222}
 foreground = ${colors.nord5}
 foreground-alt = ${colors.nord3}
+extraprimary = ${colors.nord7}
 primary = ${colors.nord8}
 secondary = ${colors.nord9}
+tertiary = ${colors.nord10}
 alert = ${colors.nord11}
 
 [bar/example]
@@ -55,15 +62,15 @@ height = 24
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 0.0
-fixed-center = false
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
+line-size = 2
 line-color = #f00
 
-border-size = 12
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
@@ -76,9 +83,9 @@ font-0 = Inconsolata:pixelsize=12;1
 font-1 = unifont:fontformat=truetype:size=12:antialias=false;0
 font-2 = siji:pixelsize=12;1
 
-modules-left = bspwm
+modules-left = bspwm title
 modules-center = date
-modules-right = filesystem xbacklight xkeyboard memory cpu wlan eth battery pulseaudio temperature powermenu
+modules-right = filesystem xbacklight xkeyboard memory cpu gpu battery temperature wlan eth powermenu
 
 tray-position = right
 tray-padding = 2
@@ -89,7 +96,7 @@ wm-restack = bspwm
 
 enable-ipc = true
 
-;override-redirect = true
+override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
@@ -110,7 +117,7 @@ blacklist-0 = num lock
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+format-prefix-underline = ${colors.tertiary}
 
 label-layout = %layout%
 label-layout-underline = ${colors.secondary}
@@ -230,15 +237,24 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+format-underline = ${colors.tertiary}
 label = %percentage:2%%
+module-margin-right = 0
+
+[module/gpu]
+type = custom/script
+interval = 10
+exec = ~/.local/bin/system-nvidia-smi.sh
+format-underline = ${colors.tertiary}
+label = GPU %output%%
+module-margin-left = 0
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+format-underline = ${colors.secondary}
 label = %percentage_used%%
 
 [module/wlan]
@@ -247,7 +263,7 @@ interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
+format-connected-underline = ${colors.secondary}
 label-connected = %essid%
 
 format-disconnected =
@@ -268,7 +284,7 @@ type = internal/network
 interface = eno1
 interval = 3.0
 
-format-connected-underline = #55aa55
+format-connected-underline = ${colors.nord14}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -389,13 +405,13 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+format-underline = ${colors.tertiary}
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = ${colors.warning}
 
 ramp-0 = 
 ramp-1 = 
@@ -431,6 +447,9 @@ menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
+[module/title]
+type = internal/xwindow
+
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
@@ -440,7 +459,7 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 [global/wm]
-margin-top = 5
+; margin-top = 5
 margin-bottom = 5
 
 ; vim:ft=dosini
