@@ -33,13 +33,18 @@ alias e="emacsclient -c -n"
 
 # Prompt
 autoload -U colors && colors
-PROMPT="%F{green}%n@%m%f:%~
+icon=''
+if [[ -f ~/.config/icon ]];
+then
+  icon="$(cat ~/.config/icon)"
+fi
+PROMPT="%F{green}%n@%m$icon%f:%~
 %# "
 
 case ${TERM} in
   xterm*)
     precmd () {
-      print -Pn "\e]0;%n@%m: %~\a"
+      print -Pn "\e]0;%n@%m$icon: %~\a"
     }
     ;;
 esac
