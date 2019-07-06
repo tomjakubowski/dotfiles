@@ -7,10 +7,40 @@ set expandtab
 set tabstop=2 softtabstop=2 shiftwidth=2
 set formatoptions+=n
 
-let g:lightline = { 'colorscheme': 'nord' }
+let g:lightline = {}
+" lightline config
+" {{{
+let g:lightline.colorscheme = 'nord'
+let g:lightline.active = {}
+let g:lightline.active.left = [
+      \ ['mode', 'paste'],
+      \ ['gitbranch', 'readonly', 'modified'],
+      \ ]
+let g:lightline.active.right = [
+      \ ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'],
+      \ ['lineinfo'],
+      \ ['fileformat', 'fileencoding', 'filetype'],
+      \ ]
+let g:lightline.component_function = {
+      \ 'gitbranch': 'fugitive#head'
+      \ }
+let g:lightline.component_expand = {
+      \ 'linter_checking': 'lightline#ale#checking',
+      \ 'linter_warnings': 'lightline#ale#warnings',
+      \ 'linter_errors': 'lightline#ale#errors',
+      \ 'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \ 'linter_checking': 'left',
+      \ 'linter_warnings': 'warning',
+      \ 'linter_errors': 'error',
+      \ 'linter_ok': 'left',
+      \ }
+" }}}
 
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
+" {{{
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " TODO: ultisnip
   Plug 'arcticicestudio/nord-vim'
@@ -22,6 +52,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'leafgarland/typescript-vim'
+  Plug 'maximbaz/lightline-ale'
   Plug 'rust-lang/rust.vim'
   Plug 'tikhomirov/vim-glsl'
   Plug 'tpope/vim-commentary'
@@ -31,6 +62,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'wellle/targets.vim'
   Plug 'w0rp/ale'
+" }}}
 call plug#end()
 
 " presentation
@@ -41,6 +73,7 @@ set relativenumber
 set nowrap
 set colorcolumn=+0
 set signcolumn=yes
+set showtabline=2 " always show tab line
 let [g:nord_italic, g:nord_underline] = [1, 1]
 let g:nord_bold_vertical_split_line = 1
 let g:nord_uniform_diff_background = 1
@@ -116,3 +149,5 @@ augroup svelte
   autocmd BufNewFile,BufRead *.svelte set ft=html
   autocmd BufNewFile,BufRead *.svelte let b:ale_linters = []
 augroup END
+
+tab all
