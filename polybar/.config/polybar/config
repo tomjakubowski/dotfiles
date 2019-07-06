@@ -82,6 +82,7 @@ module-margin-right = 2
 font-0 = Inconsolata:pixelsize=12;1
 font-1 = unifont:fontformat=truetype:size=12:antialias=false;0
 font-2 = siji:pixelsize=12;1
+font-3 = JoyPixels:scale=12;1
 
 modules-left = bspwm title
 modules-center = date
