@@ -17,10 +17,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'fatih/vim-go'
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
-  Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'leafgarland/typescript-vim'
@@ -98,20 +94,6 @@ let g:ale_fix_on_save = 1
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \}
-let g:ale_linters = {
-  \ 'rust': ['cargo']
-  \}
-let g:ale_rust_cargo_check_tests = 1
-let g:ale_rust_cargo_check_examples = 1
-let g:ale_disable_lsp = 0
-
-" LanguageClient-neovim
-let g:LanguageClient_serverCommands = {
-  \ 'cpp': ['ccls'],
-  \ }
-" \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-nnoremap <F6> :call LanguageClient_contextMenu()<CR>
-
 " fzf
 augroup fzf
   autocmd!
