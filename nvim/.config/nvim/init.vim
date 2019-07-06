@@ -48,6 +48,8 @@ if exists('g:lightline_colorscheme')
 endif
 if $TERM == "xterm-kitty"
   set termguicolors
+  hi! Normal ctermbg=NONE guibg=NONE
+  hi! NonText ctermbg=NONE guibg=NONE
 endif
 
 let mapleader=","
