@@ -7,6 +7,8 @@ set expandtab
 set tabstop=2 softtabstop=2 shiftwidth=2
 set formatoptions+=n
 
+let g:lightline = { 'colorscheme': 'nord' }
+
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -43,9 +45,6 @@ let [g:nord_italic, g:nord_underline] = [1, 1]
 let g:nord_bold_vertical_split_line = 1
 let g:nord_uniform_diff_background = 1
 colorscheme nord
-if exists('g:lightline_colorscheme')
-  let g:lightline.colorscheme = 'nord'
-endif
 if $TERM == "xterm-kitty"
   set termguicolors
   hi! Normal ctermbg=NONE guibg=NONE
