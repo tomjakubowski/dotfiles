@@ -36,9 +36,9 @@ autoload -U colors && colors
 icon=''
 if [[ -f ~/.config/icon ]];
 then
-  icon="$(cat ~/.config/icon)"
+  icon=" $(cat ~/.config/icon)"
 fi
-PROMPT="%F{green}%n@%m$icon%f:%~
+PROMPT="%F{green}%n@%m${icon}%f:%~
 %# "
 
 case ${TERM} in
