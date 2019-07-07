@@ -51,6 +51,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
+  Plug 'liuchengxu/vista.vim'
   Plug 'leafgarland/typescript-vim'
   Plug 'maximbaz/lightline-ale'
   Plug 'rust-lang/rust.vim'
