@@ -3,7 +3,7 @@
 lxsession &
 sxhkd &
 
-compton --config /dev/null &
+compton --config /dev/null --backend glx &
 polybar example &
 light-locker &
 
@@ -16,6 +16,8 @@ bspc config focused_border_color '#5e81ac'
 
 bspc rule -a mpv state=floating
 bspc rule -a kitty-floating state=floating
+bspc rule -a g-speak state=floating
+bspc rule -a Pavucontrol state=floating
 
 bspc config top_padding 24
 

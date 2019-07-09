@@ -38,13 +38,18 @@ super + ctrl + {m,x,y,z}
 super + {_,shift + }{j,k,l,semicolon}
   bspc node -{f,s} {west,south,north,east}
 
+# pre-select
+# super + ctrl + {j,k,l,semicolon}
+#   bspc node -p {left,down,up,right}
+super + ctrl + {j,k,l,semicolon}
+  bspc node -p {west,south,north,east}
+
+super + ctrl + c
+  bspc node -p cancel
+
 # desktops
 super + {1-9}
   bspc desktop ^{1-9} -f
 
 super + shift + {1-9}
   bspc node focused -d ^{1-9}
-
-# lock
-super + l
-  light-locker-command -l
