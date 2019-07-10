@@ -42,6 +42,7 @@ let g:lightline.component_type = {
 call plug#begin('~/.local/share/nvim/plugged')
 " {{{
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/echodoc.vim'
   " TODO: ultisnip
   Plug 'arcticicestudio/nord-vim'
   Plug 'cespare/vim-toml'
@@ -75,6 +76,7 @@ set nowrap
 set colorcolumn=+0
 set signcolumn=yes
 set showtabline=2 " always show tab line
+set completeopt-=preview
 let [g:nord_italic, g:nord_underline] = [1, 1]
 let g:nord_bold_vertical_split_line = 1
 let g:nord_uniform_diff_background = 1
@@ -135,6 +137,14 @@ augroup fzf
   autocmd FileType fzf set laststatus=0 noshowmode noruler
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 augroup END
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+call g:deoplete#custom#source('_',
+  \ 'max_menu_width', 0)
+
+" echodoc
+let g:echodoc#enable_at_startup = 1
 
 " netrw
 let g:netrw_sort_sequence="[\/]$,*"
