@@ -161,4 +161,5 @@ augroup svelte
   autocmd BufNewFile,BufRead *.svelte let b:ale_linters = []
 augroup END
 
+" Open all file arguments in tabs
 tab all
