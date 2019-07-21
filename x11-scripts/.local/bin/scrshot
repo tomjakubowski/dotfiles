@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+
+import subprocess
+from datetime import datetime, timezone
+from pathlib import Path
+
+scr_dir = Path("~/screenshots").expanduser()
+scr_dir.mkdir(exist_ok=True)
+
+now = datetime.now(timezone.utc)
+filename = Path("{}.png".format(now.isoformat()))
+subprocess.run(["maim", "-s", scr_dir.joinpath(filename)])
