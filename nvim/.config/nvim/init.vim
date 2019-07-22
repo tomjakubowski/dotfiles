@@ -62,6 +62,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-sensible'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-unimpaired'
+  Plug 'Vimjas/vim-python-pep8-indent'
   Plug 'wellle/targets.vim'
   Plug 'w0rp/ale'
 " }}}
