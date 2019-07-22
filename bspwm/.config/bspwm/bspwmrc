@@ -21,6 +21,7 @@ bspc rule -a kitty-floating state=floating
 bspc rule -a g-speak state=floating
 bspc rule -a Pavucontrol state=floating
 bspc rule -a feh state=floating
+bspc rule -a spotify state=pseudo_tiled
 
 bspc config top_padding 24
 
