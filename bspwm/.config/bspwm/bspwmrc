@@ -20,6 +20,7 @@ bspc rule -a mpv state=floating
 bspc rule -a kitty-floating state=floating
 bspc rule -a g-speak state=floating
 bspc rule -a Pavucontrol state=floating
+bspc rule -a feh state=floating
 
 bspc config top_padding 24
 
