@@ -42,7 +42,7 @@ let g:lightline.component_type = {
 call plug#begin('~/.local/share/nvim/plugged')
 " {{{
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Shougo/echodoc.vim'
+  " Plug 'Shougo/echodoc.vim'
   " TODO: ultisnip
   Plug 'arcticicestudio/nord-vim'
   Plug 'cespare/vim-toml'
@@ -77,7 +77,6 @@ set nowrap
 set colorcolumn=+0
 set signcolumn=yes
 set showtabline=2 " always show tab line
-set completeopt-=preview
 let [g:nord_italic, g:nord_underline] = [1, 1]
 let g:nord_bold_vertical_split_line = 1
 let g:nord_uniform_diff_background = 1
@@ -87,6 +86,9 @@ if $TERM == "xterm-kitty"
   hi! Normal ctermbg=NONE guibg=NONE
   hi! NonText ctermbg=NONE guibg=NONE
 endif
+
+set completeopt-=preview
+set completeopt+=noinsert
 
 let mapleader=","
 
@@ -115,6 +117,8 @@ nnoremap <leader>H :set list!<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
 nnoremap <leader>g :silent lgrep<Space>
+nnoremap <leader>ah :ALEHover<CR>
+
 nnoremap <F5> :make<CR>
 nnoremap <C-x><C-j> :Explore<CR>
 nnoremap <C-f> :Buffers<CR>
@@ -141,8 +145,10 @@ augroup END
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
-call g:deoplete#custom#source('_',
-  \ 'max_menu_width', 0)
+if exists("g:deoplete#custom#source")
+  call g:deoplete#custom#source('_',
+    \ 'max_menu_width', 0)
+endif
 
 " echodoc
 let g:echodoc#enable_at_startup = 1
