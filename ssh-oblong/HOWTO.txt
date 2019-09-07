@@ -1,7 +1,0 @@
-Add this to .ssh/config:
-
-    Host *
-      Include config.d/*
-
-The `Host *` block is needed to "unscope" the Include from any previous Host
-declarations.
