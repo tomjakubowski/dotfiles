@@ -19,11 +19,12 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[credential]
-	helper = tom
 
 [alias]
   co = "checkout"
   p = "pull"
   P = "push"
   rb = "rebase"
+
+[include]
+  path = "local.gitconfig"

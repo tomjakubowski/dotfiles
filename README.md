@@ -11,28 +11,38 @@ mkdir -p ~/.local/{bin,share} ~/.config
 
 ## usage
 
-`./stow` wraps the `stow` command.
-
 packages are stored in directories (e.g. `zsh` and `i3`).  to install to the
 parent directory of this repo:
 
 ```bash
 cd ~/dotfiles
-./stow PACKAGE ...
+stow PACKAGE ...
 ```
 
 to install to another directory:
 
 ```bash
 cd ~/dotfiles
-./stow -t DESTINATION PACKAGE ...
+stow -t DESTINATION PACKAGE ...
 ```
 
 to "unstow":
 
 ```bash
-./stow -D PACKAGE ...
+stow -D PACKAGE ...
 ```
+
+## Ignoring files
+
+A package directory (e.g. `git/`) can specify files to ignore:
+
+```bash
+\.gitignore
+```
+
+see the [stow manual][stowignore] for more.
+
+[stowignore]: <http://www.gnu.org/software/stow/manual/html_node/Types-And-Syntax-Of-Ignore-Lists.html>
 
 ## Brew bundle
 
