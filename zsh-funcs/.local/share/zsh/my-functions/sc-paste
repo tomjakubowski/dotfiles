@@ -1,2 +1,0 @@
-[[ -z "$1" ]] && { echo "usage: $0 host">&2 && return 1 }
-infocmp "$TERM" | ssh "$1" "mkdir -p .terminfo && cat >/tmp/ti && tic /tmp/ti"

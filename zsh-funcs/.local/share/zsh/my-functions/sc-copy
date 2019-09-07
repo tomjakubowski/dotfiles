@@ -1,3 +1,0 @@
-LOCAL_COPY=pbcopy
-
-ssh tom@tjakubowski-sc.la923.oblong.net DISPLAY=:0 xsel -b | pbcopy
