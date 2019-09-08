@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+
+import argparse
+import subprocess
+
+parser = argparse.ArgumentParser()
+parser.add_argument("desktop_sel", metavar="DESKTOP_SEL", help="bspc desktop selector")
+args = parser.parse_args()
+
+desktop_query = ["bspc", "query", "-D", "-d", args.desktop_sel]
+float_desktop_id = subprocess.check_output(desktop_query).decode("utf-8").strip()
+
+bspc = subprocess.Popen(
+    ["bspc", "subscribe", "node_add"], encoding="utf-8", stdout=subprocess.PIPE
+)
+for line in bspc.stdout:
+    msg = line.split()
+    desktop_id = msg[2]
+    window_id = msg[4]
+    if desktop_id == float_desktop_id:
+        # Deliberately ignore return code. If a node is already floating, by
+        # some rule, then this command returns 1.
+        subprocess.run(["bspc", "node", window_id, "-t", "floating"])
