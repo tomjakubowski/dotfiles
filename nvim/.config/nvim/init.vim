@@ -118,6 +118,10 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
 nnoremap <leader>g :silent lgrep<Space>
 nnoremap <leader>ah :ALEHover<CR>
+nnoremap <leader>? :ALEDetail<CR>
+
+nnoremap <silent> ]E :ALENext -error<cr>
+nnoremap <silent> [E :ALEPrevious -error<cr>
 
 nnoremap <F5> :make<CR>
 nnoremap <C-x><C-j> :Explore<CR>
