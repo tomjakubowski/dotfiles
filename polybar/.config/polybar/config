@@ -86,7 +86,7 @@ font-3 = JoyPixels:scale=12;1
 
 modules-left = bspwm title
 modules-center = date
-modules-right = filesystem xbacklight xkeyboard memory cpu gpu battery temperature wlan eth powermenu
+modules-right = filesystem memory cpu gpu battery temperature wlan eth powermenu
 
 tray-position = right
 tray-padding = 2
