@@ -65,6 +65,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Vimjas/vim-python-pep8-indent'
   Plug 'wellle/targets.vim'
   Plug 'w0rp/ale'
+  Plug 'zchee/vim-flatbuffers'
 " }}}
 call plug#end()
 
@@ -122,6 +123,8 @@ nnoremap <leader>? :ALEDetail<CR>
 
 nnoremap <silent> ]E :ALENext -error<cr>
 nnoremap <silent> [E :ALEPrevious -error<cr>
+nnoremap <silent> ]W :ALENext -warning<cr>
+nnoremap <silent> [W :ALEPrevious -warning<cr>
 
 nnoremap <F5> :make<CR>
 nnoremap <C-x><C-j> :Explore<CR>
