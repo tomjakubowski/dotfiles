@@ -118,9 +118,9 @@ nnoremap <leader>H :set list!<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
 nnoremap <leader>g :silent lgrep<Space>
+
 nnoremap <leader>ah :ALEHover<CR>
 nnoremap <leader>? :ALEDetail<CR>
-
 nnoremap <silent> ]E :ALENext -error<cr>
 nnoremap <silent> [E :ALEPrevious -error<cr>
 nnoremap <silent> ]W :ALENext -warning<cr>
@@ -159,6 +159,7 @@ if exists("g:deoplete#custom#source")
   call g:deoplete#custom#source('_',
     \ 'max_menu_width', 0)
 endif
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " echodoc
 let g:echodoc#enable_at_startup = 1
