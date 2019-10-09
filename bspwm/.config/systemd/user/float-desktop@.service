@@ -1,0 +1,8 @@
+[Unit]
+Description=Float windows on bspwm desktop
+
+[Service]
+ExecStart=%h/.local/bin/float-desktop ^%i
+
+[Install]
+WantedBy=graphical.target

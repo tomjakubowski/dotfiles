@@ -23,7 +23,10 @@
 [alias]
   co = "checkout"
   p = "pull"
+  po = "pull origin"
+  pom = "pull origin master"
   P = "push"
+  Po = "push origin"
   rb = "rebase"
 
 [include]
