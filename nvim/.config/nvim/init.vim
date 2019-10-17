@@ -48,6 +48,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'cespare/vim-toml'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'fatih/vim-go'
+  Plug 'Glench/Vim-Jinja2-Syntax'
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
