@@ -34,7 +34,7 @@ export ABDUCO_SOCKET_DIR="$XDG_RUNTIME_DIR"
 export GOPATH="$HOME/gocode"
 
 if [[ -z "$TOM_HOST" ]]; then
-  export TOM_HOST=$(hostname)
+  export TOM_HOST=$(hostname -s)
 fi
 if [[ -z "$TOM_UNAME" ]]; then
   export TOM_UNAME=$(uname)
