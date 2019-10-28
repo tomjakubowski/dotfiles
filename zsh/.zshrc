@@ -50,24 +50,22 @@ case ${TERM} in
 esac
 
 # functions
-function beep() { eval $* ; printf "\a" }
+function beep() { eval $* ; printf "\a"; }
 function E() {
-  local fullpath=$(readlink -f ${@[-1]})
+  local fullpath=$(readlink -f "${@[-1]}")
   emacsclient -c -n -e "(find-file \"/sudo::${fullpath}\")"
 }
 function nmpath() {
   local nmbin="$PWD/node_modules/.bin"
   if [[ -d $nmbin ]];
   then
-    path+=($nmbin)
+    path+=("$nmbin")
   else
     echo "Couldn't find $nmbin, not adding to path!"
   fi
 }
 
-LSCMD=ls
 if (( ${+commands[gls]} )); then
-  LSCMD=gls
   function ls() {
     local dotfiles_home=$HOME/dotfiles
     local lsflags=("-h" "--color=auto")
@@ -77,10 +75,9 @@ if (( ${+commands[gls]} )); then
     if [[ "$PWD" = "$dotfiles_home"/* ]]; then
       lsflags+=("-A")
     fi
-    command "$LSCMD" ${^lsflags} "$@"
+    command "gls" "${lsflags[@]}" "$@"
   }
 elif [[ "$(ls --version)" != "*coreutils*" ]]; then
-  LSCMD=ls
   function ls() {
     local dotfiles_home=$HOME/dotfiles
     local lsflags=("-h" "--color=auto")
@@ -90,7 +87,7 @@ elif [[ "$(ls --version)" != "*coreutils*" ]]; then
     if [[ "$PWD" = "$dotfiles_home"/* ]]; then
       lsflags+=("-A")
     fi
-    command "$LSCMD" ${^lsflags} "$@"
+    command ls "${lsflags[@]}" "$@"
   }
 fi
 
@@ -99,9 +96,12 @@ if (( ${+commands[dircolors]} )); then
 fi
 
 if [[ -d "$XDG_CONFIG_HOME/zshrc.d" ]]; then
-  for file in $XDG_CONFIG_HOME/zshrc.d/*.{zsh,sh}(N); do
-    source $file
+  setopt nullglob
+  for file in ${XDG_CONFIG_HOME}/zshrc.d/*.{zsh,sh}; do
+    source ${file}
   done
+  unsetopt nullglob
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
+[[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
