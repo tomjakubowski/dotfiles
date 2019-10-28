@@ -1,0 +1,33 @@
+[user]
+	email = tom@secondspectrum.com
+	name = Tom Jakubowski
+[push]
+	default = simple
+[core]
+	untrackedCache = true
+
+[transfer]
+	fsckObjects = true
+[fetch]
+	fsckObjects = true
+[receive]
+	fsckObjects = true
+[pull]
+	rebase = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[alias]
+  co = "checkout"
+  p = "pull"
+  po = "pull origin"
+  pom = "pull origin master"
+  P = "push"
+  Po = "push origin"
+  rb = "rebase"
+
+[include]
+  path = "local.gitconfig"
