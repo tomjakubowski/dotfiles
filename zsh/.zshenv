@@ -38,13 +38,16 @@ export TOM_UNAME=$(uname)
 
 [[ -f "$HOME/.zshenv_local" ]] && source "$HOME/.zshenv_local"
 if [[ -d "$XDG_CONFIG_HOME/zshenv.d" ]]; then
-  for file in $XDG_CONFIG_HOME/zshenv.d/*.zsh(N); do
+  setopt nullglob
+  for file in $XDG_CONFIG_HOME/zshenv.d/*.zsh; do
     source "$file"
   done
+  unsetopt nullglob
 fi
 
 # fuck it :(
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+[[ -f "$HOME/.poetry/env" ]] && source "$HOME/.poetry/env"
 
 if (( ${+commands[sccache]} )); then
   export RUSTC_WRAPPER=${commands[sccache]}
