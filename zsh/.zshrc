@@ -105,3 +105,4 @@ fi
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
 [[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+[[ ${+commands[pyenv]} ]] && eval "$(pyenv init -)"
