@@ -103,6 +103,9 @@ if [[ -d "$XDG_CONFIG_HOME/zshrc.d" ]]; then
   unsetopt nullglob
 fi
 
+autoload -U select-word-style
+select-word-style bash
+
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
 [[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
 [[ ${+commands[pyenv]} ]] && eval "$(pyenv init -)"
