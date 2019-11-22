@@ -23,7 +23,7 @@ bspc rule -a Pavucontrol state=floating
 bspc rule -a feh state=floating
 bspc rule -a spotify state=pseudo_tiled
 
-bspc config top_padding 24
+bspc config top_padding 40
 
 wallpaper="${HOME}/.local/share/wallpaper"
 wallpaper_conf="${wallpaper}.conf"
@@ -31,4 +31,8 @@ if [[ -f "${wallpaper}" ]]
 then
   kind=$(cat "${wallpaper_conf}" || echo "scale")
   feh --bg-"${kind}" "${wallpaper}" &
+fi
+
+if [[ -f "${HOME}/.Xresources" ]]; then
+  xrdb -merge "${HOME}/.Xresources"
 fi

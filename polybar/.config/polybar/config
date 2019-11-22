@@ -56,9 +56,10 @@ tertiary = ${colors.nord10}
 alert = ${colors.nord11}
 
 [bar/example]
+dpi = 162
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 24
+height = 40
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 0.0
@@ -79,7 +80,7 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Inconsolata:pixelsize=12;1
+font-0 = Inconsolata:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=12:antialias=false;0
 font-2 = siji:pixelsize=12;1
 font-3 = JoyPixels:scale=12;1
