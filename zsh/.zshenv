@@ -33,8 +33,12 @@ export ABDUCO_SOCKET_DIR="$XDG_RUNTIME_DIR"
 
 export GOPATH="$HOME/gocode"
 
-export TOM_HOST=$(hostname)
-export TOM_UNAME=$(uname)
+if [[ -z "$TOM_HOST" ]]; then
+  export TOM_HOST=$(hostname)
+fi
+if [[ -z "$TOM_UNAME" ]]; then
+  export TOM_UNAME=$(uname)
+fi
 
 [[ -f "$HOME/.zshenv_local" ]] && source "$HOME/.zshenv_local"
 if [[ -d "$XDG_CONFIG_HOME/zshenv.d" ]]; then
