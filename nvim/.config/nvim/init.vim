@@ -119,6 +119,7 @@ nnoremap <leader>H :set list!<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
 
+nnoremap <leader>o :copen<CR>
 nnoremap <leader>ah :ALEHover<CR>
 nnoremap <leader>g :ALEGoToDefinition<CR>
 nnoremap <leader>? :ALEDetail<CR>
