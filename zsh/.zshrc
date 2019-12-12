@@ -103,6 +103,10 @@ if [[ -d "$XDG_CONFIG_HOME/zshrc.d" ]]; then
   unsetopt nullglob
 fi
 
+scratch() {
+  cd $(mktemp -d)
+}
+
 autoload -U select-word-style
 select-word-style bash
 
