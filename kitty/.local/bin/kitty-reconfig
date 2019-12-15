@@ -1,0 +1,4 @@
+#!/bin/bash
+
+watchexec -r -w ~/.config/kitty -- \
+  kitty --class=kitty-floating "$@"
