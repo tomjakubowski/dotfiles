@@ -4,6 +4,8 @@ setopt nomatch
 
 bindkey -e
 
+fpath+=~/.local/share/zsh/site-functions
+
 # History options
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
@@ -103,8 +105,19 @@ if [[ -d "$XDG_CONFIG_HOME/zshrc.d" ]]; then
   unsetopt nullglob
 fi
 
+
 scratch() {
   cd $(mktemp -d)
+}
+
+line() {
+  if [[ "$#" < 2 ]]; then
+    echo "usage: $0 <num> <file...>"
+    return 1
+  fi
+  num=$1
+  shift
+  sed -ne "${num}p" "$@"
 }
 
 autoload -U select-word-style
