@@ -184,5 +184,10 @@ augroup svelte
   autocmd BufNewFile,BufRead *.svelte let b:ale_linters = []
 augroup END
 
+augroup tf
+  autocmd!
+  autocmd FileType tf set commentstring=;\ %s
+augroup END
+
 " Open all file arguments in tabs
 tab all
