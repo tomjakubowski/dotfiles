@@ -7,10 +7,10 @@ set expandtab
 set tabstop=2 softtabstop=2 shiftwidth=2
 set formatoptions+=n
 
-let g:lightline = {}
+let g:rigel_lightline = 1
 " lightline config
 " {{{
-let g:lightline.colorscheme = 'nord'
+let g:lightline = { 'colorscheme': 'rigel' }
 let g:lightline.active = {}
 let g:lightline.active.left = [
       \ ['mode', 'paste'],
@@ -57,6 +57,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'liuchengxu/vista.vim'
   Plug 'leafgarland/typescript-vim'
   Plug 'maximbaz/lightline-ale'
+  Plug 'Rigellute/rigel'
   Plug 'rust-lang/rust.vim'
   Plug 'tikhomirov/vim-glsl'
   Plug 'tpope/vim-commentary'
@@ -83,7 +84,8 @@ set showtabline=2 " always show tab line
 let [g:nord_italic, g:nord_underline] = [1, 1]
 let g:nord_bold_vertical_split_line = 1
 let g:nord_uniform_diff_background = 1
-colorscheme nord
+colorscheme rigel
+set cursorline
 if $TERM == "xterm-kitty"
   set termguicolors
   hi! Normal ctermbg=NONE guibg=NONE
