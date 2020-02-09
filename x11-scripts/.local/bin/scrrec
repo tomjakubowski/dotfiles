@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -ex -o pipefail
+
+mkdir -p ~/screenshots
+
+now=$(date -u -Iseconds)
+filename=~/screenshots/${now}.mp4
+slop=$(slop -f "%x %y %w %h")
+read -r X Y W H < <(echo "${slop}")
+
+ffmpeg -video_size "${W}x${H}" -framerate 25 -f x11grab -i "${DISPLAY}+${X},${Y}" "${filename}"
