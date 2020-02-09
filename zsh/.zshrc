@@ -32,6 +32,7 @@ autoload run-help
 alias irc="abduco -A irc zsh -c 'weechat -d $XDG_CONFIG_HOME/weechat'"
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 alias e="emacsclient -c -n"
+alias usystemctl="systemctl --user"
 
 # Prompt
 autoload -U colors && colors
