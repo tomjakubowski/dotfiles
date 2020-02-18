@@ -1,6 +1,2 @@
-if !exists("b:ale_linters")
-  let b:ale_linters = ['mypy', 'flake8']
-endif
-if !exists("b:ale_fixers")
-  let b:ale_fixers = ['yapf', 'black']
-endif
+let b:ale_linters = ['pyls', 'mypy', 'flake8']
+let b:ale_fixers = ['yapf', 'black']
