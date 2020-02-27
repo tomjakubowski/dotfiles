@@ -31,3 +31,15 @@
 
 [include]
   path = "local.gitconfig"
+
+[url "git@git.2nd.io:"]
+  insteadOf = git:
+
+[url "git@git.2nd.io:ai/"]
+  insteadOf = ai:
+
+[url "git@git.2nd.io:prism/"]
+  insteadOf = prism:
+
+[url "git@git.2nd.io:"]
+  insteadOf = https://git.2nd.io/
