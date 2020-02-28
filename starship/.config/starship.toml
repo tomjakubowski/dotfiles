@@ -3,6 +3,7 @@ prompt_order = [
   "hostname",
   "git_branch",
   "git_status",
+  "python",
   "line_break",
   "directory",
   "character",
@@ -11,6 +12,10 @@ scan_timeout = 10
 
 [character]
 symbol = "▸"
+
+[python]
+style = "bold green"
+symbol = "py "
 
 [git_status]
 style = "bold yellow"
