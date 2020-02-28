@@ -112,6 +112,7 @@ fi
 
 if [[ ${+commands[starship]} ]]
 then
+  export STARSHIP_HOST_ICON="${icon}"
   eval "$(starship init zsh)"
 else
   # Fallback prompt

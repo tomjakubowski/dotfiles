@@ -1,0 +1,16 @@
+prompt_order = [
+  "username",
+  "hostname",
+  "git_branch",
+  "git_status",
+  "line_break",
+  "directory",
+  "character",
+]
+scan_timeout = 10
+
+[character]
+symbol = "▸"
+
+[git_status]
+style = "bold yellow"
