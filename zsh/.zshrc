@@ -122,10 +122,12 @@ else
 
 fi
 
+# Set window title
 case ${TERM} in
   xterm*)
     precmd () {
-      print -Pn "\e]0;%n@%m$icon: %~\a"
+      title_string="zsh %~"
+      print -Pn "\e]0;  ${title_string} \a"
     }
     ;;
 esac
