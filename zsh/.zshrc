@@ -34,30 +34,8 @@ alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 alias e="emacsclient -c -n"
 alias usystemctl="systemctl --user"
 
-# Prompt
-autoload -U colors && colors
-icon=''
-if [[ -f ~/.config/icon ]];
-then
-  icon=" $(cat ~/.config/icon)"
-fi
-PROMPT="%F{green}%n@%m${icon}%f:%~
-%# "
-
-case ${TERM} in
-  xterm*)
-    precmd () {
-      print -Pn "\e]0;%n@%m$icon: %~\a"
-    }
-    ;;
-esac
-
 # functions
 function beep() { eval $* ; printf "\a"; }
-function E() {
-  local fullpath=$(readlink -f "${@[-1]}")
-  emacsclient -c -n -e "(find-file \"/sudo::${fullpath}\")"
-}
 function nmpath() {
   local nmbin="$PWD/node_modules/.bin"
   if [[ -d $nmbin ]];
@@ -123,6 +101,33 @@ line() {
 
 autoload -U select-word-style
 select-word-style bash
+
+# Prompt
+
+icon=''
+if [[ -f ~/.config/icon ]];
+then
+  icon=" $(cat ~/.config/icon)"
+fi
+
+if [[ ${+commands[starship]} ]]
+then
+  eval "$(starship init zsh)"
+else
+  # Fallback prompt
+  autoload -U colors && colors
+  PROMPT="%F{green}%n@%m${icon}%f:%~
+%# "
+
+fi
+
+case ${TERM} in
+  xterm*)
+    precmd () {
+      print -Pn "\e]0;%n@%m$icon: %~\a"
+    }
+    ;;
+esac
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
 [[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
