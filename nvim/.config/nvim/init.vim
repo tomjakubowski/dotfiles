@@ -46,7 +46,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   " TODO: ultisnip
   Plug 'arcticicestudio/nord-vim'
   Plug 'cespare/vim-toml'
+  Plug 'c-brenn/fuzzy-projectionist.vim'
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'elixir-editors/vim-elixir'
   Plug 'fatih/vim-go'
   Plug 'Glench/Vim-Jinja2-Syntax'
   Plug 'hashivim/vim-terraform'
@@ -61,6 +63,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tikhomirov/vim-glsl'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-sensible'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-unimpaired'
