@@ -126,6 +126,3 @@ select-word-style bash
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
 [[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
-if (( ${+commands[pyenv]} )); then
-  eval "$(pyenv init -)"
-fi
