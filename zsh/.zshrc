@@ -132,7 +132,7 @@ then
   icon=" $(cat ~/.config/icon)"
 fi
 
-if [[ ${+commands[starship]} ]]
+if (( ${+commands[starship]} ))
 then
   export STARSHIP_HOST_ICON="${icon}"
   eval "$(starship init zsh)"
