@@ -34,6 +34,24 @@ alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 alias e="emacsclient -c -n"
 alias usystemctl="systemctl --user"
 
+# Prompt
+autoload -U colors && colors
+icon=''
+if [[ -f ~/.config/icon ]];
+then
+  icon=" $(cat ~/.config/icon)"
+fi
+PROMPT="%F{green}%n@%m${icon}%f:%~
+%# "
+
+case ${TERM} in
+  xterm*)
+    precmd () {
+      print -Pn "\e]0;%n@%m$icon: %~\a"
+    }
+    ;;
+esac
+
 # functions
 function beep() { eval $* ; printf "\a"; }
 function nmpath() {
@@ -71,6 +89,10 @@ elif [[ "$(ls --version)" != "*coreutils*" ]]; then
     command ls "${lsflags[@]}" "$@"
   }
 fi
+
+jql() {
+  jq -C "$@" | less -r
+}
 
 if (( ${+commands[dircolors]} )); then
   eval $(dircolors ~/.local/share/dircolors/solarized-ansi-universal)
