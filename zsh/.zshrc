@@ -121,6 +121,14 @@ line() {
   sed -ne "${num}p" "$@"
 }
 
+install_python_devtools() {
+  python -m pip install -U \
+    msgpack \
+    pip \
+    pynvim \
+    python-language-server
+}
+
 autoload -U select-word-style
 select-word-style bash
 
