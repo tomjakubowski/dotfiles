@@ -29,6 +29,7 @@ unalias run-help 2>/dev/null || true
 autoload run-help
 
 # Aliases
+alias abduco="abduco -e '^q'"
 alias irc="abduco -A irc zsh -c 'weechat -d $XDG_CONFIG_HOME/weechat'"
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 alias e="emacsclient -c -n"
