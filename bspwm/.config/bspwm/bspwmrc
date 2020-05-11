@@ -5,12 +5,12 @@ sxhkd &
 
 picom &
 redshift &
-polybar example &
+polybar -r main &
 # light-locker &
 xiccd &
 
 bspc monitor -d I II III IV V VI VII VIII IX
-bspc config window_gap 4
+bspc config window_gap 16
 bspc config border_width 4
 bspc config normal_border_color '#4c566a'
 bspc config active_border_color '#4c566a'
@@ -23,7 +23,7 @@ bspc rule -a Pavucontrol state=floating
 bspc rule -a feh state=floating
 bspc rule -a spotify state=pseudo_tiled
 
-bspc config top_padding 40
+bspc config top_padding 48
 
 wallpaper="${HOME}/.local/share/wallpaper"
 wallpaper_conf="${wallpaper}.conf"

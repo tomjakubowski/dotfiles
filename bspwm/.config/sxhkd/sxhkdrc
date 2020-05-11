@@ -53,3 +53,7 @@ super + {1-9}
 
 super + shift + {1-9}
   bspc node focused -d ^{1-9}
+
+# increase/decrease gaps on focused desktop
+super + bracket{left,right}
+  bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 4 ))

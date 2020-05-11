@@ -55,11 +55,11 @@ secondary = ${colors.nord9}
 tertiary = ${colors.nord10}
 alert = ${colors.nord11}
 
-[bar/example]
+[bar/main]
 dpi = 162
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 40
+height = 48
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 0.0
@@ -80,18 +80,18 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Inconsolata:pixelsize=10;1
+font-0 = Fira Sans:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=12:antialias=false;0
 font-2 = siji:pixelsize=12;1
 font-3 = JoyPixels:scale=12;1
 
-modules-left = bspwm title
-modules-center = date
-modules-right = filesystem memory cpu gpu battery temperature wlan eth powermenu
+modules-left = bspwm
+modules-center = title
+modules-right = date filesystem memory cpu battery temperature wlan eth powermenu
 
 tray-position = right
 tray-padding = 2
-;tray-background = #0063ff
+tray-background = ${colors.nord4}
 
 wm-restack = bspwm
 ;wm-restack = i3
@@ -243,13 +243,13 @@ format-underline = ${colors.tertiary}
 label = %percentage:2%%
 module-margin-right = 0
 
-[module/gpu]
-type = custom/script
-interval = 10
-exec = ~/.local/bin/system-nvidia-smi.sh
-format-underline = ${colors.tertiary}
-label = GPU %output%%
-module-margin-left = 0
+; [module/gpu]
+; type = custom/script
+; interval = 10
+; exec = ~/.local/bin/system-nvidia-smi.sh
+; format-underline = ${colors.tertiary}
+; label = GPU %output%%
+; module-margin-left = 0
 
 [module/memory]
 type = internal/memory
@@ -309,6 +309,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
+foreground = ${colors.foreground}
 format-underline = ${colors.nord9}
 
 label = %date% %time%
@@ -419,6 +420,8 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
+
+hwmon-path= /sys/devices/platform/it87.2656/hwmon/hwmon2/temp1_input
 
 [module/powermenu]
 type = custom/menu
