@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufRead *.dockerfile setf sh
+autocmd BufNewFile,BufRead *.dockerfile setf dockerfile
