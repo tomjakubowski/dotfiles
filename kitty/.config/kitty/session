@@ -1,0 +1,4 @@
+layout fat:bias=80
+cd ~
+launch zsh
+launch zsh
