@@ -45,11 +45,12 @@ fi
 PROMPT="%F{green}%n@%m${icon}%f:%~
 %# "
 
+set_xterm_title() {
+  print -Pn "\e]%n@%m: %~\a"
+}
 case ${TERM} in
   xterm*)
-    precmd () {
-      print -Pn "\e]0;%n@%m$icon: %~\a"
-    }
+    precmd_functions+=(set_xterm_title)
     ;;
 esac
 
@@ -82,8 +83,8 @@ elif [[ "$(ls --version)" != "*coreutils*" ]]; then
     local dotfiles_home=$HOME/dotfiles
     local lsflags=("-h" "--color=auto")
     # If we wanted to match the dotfiles dir itself, the LHS would be "$PWD/"
-    # But it turns out we only really want the dotfiles one level down from
-    # that in the dotfiles dir tree anyway.
+    # But that's okay, since we only want to see dotfiles/foo/.config, not
+    # dotfiles/.git
     if [[ "$PWD" = "$dotfiles_home"/* ]]; then
       lsflags+=("-A")
     fi
@@ -96,7 +97,7 @@ jql() {
 }
 
 if (( ${+commands[dircolors]} )); then
-  eval $(dircolors ~/.local/share/dircolors/solarized-ansi-universal)
+  eval $(dircolors ~/.local/share/dircolors/nord)
 fi
 
 if [[ -d "$XDG_CONFIG_HOME/zshrc.d" ]]; then
@@ -130,6 +131,19 @@ install_python_devtools() {
     python-language-server
 }
 
+relog() {
+  exec zsh -l
+}
+
+tcargo() {
+  local crateroot
+  scratch
+  cargo init --name "tcargo" "$@"
+  [[ -f "src/main.rs" ]] && crateroot="src/main.rs"
+  [[ -f "src/lib.rs" ]] && crateroot="src/lib.rs"
+  nvim "$crateroot"
+}
+
 autoload -U select-word-style
 select-word-style bash
 
@@ -153,15 +167,9 @@ else
 
 fi
 
-# Set window title
-case ${TERM} in
-  xterm*)
-    precmd () {
-      title_string="zsh %~"
-      print -Pn "\e]0;  ${title_string} \a"
-    }
-    ;;
-esac
-
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
 [[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+
+if [[ -n "${SHELL_BECOME_EXEC}" ]]; then
+  exec ${SHELL_BECOME_EXEC}
+fi
