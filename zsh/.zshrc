@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 setopt beep
 setopt extendedglob
 setopt nomatch
@@ -168,7 +170,8 @@ else
 fi
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
-[[ -s ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+
+# zprof
 
 if [[ -n "${SHELL_BECOME_EXEC}" ]]; then
   exec ${SHELL_BECOME_EXEC}
