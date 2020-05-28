@@ -1,10 +1,3 @@
 gtk-theme-name="Arc"
-gtk-icon-theme-name="Vertex-Icons"
 gtk-key-theme-name="Emacs"
-gtk-font-name="Source Sans Pro 10"
-
-style "vimfix" {
-    bg[NORMAL] = "#2d2d2d"
-}
-
-widget "vim-main-window.*GtkForm" style "vimfix"
+gtk-font-name="Fira Sans 10"
