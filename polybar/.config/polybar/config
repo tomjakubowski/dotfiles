@@ -57,7 +57,7 @@ alert = ${colors.nord11}
 
 [bar/main]
 dpi = 162
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = DP-1
 width = 100%
 height = 48
 ;offset-x = 1%
