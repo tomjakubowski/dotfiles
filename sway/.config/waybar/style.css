@@ -1,0 +1,44 @@
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    font-family: "Fira Mono", "Anonymous Pro";
+    font-size: 14px;
+}
+
+window#waybar {
+    background: #3b4252;
+    color: #d8dee9;
+    /* opacity: 0.5; */
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+#workspaces button {
+    padding: 0px 8px;
+    background: transparent;
+    color: #e5e9f0;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.hover,
+#workspaces button.focused {
+    background: #434c5e;
+    color: #eceff4;
+    border-bottom: 3px solid #e5e9f0;
+}
+
+#mode, #clock {
+    /* padding: 0 8px; */
+    padding: 0 8px;
+    margin: 0 8px;
+    color: #eceff4;
+}
+
+#mode {
+    background: #434c5e;
+    border-bottom: 3px solid white;
+}
+
+#clock {
+}

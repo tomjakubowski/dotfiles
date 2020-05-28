@@ -1,0 +1,19 @@
+{
+  "layer": "top",
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode"
+  ],
+  "modules-center": [
+    "sway/window"
+  ],
+  "modules-right": [
+    "tray",
+    "clock"
+  ],
+  "clock": {
+    "interval": 1,
+    "format": "{:%e %b %Y  %H:%M:%S}",
+    "tooltip": false
+  }
+}
