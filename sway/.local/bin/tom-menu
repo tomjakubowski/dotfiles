@@ -1,0 +1,5 @@
+#!/bin/bash
+
+dmenu_path | tom-fzf --prompt 'Run: ' --reverse --no-info | xargs swaymsg exec --
+# fzf="tom-fzf --prompt 'Run: ' --reverse --no-info"
+# j4-dmenu-desktop --dmenu="$fzf"

@@ -18,14 +18,13 @@ set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu_launcher kitty --config \"$HOME/.config/tom-menu/kitty.conf\" --class tom-menu --detach
-set $menu $menu_launcher sh -c \"dmenu_path | tom-fzf --no-info | xargs swaymsg exec --\"
-# set $menu_desktop $menu_launcher sh -c \"i3-dmenu-desktop --dmenu='tom-fzf --no-info' | xargs swaymsg exec --\"
+set $menu_launcher kitty --config \"$HOME/.config/tom-menu/kitty.conf\" --class tom-menu -T Launch
+set $menu $menu_launcher tom-menu
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/wallpapers/wallpaper fill
+output * bg ~/Pictures/wallpapers/desktop-wallpaper fill
 #
 # Example configuration:
 #
@@ -62,6 +61,8 @@ exec mako
 
 for_window [app_id="kitty-floating"] floating enable
 for_window [app_id="tom-menu"] focus, floating enable, border pixel 0
+for_window [title="app.amazingmarvin.com"] floating enable, resize set width 800 height 800
+for_window [title="Firefox - Sharing Indicator"] floating enable, border pixel 2, sticky enable, opacity 50, move position 400 -20
 
 ### Idle configuration
 #
