@@ -146,6 +146,10 @@ tcargo() {
   nvim "$crateroot"
 }
 
+qplot() {
+  gnuplot -p -e "plot '-'"
+}
+
 autoload -U select-word-style
 select-word-style bash
 
