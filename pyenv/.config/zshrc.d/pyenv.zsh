@@ -1,1 +1,1 @@
-eval "$(pyenv init --shell zsh --no-rehash -)"
+eval "$(pyenv init --shell zsh -)"
