@@ -180,3 +180,7 @@ fi
 if [[ -n "${SHELL_BECOME_EXEC}" ]]; then
   exec ${SHELL_BECOME_EXEC}
 fi
+
+if [[ -n "${SHELL_FINALLY}" ]]; then
+  ${SHELL_FINALLY}
+fi
