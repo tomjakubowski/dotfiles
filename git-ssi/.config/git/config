@@ -29,6 +29,9 @@
   Po = "push origin"
   rb = "rebase"
 
+  update = "push origin"
+  fupdate = "push origin --force-with-lease"
+
 [include]
   path = "local.gitconfig"
 
