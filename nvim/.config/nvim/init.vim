@@ -59,6 +59,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'liuchengxu/vista.vim'
   Plug 'leafgarland/typescript-vim'
   Plug 'maximbaz/lightline-ale'
+  Plug 'preservim/nerdtree'
+  Plug 'rstacruz/vim-closer'
   Plug 'rust-lang/rust.vim'
   Plug 'tikhomirov/vim-glsl'
   Plug 'tpope/vim-commentary'
@@ -94,7 +96,7 @@ if $TERM == "xterm-kitty"
 endif
 
 set completeopt-=preview
-set completeopt+=noinsert
+set completeopt+=longest
 
 let mapleader=","
 
@@ -152,6 +154,8 @@ let g:ale_fixers = {
 let g:ale_open_list = 0
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
+let g:ale_virtualtext_cursor = 1
+
 " fzf
 augroup fzf
   autocmd!
