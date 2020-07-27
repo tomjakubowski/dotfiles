@@ -36,13 +36,12 @@ output DP-1 scale 1.5 position 0,0
 # output DP-2 transform 270 position 1920,-400
 output DP-2 position 1920,0
 
-gaps outer 6
-gaps top 12
-gaps bottom 12
+gaps outer 4
 gaps inner 4
 default_border normal 2
 default_floating_border normal 2
 titlebar_padding 10 2
+title_align center
 
 # nord0 = #2E3440
 # nord1 = #3B4252
@@ -50,7 +49,7 @@ titlebar_padding 10 2
 # nord3 = #4C566A
 #4c566a
 
-font "pango:Fira Code 10"
+font "pango:Inter Medium 9"
 
 client.focused #4c566a #4c566a #eceff4 #a3be8c
 client.unfocused #3b4252 #3b4252 #d8dee9
@@ -243,7 +242,7 @@ bar {
     # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
 
     swaybar_command waybar
-    font "pango:Fira Sans 10"
+    font "pango:Inter 10"
 
     colors {
         statusline #ffffff
