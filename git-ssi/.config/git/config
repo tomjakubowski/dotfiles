@@ -46,3 +46,5 @@
 
 [url "git@git.2nd.io:"]
   insteadOf = https://git.2nd.io/
+[rerere]
+	enabled = true
