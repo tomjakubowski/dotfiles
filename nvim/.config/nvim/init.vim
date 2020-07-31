@@ -160,6 +160,7 @@ let g:ale_open_list = 0
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_virtualtext_cursor = 1
+let g:ale_rust_rustfmt_options = '--edition 2018'
 
 " fzf
 augroup fzf
