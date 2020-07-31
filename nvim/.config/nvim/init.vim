@@ -148,9 +148,14 @@ inoremap <c-u> <esc>viwUgi
 
 " ale
 let g:ale_fix_on_save = 1
+" todo: set linters / fixers here rather than in ftplugins
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \}
+" let g:ale_rust_analyzer_config = {
+"       \ 'rust-analyzer.cargo.loadOutDirsFromCheck': v:true,
+"       \ 'rust-analyzer.procMacro.enable': v:true,
+"       \ }
 let g:ale_open_list = 0
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
