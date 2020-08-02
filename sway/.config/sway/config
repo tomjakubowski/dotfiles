@@ -18,8 +18,8 @@ set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu_launcher kitty --config \"$HOME/.config/tom-menu/kitty.conf\" --class tom-menu -T Launch
-set $menu $menu_launcher tom-menu
+# set $menu_launcher kitty --config \"$HOME/.config/tom-menu/kitty.conf\" --class tom-menu -T Launch
+set $menu wofi --show drun | xargs swaymsg exec --
 
 ### Output configuration
 #
@@ -242,7 +242,7 @@ bar {
     # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
 
     swaybar_command waybar
-    font "pango:Inter 10"
+    font "pango:Inter 9"
 
     colors {
         statusline #ffffff
