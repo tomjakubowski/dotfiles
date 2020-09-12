@@ -50,7 +50,7 @@ title_align center
 # nord3 = #4C566A
 #4c566a
 
-font "pango:Inter Medium 9"
+font "pango:Inter Bold 9"
 
 client.focused #4c566a #4c566a #eceff4 #a3be8c
 client.unfocused #3b4252 #3b4252 #d8dee9
@@ -61,6 +61,7 @@ exec mako
 
 for_window [app_id="kitty-floating"] floating enable
 for_window [app_id="tom-menu"] focus, floating enable, border pixel 0
+for_window [app_id="firefox"] border pixel 2
 for_window [title="app.amazingmarvin.com"] floating enable, resize set width 800 height 800
 for_window [title="open.spotify.com"] floating enable, resize set width 800 height 800, border pixel 2
 for_window [title="Firefox - Sharing Indicator"] floating enable, border pixel 2, sticky enable, opacity 50, move position 400 -20
