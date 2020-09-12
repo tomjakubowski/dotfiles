@@ -104,7 +104,8 @@ set foldmethod=indent
 " I'll override this for certain file types
 set foldlevelstart=99
 nnoremap <Space> za
-nnoremap <Space> za
+" Make Y consistent with C and D.
+nnoremap Y y$
 
 " buffers
 set hidden
