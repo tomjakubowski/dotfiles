@@ -32,11 +32,17 @@ autoload run-help
 
 # Aliases
 alias abduco="abduco -e '^q'"
-alias e="emacsclient -c -n"
+alias ec="emacsclient -c -n"
 alias irc="abduco -A irc zsh -c 'weechat -d $XDG_CONFIG_HOME/weechat'"
 alias nv="nvim"
 alias usystemctl="systemctl --user"
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
+
+# Alphavit
+alias e=nvim # edit
+alias f=fzf # find / fuzzy # filter
+alias g=rg
+alias G=git
 
 # Prompt
 autoload -U colors && colors
