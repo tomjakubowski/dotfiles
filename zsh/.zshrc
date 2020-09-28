@@ -35,7 +35,7 @@ alias abduco="abduco -e '^q'"
 alias ec="emacsclient -c -n"
 alias irc="abduco -A irc zsh -c 'weechat -d $XDG_CONFIG_HOME/weechat'"
 alias nv="nvim"
-alias reload="exec zsh -l"
+alias reload="exec zsh"
 alias usystemctl="systemctl --user"
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 
