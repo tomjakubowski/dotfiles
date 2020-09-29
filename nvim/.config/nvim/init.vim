@@ -1,4 +1,3 @@
-" general
 set noswapfile
 set smartcase
 
@@ -78,9 +77,9 @@ call plug#end()
 
 " presentation
 set title
-set number
-set numberwidth=3
-set relativenumber
+" set number
+" set numberwidth=3
+" set relativenumber
 set nowrap
 set colorcolumn=+0
 set signcolumn=yes
@@ -135,7 +134,7 @@ nnoremap <silent> ]W :ALENext -warning<cr>
 nnoremap <silent> [W :ALEPrevious -warning<cr>
 
 nnoremap <F5> :make<CR>
-nnoremap <C-x><C-j> :Explore<CR>
+nnoremap <C-x><C-j> :NERDTree %:h<CR>
 nnoremap <C-f> :Buffers<CR>
 nnoremap <C-p> :Files<CR>
 " emacs-compatible bindings <3
