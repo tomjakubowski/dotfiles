@@ -3,7 +3,7 @@ prompt_order = [
   "hostname",
   "git_branch",
   "git_status",
-  "python",
+  # "python",
   "line_break",
   "directory",
   "character",
