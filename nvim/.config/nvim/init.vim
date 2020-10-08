@@ -48,6 +48,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'c-brenn/fuzzy-projectionist.vim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'elixir-editors/vim-elixir'
+  Plug 'dag/vim-fish'
   Plug 'fatih/vim-go'
   Plug 'Glench/Vim-Jinja2-Syntax'
   Plug 'hashivim/vim-terraform'
