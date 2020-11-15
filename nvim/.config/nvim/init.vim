@@ -117,7 +117,7 @@ set mouse=a
 " Use ripgrep
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
-  let $FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git"'
+  let $FZF_DEFAULT_COMMAND='rg --follow --files --hidden --glob "!.git"'
 endif
 
 " NORMAL mode
