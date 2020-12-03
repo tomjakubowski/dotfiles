@@ -182,6 +182,7 @@ else
 fi
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
+[[ -n "$VSCODE_GIT_IPC_HANDLE" ]] && [[ -e ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
 
 # zprof
 
