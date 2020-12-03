@@ -28,6 +28,7 @@
   P = "push"
   Po = "push origin"
   rb = "rebase"
+  wip = "commit -m WIP"
 
   update = "push origin"
   fupdate = "push origin --force-with-lease"
