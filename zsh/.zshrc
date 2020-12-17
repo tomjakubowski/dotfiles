@@ -182,7 +182,8 @@ else
 fi
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
-[[ -n "$VSCODE_GIT_IPC_HANDLE" ]] && [[ -e ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+[[ "$TOM_IN_VSCODE" = "1" && -e ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
 # zprof
 
