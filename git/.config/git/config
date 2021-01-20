@@ -29,5 +29,8 @@
   Po = "push origin"
   rb = "rebase"
 
+[init]
+  defaultBranch = "main"
+
 [include]
   path = "local.gitconfig"
