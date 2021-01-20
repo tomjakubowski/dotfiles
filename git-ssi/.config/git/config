@@ -33,6 +33,11 @@
   update = "push origin"
   fupdate = "push origin --force-with-lease"
 
+  d = "diff"
+  l = "log"
+  sta = "status"
+  stat = "status"
+
 [include]
   path = "local.gitconfig"
 
