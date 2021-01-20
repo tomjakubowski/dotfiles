@@ -1,5 +1,9 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export ANSIBLE_INVENTORY:/home/tom/infra/ansible/inventory
+SETUVAR --export ANSIBLE_NOCOWS:1
+SETUVAR --export EDITOR:nvim
+SETUVAR --export VAGRANT_DEFAULT_PROVIDER:libvirt
 SETUVAR --export XDG_CONFIG_HOME:/home/tom/\x2econfig
 SETUVAR __fish_initialized:3100
 SETUVAR fish_color_autosuggestion:4c566a
@@ -31,3 +35,4 @@ SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_user_paths:/home/tom/\x2epoetry/bin\x1e/home/tom/\x2elocal/bin\x1e/home/tom/\x2elocal/fzf/bin
