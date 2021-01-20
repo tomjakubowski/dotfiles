@@ -151,11 +151,15 @@ inoremap <c-u> <esc>viwUgi
 let g:ale_fix_on_save = 1
 " todo: set linters / fixers here rather than in ftplugins
 let g:ale_linters = {
+      \ 'elixir': ['elixir-ls'],
       \ 'typescript': ['eslint', 'tsserver']
       \}
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'elixir': ['mix_format']
       \}
+let g:ale_elixir_elixir_ls_release = expand("~/opt/elixir-ls")
+
 " let g:ale_rust_analyzer_config = {
 "       \ 'rust-analyzer.cargo.loadOutDirsFromCheck': v:true,
 "       \ 'rust-analyzer.procMacro.enable': v:true,
