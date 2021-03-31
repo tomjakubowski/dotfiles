@@ -159,6 +159,9 @@ let g:ale_fixers = {
       \ 'elixir': ['mix_format']
       \}
 let g:ale_elixir_elixir_ls_release = expand("~/opt/elixir-ls")
+let g:ale_elixir_elixir_ls_config = {
+      \ 'elixirLS': { 'dialyzerEnabled': v:false }
+      \ }
 
 " let g:ale_rust_analyzer_config = {
 "       \ 'rust-analyzer.cargo.loadOutDirsFromCheck': v:true,
