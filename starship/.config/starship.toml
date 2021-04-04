@@ -1,3 +1,13 @@
+format = """\
+  $username\
+  $hostname\
+  $git_branch\
+  $git_status\
+  $line_break\
+  $directory\
+  $character\
+"""
+
 prompt_order = [
   "username",
   "hostname",
