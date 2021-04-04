@@ -138,7 +138,7 @@ nnoremap <silent> [W :ALEPrevious -warning<cr>
 nnoremap <F5> :make<CR>
 nnoremap <C-x><C-j> :NERDTree %:h<CR>
 nnoremap <C-f> :Buffers<CR>
-nnoremap <C-p> :GitFiles<CR>
+nnoremap <C-p> :GitFiles?<CR>
 " emacs-compatible bindings <3
 nnoremap <C-x>b :Buffers<CR>
 nnoremap <C-x><C-f> :Files<CR>
