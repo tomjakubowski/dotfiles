@@ -77,30 +77,26 @@ function nmpath() {
 }
 
 if (( ${+commands[gls]} )); then
-  function ls() {
-    local dotfiles_home=$HOME/dotfiles
-    local lsflags=("-h" "--color=auto")
-    # If we wanted to match the dotfiles dir itself, the LHS would be "$PWD/"
-    # But it turns out we only really want the dotfiles one level down from
-    # that in the dotfiles dir tree anyway.
-    if [[ "$PWD" = "$dotfiles_home"/* ]]; then
-      lsflags+=("-A")
-    fi
-    command "gls" "${lsflags[@]}" "$@"
-  }
-elif [[ "$(ls --version)" != "*coreutils*" ]]; then
-  function ls() {
-    local dotfiles_home=$HOME/dotfiles
-    local lsflags=("-h" "--color=auto")
-    # If we wanted to match the dotfiles dir itself, the LHS would be "$PWD/"
-    # But that's okay, since we only want to see dotfiles/foo/.config, not
-    # dotfiles/.git
-    if [[ "$PWD" = "$dotfiles_home"/* ]]; then
-      lsflags+=("-A")
-    fi
-    command ls "${lsflags[@]}" "$@"
-  }
+  lscmd="gls"
+  is_gnu_ls="1"
+else
+  lscmd="ls"
 fi
+
+function ls() {
+  local dotfiles_home=$HOME/dotfiles
+  local lsflags=("-h")
+  if [[ -v is_gnu_ls ]]; then
+    lsflags+=("--color=auto")
+  fi
+  # If we wanted to match the dotfiles dir itself, the LHS would be "$PWD/"
+  # But it turns out we only really want the dotfiles one level down from
+  # that in the dotfiles dir tree anyway.
+  if [[ "$PWD" = "$dotfiles_home"/* ]]; then
+    lsflags+=("-A")
+  fi
+  command "$lscmd" "${lsflags[@]}" "$@"
+}
 
 jql() {
   jq -C "$@" | less -r
