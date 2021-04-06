@@ -8,16 +8,6 @@ format = """\
   $character\
 """
 
-prompt_order = [
-  "username",
-  "hostname",
-  "git_branch",
-  "git_status",
-  # "python",
-  "line_break",
-  "directory",
-  "character",
-]
 scan_timeout = 10
 
 [character]
