@@ -125,6 +125,7 @@ endif
 nnoremap <leader>H :set list!<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
+nnoremap <leader>r :Rg <C-r>=expand('<cword>')<CR>
 
 nnoremap <leader>o :copen<CR>
 nnoremap <leader>ah :ALEHover<CR>
