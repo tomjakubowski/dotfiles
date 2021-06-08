@@ -126,10 +126,12 @@ nnoremap <leader>H :set list!<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
 nnoremap <leader>r :Rg <C-r>=expand('<cword>')<CR>
+nnoremap <leader>R :Rg <C-r>=expand('<cWORD>')<CR>
 
 nnoremap <leader>o :copen<CR>
 nnoremap <leader>ah :ALEHover<CR>
-nnoremap <leader>g :ALEGoToDefinition<CR>
+nnoremap <leader>gg :ALEGoToDefinition<CR>
+nnoremap <leader>gT :tab ALEGoToDefinition<CR>
 nnoremap <leader>? :ALEDetail<CR>
 nnoremap <silent> ]E :ALENext -error<cr>
 nnoremap <silent> [E :ALEPrevious -error<cr>
@@ -159,7 +161,7 @@ let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \ 'elixir': ['mix_format']
       \}
-let g:ale_elixir_elixir_ls_release = expand("~/opt/elixir-ls")
+let g:ale_elixir_elixir_ls_release = expand("~/opt/elixir")
 let g:ale_elixir_elixir_ls_config = {
       \ 'elixirLS': { 'dialyzerEnabled': v:false }
       \ }
