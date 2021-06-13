@@ -21,12 +21,21 @@
 	required = true
 
 [alias]
+  ca = "commit --amend"
   co = "checkout"
-  p = "pull"
-  po = "pull origin"
-  pom = "pull origin master"
-  P = "push"
-  Po = "push origin"
+
+  l = "pull"
+  lo = "pull origin"
+  lom = "pull origin master"
+
+  p = "push"
+  pf = "push --force-with-lease"
+  pu = "push -u"
+  po = "push origin"
+  pou = "push -u origin HEAD"
+
+  open = "push -u origin HEAD"
+
   rb = "rebase"
 
 [init]
