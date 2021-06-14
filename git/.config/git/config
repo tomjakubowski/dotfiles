@@ -24,10 +24,6 @@
   ca = "commit --amend"
   co = "checkout"
 
-  l = "pull"
-  lo = "pull origin"
-  lom = "pull origin master"
-
   p = "push"
   pf = "push --force-with-lease"
   pu = "push -u"

@@ -22,11 +22,10 @@
 
 [alias]
   co = "checkout"
-  p = "pull"
-  po = "pull origin"
-  pom = "pull origin master"
-  P = "push"
-  Po = "push origin"
+
+  p = "push"
+  po = "push origin"
+  pou = "push -u origin HEAD"
   rb = "rebase"
   wip = "commit -m WIP"
 
@@ -37,9 +36,6 @@
   l = "log"
   sta = "status"
   stat = "status"
-
-[include]
-  path = "local.gitconfig"
 
 [url "git@git.2nd.io:"]
   insteadOf = git:
@@ -52,5 +48,9 @@
 
 [url "git@git.2nd.io:"]
   insteadOf = https://git.2nd.io/
+
 [rerere]
 	enabled = true
+
+[include]
+  path = "local.gitconfig"
