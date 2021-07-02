@@ -48,6 +48,14 @@ alias f=fzf # find / fuzzy # filter
 alias g=rg
 alias G=git
 
+function l() {
+  if [[ "$#" == 0 ]]; then
+    less
+  else
+    "$@" | less
+  fi
+}
+
 # Prompt
 autoload -U colors && colors
 icon=''
