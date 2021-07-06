@@ -161,9 +161,9 @@ let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \ 'elixir': ['mix_format']
       \}
-let g:ale_elixir_elixir_ls_release = expand("~/opt/elixir")
+let g:ale_elixir_elixir_ls_release = expand("~/opt/elixir-ls")
 let g:ale_elixir_elixir_ls_config = {
-      \ 'elixirLS': { 'dialyzerEnabled': v:false }
+      \ 'elixirLS': { 'dialyzerEnabled': v:true }
       \ }
 
 " let g:ale_rust_analyzer_config = {
