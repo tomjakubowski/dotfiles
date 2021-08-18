@@ -52,12 +52,14 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'fatih/vim-go'
   Plug 'Glench/Vim-Jinja2-Syntax'
   Plug 'hashivim/vim-terraform'
+  Plug 'hrsh7th/nvim-compe'
   Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'liuchengxu/vista.vim'
   Plug 'leafgarland/typescript-vim'
+  Plug 'neovim/nvim-lspconfig'
   Plug 'maximbaz/lightline-ale'
   Plug 'preservim/nerdtree'
   Plug 'rstacruz/vim-closer'
@@ -154,22 +156,25 @@ inoremap <c-u> <esc>viwUgi
 let g:ale_fix_on_save = 1
 " todo: set linters / fixers here rather than in ftplugins
 let g:ale_linters = {
-      \ 'elixir': ['elixir-ls'],
-      \ 'typescript': ['eslint', 'tsserver']
+      \ 'javascript': ['eslint']
+      \ 'python': ['pyls', 'flake8', 'pylint']
+      \ 'shell': ['shellcheck']
+      \ 'typescript': ['eslint', 'tslint']
       \}
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \ 'elixir': ['mix_format']
+      \ 'javascript': ['prettier']
+      \ 'python': ['yapf', 'black']
+      \ 'rust': ['rustfmt']
+      \ 'typescript': ['prettier']
       \}
+
 let g:ale_elixir_elixir_ls_release = expand("~/opt/elixir-ls")
 let g:ale_elixir_elixir_ls_config = {
       \ 'elixirLS': { 'dialyzerEnabled': v:false }
       \ }
 
-" let g:ale_rust_analyzer_config = {
-"       \ 'rust-analyzer.cargo.loadOutDirsFromCheck': v:true,
-"       \ 'rust-analyzer.procMacro.enable': v:true,
-"       \ }
 let g:ale_open_list = 0
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
