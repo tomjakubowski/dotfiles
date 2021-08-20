@@ -131,14 +131,14 @@ nnoremap <leader>r :Rg <C-r>=expand('<cword>')<CR>
 nnoremap <leader>R :Rg <C-r>=expand('<cWORD>')<CR>
 
 nnoremap <leader>o :copen<CR>
-nnoremap <leader>ah :ALEHover<CR>
-nnoremap <leader>gg :ALEGoToDefinition<CR>
-nnoremap <leader>gT :tab ALEGoToDefinition<CR>
-nnoremap <leader>? :ALEDetail<CR>
-nnoremap <silent> ]E :ALENext -error<cr>
-nnoremap <silent> [E :ALEPrevious -error<cr>
-nnoremap <silent> ]W :ALENext -warning<cr>
-nnoremap <silent> [W :ALEPrevious -warning<cr>
+" nnoremap <leader>ah :ALEHover<CR>
+" nnoremap <leader>gg :ALEGoToDefinition<CR>
+" nnoremap <leader>gT :tab ALEGoToDefinition<CR>
+" nnoremap <leader>? :ALEDetail<CR>
+" nnoremap <silent> ]E :ALENext -error<cr>
+" nnoremap <silent> [E :ALEPrevious -error<cr>
+" nnoremap <silent> ]W :ALENext -warning<cr>
+" nnoremap <silent> [W :ALEPrevious -warning<cr>
 
 nnoremap <F5> :make<CR>
 nnoremap <C-x><C-j> :NERDTree %:h<CR>
@@ -156,17 +156,17 @@ inoremap <c-u> <esc>viwUgi
 let g:ale_fix_on_save = 1
 " todo: set linters / fixers here rather than in ftplugins
 let g:ale_linters = {
-      \ 'javascript': ['eslint']
-      \ 'python': ['pyls', 'flake8', 'pylint']
-      \ 'shell': ['shellcheck']
+      \ 'javascript': ['eslint'],
+      \ 'python': ['pyls', 'flake8', 'pylint'],
+      \ 'shell': ['shellcheck'],
       \ 'typescript': ['eslint', 'tslint']
       \}
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'elixir': ['mix_format']
-      \ 'javascript': ['prettier']
-      \ 'python': ['yapf', 'black']
-      \ 'rust': ['rustfmt']
+      \ 'elixir': ['mix_format'],
+      \ 'javascript': ['prettier'],
+      \ 'python': ['yapf', 'black'],
+      \ 'rust': ['rustfmt'],
       \ 'typescript': ['prettier']
       \}
 
@@ -221,3 +221,56 @@ augroup END
 
 " Open all file arguments in tabs
 tab all
+
+" configure LSPs
+lua <<EOF
+local nvim_lsp = require('lspconfig')
+
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  --Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+end
+
+local servers = { 'rust_analyzer', 'tsserver', 'elixirls' }
+local server_opts = {
+  elixirls = {
+    cmd = vim.fn.expand('~/opt/elixir-ls/language_server.sh')
+  }
+}
+for _, lsp in ipairs(servers) do
+  local opts = {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+  for k, v in ipairs(server_opts[lsp] or {}) do
+    opts[k] = v
+  end
+  nvim_lsp[lsp].setup(opts)
+end
+
+EOF
