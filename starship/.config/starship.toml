@@ -10,9 +10,6 @@ format = """\
 
 scan_timeout = 10
 
-[character]
-symbol = "▸"
-
 [python]
 style = "bold green"
 symbol = "py "

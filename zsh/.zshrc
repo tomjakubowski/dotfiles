@@ -173,20 +173,16 @@ select-word-style bash
 icon=''
 if [[ -f ~/.config/icon ]];
 then
-  icon=" $(cat ~/.config/icon)"
+  icon="$(cat ~/.config/icon)"
 fi
 
-if (( ${+commands[starship]} ))
-then
-  export STARSHIP_HOST_ICON="${icon}"
-  eval "$(starship init zsh)"
-else
-  # Fallback prompt
-  autoload -U colors && colors
-  PROMPT="%F{green}%n@%m${icon}%f:%~
-%# "
-
-fi
+# if (( false && ${+commands[starship]} ))
+# then
+#   export STARSHIP_HOST_ICON="${icon}"
+#   eval "$(starship init zsh)"
+# fi
+autoload -U colors && colors
+PROMPT="%F{green}%m${icon}%f:%2~ %# "
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
 [[ "$TOM_IN_VSCODE" = "1" && -e ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
