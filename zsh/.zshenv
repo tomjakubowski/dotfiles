@@ -56,3 +56,5 @@ fi
 if (( ${+commands[sccache]} )); then
   export RUSTC_WRAPPER=${commands[sccache]}
 fi
+
+return 0

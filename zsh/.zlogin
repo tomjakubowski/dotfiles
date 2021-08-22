@@ -4,3 +4,5 @@ umask 022
                                               --quiet --timeout 10)
 
 (( $+commands[systemctl] )) && systemctl --user import-environment
+
+true

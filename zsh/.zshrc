@@ -169,20 +169,16 @@ autoload -U select-word-style
 select-word-style bash
 
 # Prompt
-
-icon=''
-if [[ -f ~/.config/icon ]];
-then
-  icon="$(cat ~/.config/icon)"
-fi
-
-# if (( false && ${+commands[starship]} ))
-# then
-#   export STARSHIP_HOST_ICON="${icon}"
-#   eval "$(starship init zsh)"
-# fi
-autoload -U colors && colors
-PROMPT="%F{green}%m${icon}%f:%2~ %# "
+function() {
+  # if (( false && ${+commands[starship]} ))
+  # then
+  #   export STARSHIP_HOST_ICON="${icon}"
+  #   eval "$(starship init zsh)"
+  # fi
+  autoload -U colors && colors
+  local succ='%(?. .%F{red}X%f)'
+  PROMPT="%F{green}%m%f:%F{blue}%B%2~%f%b${succ}%# "
+}
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
 [[ "$TOM_IN_VSCODE" = "1" && -e ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
