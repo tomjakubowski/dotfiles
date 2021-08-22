@@ -42,6 +42,9 @@ alias reload="exec zsh"
 alias usystemctl="systemctl --user"
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 
+# keybindings
+bindkey -s '5~' 'reload\n'
+
 # Alphavit
 alias e=nvim # edit
 alias f=fzf # find / fuzzy # filter
