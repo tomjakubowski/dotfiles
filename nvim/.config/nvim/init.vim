@@ -101,6 +101,7 @@ set completeopt-=preview
 set completeopt+=longest
 
 let mapleader=","
+let maplocalleader="\\"
 
 " Folding
 set foldmethod=indent
