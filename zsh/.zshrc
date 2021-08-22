@@ -95,6 +95,9 @@ if (( ${+commands[gls]} )); then
   is_gnu_ls="1"
 else
   lscmd="ls"
+  if ls --version | grep 'GNU coreutils'>/dev/null; then
+    is_gnu_ls="1"
+  fi
 fi
 
 function ls() {
