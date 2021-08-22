@@ -259,7 +259,7 @@ end
 local servers = { 'rust_analyzer', 'tsserver', 'elixirls' }
 local server_opts = {
   elixirls = {
-    cmd = vim.fn.expand('~/opt/elixir-ls/language_server.sh')
+    cmd = { vim.fn.expand('~/opt/elixir-ls/language_server.sh') }
   }
 }
 for _, lsp in ipairs(servers) do
@@ -269,7 +269,7 @@ for _, lsp in ipairs(servers) do
       debounce_text_changes = 150,
     }
   }
-  for k, v in ipairs(server_opts[lsp] or {}) do
+  for k, v in pairs(server_opts[lsp] or {}) do
     opts[k] = v
   end
   nvim_lsp[lsp].setup(opts)
