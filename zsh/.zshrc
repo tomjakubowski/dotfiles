@@ -180,7 +180,8 @@ function() {
   fi
   PROMPT="${host}%F{blue}%B%2~%f%b ${succ} "
 
-  RPROMPT="%F{yellow}$(__git_ps1 " (%s)")%f"
+  GIT_PS1_SHOWDIRTYSTATE=1
+  RPROMPT=$'%F{yellow}$(__git_ps1 "(%s)")%f'
 }
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
