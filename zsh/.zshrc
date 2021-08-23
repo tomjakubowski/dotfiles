@@ -181,6 +181,7 @@ function() {
   PROMPT="${host}%F{blue}%B%2~%f%b ${succ} "
 
   GIT_PS1_SHOWDIRTYSTATE=1
+  # $'foo' is called "POSIX quotes"
   RPROMPT=$'%F{yellow}$(__git_ps1 "(%s)")%f'
 }
 
