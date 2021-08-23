@@ -1,7 +1,7 @@
 # vim: set ft=gitignore
 
 .projections.json
-.rgignore
+#.rgignore
 
 .#*
 \#*#
