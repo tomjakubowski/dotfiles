@@ -40,7 +40,7 @@ let g:lightline.component_type = {
 " Plugins
 call plug#begin('~/.local/share/nvim/plugged')
 " {{{
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " Plug 'Shougo/echodoc.vim'
   " TODO: ultisnip
   Plug 'arcticicestudio/nord-vim'
