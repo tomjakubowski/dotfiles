@@ -33,6 +33,10 @@ compinit
 unalias run-help 2>/dev/null || true
 autoload run-help
 
+# Colors
+autoload -U colors && colors
+
+
 # Aliases
 alias abduco="abduco -e '^q'"
 alias ec="emacsclient -c -n"
@@ -60,14 +64,6 @@ function l() {
 }
 
 # Prompt
-autoload -U colors && colors
-icon=''
-if [[ -f ~/.config/icon ]];
-then
-  icon=" $(cat ~/.config/icon)"
-fi
-PROMPT="%F{green}%n@%m${icon}%f:%~
-%# "
 
 set_xterm_title() {
   print -Pn "\e]%n@%m: %~\a"
@@ -176,14 +172,9 @@ select-word-style bash
 
 # Prompt
 function() {
-  # if (( false && ${+commands[starship]} ))
-  # then
-  #   export STARSHIP_HOST_ICON="${icon}"
-  #   eval "$(starship init zsh)"
-  # fi
   autoload -U colors && colors
-  local succ='%(?. .%F{red}X%f)'
-  PROMPT="%F{green}%m%f:%F{blue}%B%2~%f%b${succ}%# "
+  local succ='%(?.%#.%F{red}%B%#%f%b)'
+  PROMPT="%F{green}%m%f:%F{blue}%B%2~%f%b${succ} "
 }
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
