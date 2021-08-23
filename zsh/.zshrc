@@ -33,10 +33,6 @@ compinit
 unalias run-help 2>/dev/null || true
 autoload run-help
 
-# Colors
-autoload -U colors && colors
-
-
 # Aliases
 alias abduco="abduco -e '^q'"
 alias ec="emacsclient -c -n"
@@ -172,9 +168,19 @@ select-word-style bash
 
 # Prompt
 function() {
+  setopt prompt_subst
   autoload -U colors && colors
+
   local succ='%(?.%#.%F{red}%B%#%f%b)'
-  PROMPT="%F{green}%m%f:%F{blue}%B%2~%f%b${succ} "
+  local host
+  if [[ -n "$SSH_CLIENT" ]]; then
+    host="%F{green}%m%f:"
+  else
+    host=""
+  fi
+  PROMPT="${host}%F{blue}%B%2~%f%b ${succ} "
+
+  RPROMPT="%F{yellow}$(__git_ps1 " (%s)")%f"
 }
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
