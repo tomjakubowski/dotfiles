@@ -34,6 +34,8 @@
 
   rb = "rebase"
 
+  ood = "remote -v update"
+
 [init]
   defaultBranch = "main"
 
