@@ -146,10 +146,6 @@ install_python_devtools() {
     python-language-server
 }
 
-relog() {
-  exec zsh -l
-}
-
 tcargo() {
   local crateroot
   scratch
