@@ -182,7 +182,11 @@ function() {
 
   GIT_PS1_SHOWDIRTYSTATE=1
   # $'foo' is called "POSIX quotes"
-  RPROMPT=$'%F{yellow}$(__git_ps1 "(%s)")%f'
+  if typeset -f __git_ps1 >/dev/null; then
+    RPROMPT=$'%F{yellow}$(__git_ps1 "(%s)")%f'
+  else
+    echo "warning: __git_ps1 not found, not setting RPROMPT"
+  fi
 }
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
