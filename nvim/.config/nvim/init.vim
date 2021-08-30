@@ -87,10 +87,12 @@ set nowrap
 set colorcolumn=+0
 set signcolumn=yes
 set showtabline=2 " always show tab line
+
 let [g:nord_italic, g:nord_underline] = [1, 1]
 let g:nord_bold_vertical_split_line = 1
-let g:nord_uniform_diff_background = 1
+" let g:nord_uniform_diff_background = 1
 colorscheme nord
+
 if $TERM == "xterm-kitty"
   set termguicolors
   hi! Normal ctermbg=NONE guibg=NONE
@@ -126,14 +128,18 @@ endif
 " NORMAL mode
 " <leader>H to show hidden chars
 nnoremap <leader>H :set list!<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
-" edit dotfile
-nnoremap <leader>ed :tabedit<CR>:tcd ~/dotfiles<CR>:GitFiles --cached --other --exclude-standard<CR>
 nnoremap <leader>r :Rg <C-r>=expand('<cword>')<CR>
 nnoremap <leader>R :Rg <C-r>=expand('<cWORD>')<CR>
 
 nnoremap <leader>o :copen<CR>
+
+" edit files
+nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
+nnoremap <leader>ed :tabedit<CR>:tcd ~/dotfiles<CR>:GitFiles --cached --other --exclude-standard<CR>
+
+" set options
+nnoremap <leader>sn :set number!<CR>
+
 " nnoremap <leader>ah :ALEHover<CR>
 " nnoremap <leader>gg :ALEGoToDefinition<CR>
 " nnoremap <leader>gT :tab ALEGoToDefinition<CR>
