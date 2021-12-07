@@ -4,6 +4,7 @@ function() {
   }
   if (( ${+commands[asdf]} )); then
     source_if_exists "/opt/homebrew/opt/asdf/asdf.sh" ||
-      echo "asdf script location not found"
+      source_if_exists "/usr/local/opt/asdf/asdf.sh" ||
+      rc_error "asdf script location not found"
   fi
 }

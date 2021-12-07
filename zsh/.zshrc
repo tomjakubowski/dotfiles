@@ -6,10 +6,17 @@ setopt nomatch
 
 bindkey -e
 
-fpath+=~/.local/share/zsh/site-functions
 if type brew &>/dev/null; then
-  fpath+=$(brew --prefix)/share/zsh/site-functions
+  fpath=(
+    "$(brew --prefix)/share/zsh/site-functions"
+    "${fpath[@]}"
+  )
 fi
+fpath=(
+  ~/.zfunc
+  ~/.local/share/zsh/site-functions
+  "${fpath[@]}"
+  )
 
 # History options
 HISTFILE=~/.zsh_history
@@ -50,6 +57,8 @@ alias e=nvim # edit
 alias f=fzf # find / fuzzy # filter
 alias g=rg
 alias G=git
+alias j=jq
+alias j.=jq .
 
 function l() {
   if [[ "$#" == 0 ]]; then
@@ -80,6 +89,11 @@ function nmpath() {
   else
     echo "Couldn't find $nmbin, not adding to path!"
   fi
+}
+
+function rc_error() {
+  local script="${funcfiletrace[1]}"
+  echo "$script $*"
 }
 
 if (( ${+commands[gls]} )); then
@@ -187,8 +201,8 @@ function() {
 }
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
-[[ "$TOM_IN_VSCODE" = "1" && -e ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+# [[ "$TOM_IN_VSCODE" = "1" && -e ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
+# test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
 # zprof
 
