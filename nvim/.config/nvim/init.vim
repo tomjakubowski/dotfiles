@@ -38,7 +38,7 @@ let g:lightline.component_type = {
 " }}}
 
 " Plugins
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin(stdpath('data').'/plugged')
 " {{{
   " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " Plug 'Shougo/echodoc.vim'
@@ -64,6 +64,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'preservim/nerdtree'
   Plug 'rstacruz/vim-closer'
   Plug 'rust-lang/rust.vim'
+  Plug 'shumphrey/fugitive-gitlab.vim'
   Plug 'tikhomirov/vim-glsl'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
@@ -75,6 +76,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'wellle/targets.vim'
   Plug 'w0rp/ale'
   Plug 'zchee/vim-flatbuffers'
+
+  Plug 'elixir-lsp/elixir-ls', { 'do': { -> g:ElixirLS.compile() } }
 " }}}
 call plug#end()
 
@@ -165,6 +168,7 @@ inoremap <c-u> <esc>viwUgi
 let g:ale_fix_on_save = 1
 " todo: set linters / fixers here rather than in ftplugins
 let g:ale_linters = {
+      \ 'elixir': [],
       \ 'javascript': ['eslint'],
       \ 'python': ['pyls', 'flake8', 'pylint'],
       \ 'shell': ['shellcheck'],
@@ -179,10 +183,10 @@ let g:ale_fixers = {
       \ 'typescript': ['prettier']
       \}
 
-let g:ale_elixir_elixir_ls_release = expand("~/opt/elixir-ls")
-let g:ale_elixir_elixir_ls_config = {
-      \ 'elixirLS': { 'dialyzerEnabled': v:false }
-      \ }
+" let g:ale_elixir_elixir_ls_release = expand("~/opt/elixir-ls")
+" let g:ale_elixir_elixir_ls_config = {
+"       \ 'elixirLS': { 'dialyzerEnabled': v:false }
+"       \ }
 
 let g:ale_open_list = 0
 let g:ale_set_loclist = 0
@@ -231,6 +235,48 @@ augroup END
 " Open all file arguments in tabs
 tab all
 
+" Configure fugitive
+let g:fugitive_gitlab_domains = ['https://git.2nd.io']
+
+" ElixirLS
+let g:ElixirLS = {}
+let ElixirLS.path = stdpath('data').'/plugged/elixir-ls'
+let ElixirLS.lsp = ElixirLS.path.'/release/language_server.sh'
+let ElixirLS.cmd = join([
+        \ 'cp .release-tool-versions .tool-versions &&',
+        \ 'asdf install &&',
+        \ 'mix do',
+        \ 'local.hex --force --if-missing,',
+        \ 'local.rebar --force,',
+        \ 'deps.get,',
+        \ 'compile,',
+        \ 'elixir_ls.release &&',
+        \ 'rm .tool-versions'
+        \ ], ' ')
+
+function ElixirLS.on_stdout(_job_id, data, _event)
+  let self.output[-1] .= a:data[0]
+  call extend(self.output, a:data[1:])
+endfunction
+
+let ElixirLS.on_stderr = function(ElixirLS.on_stdout)
+
+function ElixirLS.on_exit(_job_id, exitcode, _event)
+  if a:exitcode[0] == 0
+    echom '>>> ElixirLS compiled'
+  else
+    echoerr join(self.output, ' ')
+    echoerr '>>> ElixirLS compilation failed'
+  endif
+endfunction
+
+function ElixirLS.compile()
+  let me = copy(g:ElixirLS)
+  let me.output = ['']
+  echom '>>> compiling ElixirLS'
+  let me.id = jobstart('cd ' . me.path . ' && git pull && ' . me.cmd, me)
+endfunction
+
 " configure LSPs
 lua <<EOF
 local nvim_lsp = require('lspconfig')
@@ -266,7 +312,8 @@ end
 local servers = { 'rust_analyzer', 'tsserver', 'elixirls' }
 local server_opts = {
   elixirls = {
-    cmd = { vim.fn.expand('~/opt/elixir-ls/language_server.sh') }
+    cmd = { vim.g.ElixirLS.lsp },
+    settings = { ['elixirLS.dialyzerEnabled'] = false },
   }
 }
 for _, lsp in ipairs(servers) do
@@ -283,3 +330,6 @@ for _, lsp in ipairs(servers) do
 end
 
 EOF
+
+" Some commands
+command ChaseLink execute 'file' resolve(expand('%'))
