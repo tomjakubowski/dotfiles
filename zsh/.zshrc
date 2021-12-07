@@ -183,7 +183,7 @@ function() {
 
   local succ='%(?.%#.%F{red}%B%#%f%b)'
   local host
-  local bg_jobs='%(1j.j:%j.)'
+  local bg_jobs='%(1j.[%j].)'
   if [[ -n "$SSH_CLIENT" ]]; then
     host="%F{green}%m%f:"
   else
