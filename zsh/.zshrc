@@ -169,12 +169,13 @@ function() {
 
   local succ='%(?.%#.%F{red}%B%#%f%b)'
   local host
+  local bg_jobs='%(1j.j:%j.)'
   if [[ -n "$SSH_CLIENT" ]]; then
     host="%F{green}%m%f:"
   else
     host=""
   fi
-  PROMPT="${host}%F{blue}%B%2~%f%b ${succ} "
+  PROMPT="${host}%F{blue}%B%2~%f%b ${bg_jobs}${succ} "
 
   GIT_PS1_SHOWDIRTYSTATE=1
   # $'foo' is called "POSIX quotes"
