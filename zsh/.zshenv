@@ -15,6 +15,7 @@ fi
 typeset -U path
 path=("$HOME/.local/bin"
       "/usr/local/bin"
+      "/opt/homebrew/bin"
       $path[@])
 
 # vim is slightly more likely to work than emacsclient
