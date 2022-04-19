@@ -9,7 +9,7 @@ set formatoptions+=n
 let g:lightline = {}
 " lightline config
 " {{{
-let g:lightline.colorscheme = 'nord'
+let g:lightline.colorscheme = '16color'
 let g:lightline.active = {}
 let g:lightline.active.left = [
       \ ['mode', 'paste'],
@@ -94,7 +94,7 @@ set showtabline=2 " always show tab line
 let [g:nord_italic, g:nord_underline] = [1, 1]
 let g:nord_bold_vertical_split_line = 1
 " let g:nord_uniform_diff_background = 1
-colorscheme nord
+colorscheme ryuuko
 
 if $TERM == "xterm-kitty"
   set termguicolors
