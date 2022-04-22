@@ -2,6 +2,5 @@
 
 set -ex
 
-mkdir -p ~/.config
-mkdir -p ~/.local/bin
-mkdir -p ~/.local/share
+mkdir -p ~/.config/{zshenv.d, zshrc.d}
+mkdir -p ~/.local/{bin, share}

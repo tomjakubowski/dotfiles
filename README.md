@@ -1,5 +1,10 @@
 # dotfiles
 
+## directories of note
+
+* .config/zshenv.d
+* .config/zshrc.d
+
 ## first time setup
 
 It's a good idea to make these directories first, so that stow doesn't try to make
@@ -7,6 +12,12 @@ them as symlinks (which will cause headaches).
 
 ```bash
 mkdir -p ~/.local/{bin,share} ~/.config
+```
+
+or just
+
+```
+./init.sh
 ```
 
 ## usage
