@@ -64,6 +64,7 @@ call plug#begin(stdpath('data').'/plugged')
   Plug 'preservim/nerdtree'
   Plug 'rstacruz/vim-closer'
   Plug 'rust-lang/rust.vim'
+  Plug 'shaunsingh/nord.nvim'
   Plug 'shumphrey/fugitive-gitlab.vim'
   Plug 'tikhomirov/vim-glsl'
   Plug 'tpope/vim-commentary'
@@ -94,7 +95,7 @@ set showtabline=2 " always show tab line
 let [g:nord_italic, g:nord_underline] = [1, 1]
 let g:nord_bold_vertical_split_line = 1
 " let g:nord_uniform_diff_background = 1
-colorscheme ryuuko
+colorscheme nord
 
 if $TERM == "xterm-kitty"
   set termguicolors
