@@ -213,3 +213,5 @@ fi
 if [[ -n "${SHELL_FINALLY}" ]]; then
   ${SHELL_FINALLY}
 fi
+
+export PATH="$HOME/.poetry/bin:$PATH"
