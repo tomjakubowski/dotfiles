@@ -1,4 +1,3 @@
-set noswapfile
 set smartcase
 
 " tabs spaces wrapping
@@ -21,7 +20,7 @@ let g:lightline.active.right = [
       \ ['fileformat', 'fileencoding', 'filetype'],
       \ ]
 let g:lightline.component_function = {
-      \ 'gitbranch': 'fugitive#head'
+      \ 'gitbranch': 'FugitiveHead'
       \ }
 let g:lightline.component_expand = {
       \ 'linter_checking': 'lightline#ale#checking',
@@ -244,15 +243,12 @@ let g:ElixirLS = {}
 let ElixirLS.path = stdpath('data').'/plugged/elixir-ls'
 let ElixirLS.lsp = ElixirLS.path.'/release/language_server.sh'
 let ElixirLS.cmd = join([
-        \ 'cp .release-tool-versions .tool-versions &&',
-        \ 'asdf install &&',
         \ 'mix do',
         \ 'local.hex --force --if-missing,',
         \ 'local.rebar --force,',
         \ 'deps.get,',
         \ 'compile,',
-        \ 'elixir_ls.release &&',
-        \ 'rm .tool-versions'
+        \ 'elixir_ls.release',
         \ ], ' ')
 
 function ElixirLS.on_stdout(_job_id, data, _event)
