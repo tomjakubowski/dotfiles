@@ -45,6 +45,7 @@ call plug#begin(stdpath('data').'/plugged')
   Plug 'arcticicestudio/nord-vim'
   Plug 'cespare/vim-toml'
   Plug 'c-brenn/fuzzy-projectionist.vim'
+  Plug 'cstrahan/vim-capnp'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'elixir-editors/vim-elixir'
   Plug 'dag/vim-fish'
@@ -60,11 +61,13 @@ call plug#begin(stdpath('data').'/plugged')
   Plug 'leafgarland/typescript-vim'
   Plug 'neovim/nvim-lspconfig'
   Plug 'maximbaz/lightline-ale'
+  Plug 'lukas-reineke/lsp-format.nvim'
   Plug 'preservim/nerdtree'
   Plug 'rstacruz/vim-closer'
   Plug 'rust-lang/rust.vim'
   Plug 'shaunsingh/nord.nvim'
   Plug 'shumphrey/fugitive-gitlab.vim'
+  Plug 'sirver/ultisnips'
   Plug 'tikhomirov/vim-glsl'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
@@ -74,7 +77,6 @@ call plug#begin(stdpath('data').'/plugged')
   Plug 'tpope/vim-unimpaired'
   Plug 'Vimjas/vim-python-pep8-indent'
   Plug 'wellle/targets.vim'
-  Plug 'w0rp/ale'
   Plug 'zchee/vim-flatbuffers'
 
   Plug 'elixir-lsp/elixir-ls', { 'do': { -> g:ElixirLS.compile() } }
@@ -277,6 +279,7 @@ endfunction
 " configure LSPs
 lua <<EOF
 local nvim_lsp = require('lspconfig')
+require("lsp-format").setup {}
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -304,6 +307,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+  require("lsp-format").on_attach(client)
 end
 
 local servers = { 'rust_analyzer', 'tsserver', 'elixirls' }
