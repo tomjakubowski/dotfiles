@@ -58,4 +58,7 @@ if (( ${+commands[sccache]} )); then
   export RUSTC_WRAPPER=${commands[sccache]}
 fi
 
+# erlang / elixir
+export ERL_AFLAGS="-kernel shell_history enabled"
+
 return 0

@@ -49,6 +49,9 @@ alias reload="exec zsh"
 alias usystemctl="systemctl --user"
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 
+# safety first
+alias mv="mv -i"
+
 # keybindings
 bindkey -s '5~' 'reload\n'
 
