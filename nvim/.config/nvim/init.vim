@@ -145,6 +145,7 @@ nnoremap <leader>ed :tabedit<CR>:tcd ~/dotfiles<CR>:GitFiles --cached --other --
 " set options
 nnoremap <leader>sn :set number!<CR>
 
+" ale bindings {{{
 " nnoremap <leader>ah :ALEHover<CR>
 " nnoremap <leader>gg :ALEGoToDefinition<CR>
 " nnoremap <leader>gT :tab ALEGoToDefinition<CR>
@@ -153,18 +154,21 @@ nnoremap <leader>sn :set number!<CR>
 " nnoremap <silent> [E :ALEPrevious -error<cr>
 " nnoremap <silent> ]W :ALENext -warning<cr>
 " nnoremap <silent> [W :ALEPrevious -warning<cr>
+" }}}
 
 nnoremap <F5> :make<CR>
 nnoremap <C-x><C-j> :NERDTree %:h<CR>
 nnoremap <C-f> :Buffers<CR>
-nnoremap <C-p> :GitFiles --cached --other --exclude-standard<CR>
-" emacs-compatible bindings <3
-nnoremap <C-x>b :Buffers<CR>
-nnoremap <C-x><C-f> :Files<CR>
+" List project files
+nnoremap <C-p> :Files<CR>
 
 " INSERT mode
 " uppercase current word.  thanks, steve losh!
 inoremap <c-u> <esc>viwUgi
+
+" VISUAL mode
+" source line under file
+vnoremap <leader>vs y:@"<CR>
 
 " ale
 let g:ale_fix_on_save = 1
