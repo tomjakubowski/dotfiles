@@ -2,7 +2,7 @@
 	email = tom@secondspectrum.com
 	name = Tom Jakubowski
 [push]
-	default = current
+	default = simple
 [core]
 	untrackedCache = true
 

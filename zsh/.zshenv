@@ -50,7 +50,16 @@ if [[ -d "$XDG_CONFIG_HOME/zshenv.d" ]]; then
   unsetopt nullglob
 fi
 
+function ,hascmd() {
+  if (( ${+commands[$1]} )); then
+    return 0
+  else
+    return 1
+  fi
+}
+
 # fuck it :(
+,hascmd pyenv && path=("$(pyenv root)/shims" ${path[@]})
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 [[ -f "$HOME/.poetry/env" ]] && source "$HOME/.poetry/env"
 
