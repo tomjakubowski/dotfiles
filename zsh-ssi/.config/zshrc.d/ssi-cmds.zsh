@@ -52,14 +52,21 @@ alias valkyriectl="AWS_PROFILE=ekx kubectl --context valkyrie"
 alias knightctl="AWS_PROFILE=ekx kubectl --context knight"
 
 jack-in() {
-  local app="$1"
-  local env="$2"
+  local cluster="$1"
+  local app="$2"
+  local env="$3"
 
-  local pod=$(set -x; valkyriectl get pods -n "$env" -l "ssi.app == $app" -o name | head -n 1)
+  if [[ -z "$cluster" ]]; then
+    cluster="valkyrie"
+    app="redstone"
+    env="prod"
+  fi
+
+  local pod=$(kubectl get pods --context "$cluster" -n "$env" -l "ssi.app == $app" -o name | head -n 1)
   if [[ -z "$pod" ]]; then
     echo "pod not found"
     return 1
   fi
 
-  valkyriectl exec -n "$env" -ti "$pod" -- /bin/bash
+  kubectl exec --context "$cluster" -n "$env" -ti "$pod" -- /bin/bash
 }
