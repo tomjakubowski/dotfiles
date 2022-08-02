@@ -104,7 +104,7 @@ if (( ${+commands[gls]} )); then
   is_gnu_ls="1"
 else
   lscmd="ls"
-  if ls --version | grep 'GNU coreutils'>/dev/null; then
+  if ls --version 2>/dev/null | grep 'GNU coreutils'>/dev/null; then
     is_gnu_ls="1"
   fi
 fi
