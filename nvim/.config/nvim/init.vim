@@ -5,10 +5,18 @@ set expandtab
 set tabstop=2 softtabstop=2 shiftwidth=2
 set formatoptions+=n
 
+set termguicolors
+set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+
+let s:base2 = 'Evening'
+
+
 let g:lightline = {}
 " lightline config
 " {{{
-let g:lightline.colorscheme = '16color'
+" -- INSERT -- is redundant
+set noshowmode
+let g:lightline.colorscheme = 'Base2Tone_' . s:base2
 let g:lightline.active = {}
 let g:lightline.active.left = [
       \ ['mode', 'paste'],
@@ -43,6 +51,7 @@ call plug#begin(stdpath('data').'/plugged')
   " Plug 'Shougo/echodoc.vim'
   " TODO: ultisnip
   Plug 'arcticicestudio/nord-vim'
+  Plug 'atelierbram/Base2Tone-vim'
   Plug 'cespare/vim-toml'
   Plug 'c-brenn/fuzzy-projectionist.vim'
   Plug 'cstrahan/vim-capnp'
@@ -96,7 +105,8 @@ set showtabline=2 " always show tab line
 let [g:nord_italic, g:nord_underline] = [1, 1]
 let g:nord_bold_vertical_split_line = 1
 " let g:nord_uniform_diff_background = 1
-colorscheme nord
+set background=dark
+execute "colorscheme " . "Base2Tone_" . s:base2 . "Dark"
 
 if $TERM == "xterm-kitty"
   set termguicolors
