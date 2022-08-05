@@ -37,6 +37,8 @@
   sta = "status"
   stat = "status"
 
+  mru = "!git log -g -n 1000 --format=\"%gd %gs\" --date=relative HEAD@{now} | grep checkout | grep \" to\" | sed 's/HEAD@{\\(.*\\)}.* to\\(.*\\)/(\\1)\\t\\2/' | awk -v OFS=' ' '!x[$NF]++' | head -n 15 | column -ts $'\\t'"
+
 [url "git@git.2nd.io:"]
   insteadOf = git:
 
