@@ -128,8 +128,12 @@ jql() {
   jq -C "$@" | less -r
 }
 
+dircolors_theme="$HOME/.local/share/dircolors/solarized-ansi-universal"
+
 if (( ${+commands[dircolors]} )); then
-  eval $(dircolors ~/.local/share/dircolors/nord)
+  eval $(dircolors "$dircolors_theme")
+elif (( ${+commands[gdircolors]} )); then
+  eval $(gdircolors "$dircolors_theme")
 fi
 
 if [[ -d "$XDG_CONFIG_HOME/zshrc.d" ]]; then

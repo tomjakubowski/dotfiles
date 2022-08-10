@@ -8,15 +8,12 @@ set formatoptions+=n
 set termguicolors
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 
-let s:base2 = 'Evening'
-
-
 let g:lightline = {}
 " lightline config
 " {{{
 " -- INSERT -- is redundant
 set noshowmode
-let g:lightline.colorscheme = 'Base2Tone_' . s:base2
+let g:lightline.colorscheme = 'solarized'
 let g:lightline.active = {}
 let g:lightline.active.left = [
       \ ['mode', 'paste'],
@@ -51,7 +48,6 @@ call plug#begin(stdpath('data').'/plugged')
   " Plug 'Shougo/echodoc.vim'
   " TODO: ultisnip
   Plug 'arcticicestudio/nord-vim'
-  Plug 'atelierbram/Base2Tone-vim'
   Plug 'cespare/vim-toml'
   Plug 'c-brenn/fuzzy-projectionist.vim'
   Plug 'cstrahan/vim-capnp'
@@ -66,6 +62,7 @@ call plug#begin(stdpath('data').'/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
+  Plug 'lifepillar/vim-solarized8'
   Plug 'liuchengxu/vista.vim'
   Plug 'leafgarland/typescript-vim'
   Plug 'neovim/nvim-lspconfig'
@@ -106,7 +103,7 @@ let [g:nord_italic, g:nord_underline] = [1, 1]
 let g:nord_bold_vertical_split_line = 1
 " let g:nord_uniform_diff_background = 1
 set background=dark
-execute "colorscheme " . "Base2Tone_" . s:base2 . "Dark"
+colorscheme solarized8
 
 if $TERM == "xterm-kitty"
   set termguicolors
