@@ -128,7 +128,7 @@ jql() {
   jq -C "$@" | less -r
 }
 
-dircolors_theme="$HOME/.local/share/dircolors/solarized-ansi-universal"
+dircolors_theme="$HOME/.local/share/dircolors/nord"
 
 if (( ${+commands[dircolors]} )); then
   eval $(dircolors "$dircolors_theme")

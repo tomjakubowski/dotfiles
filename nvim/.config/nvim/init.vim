@@ -13,7 +13,7 @@ let g:lightline = {}
 " {{{
 " -- INSERT -- is redundant
 set noshowmode
-let g:lightline.colorscheme = 'solarized'
+let g:lightline.colorscheme = 'nord'
 let g:lightline.active = {}
 let g:lightline.active.left = [
       \ ['mode', 'paste'],
@@ -103,7 +103,7 @@ let [g:nord_italic, g:nord_underline] = [1, 1]
 let g:nord_bold_vertical_split_line = 1
 " let g:nord_uniform_diff_background = 1
 set background=dark
-colorscheme solarized8
+colorscheme nord
 
 if $TERM == "xterm-kitty"
   set termguicolors
@@ -316,7 +316,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
   require("lsp-format").on_attach(client)
