@@ -85,7 +85,8 @@ call plug#begin(stdpath('data').'/plugged')
   Plug 'wellle/targets.vim'
   Plug 'zchee/vim-flatbuffers'
 
-  Plug 'elixir-lsp/elixir-ls', { 'do': { -> g:ElixirLS.compile() } }
+  " Plug 'elixir-lsp/elixir-ls', { 'do': { -> g:ElixirLS.compile() } }
+  Plug 'tomjakubowski/elixir-ls', { 'branch': 'formatter_race', 'do': { -> g:ElixirLS.compile() } }
 " }}}
 call plug#end()
 
