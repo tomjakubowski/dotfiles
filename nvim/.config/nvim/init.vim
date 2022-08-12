@@ -380,7 +380,13 @@ local null_ls = require("null-ls")
 local sources = {
   null_ls.builtins.formatting.prettier
 }
-null_ls.setup({sources=sources, debug=true})
+null_ls.setup({
+  on_attach=function(client, bufnr)
+    lsp_formatting(client, bufnr)
+  end,
+  sources=sources,
+  -- debug=true
+})
 EOF
 
 " Some commands
