@@ -59,15 +59,18 @@ call plug#begin(stdpath('data').'/plugged')
   Plug 'hashivim/vim-terraform'
   Plug 'hrsh7th/nvim-compe'
   Plug 'itchyny/lightline.vim'
+  Plug 'jose-elias-alvarez/null-ls.nvim'
   Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'lifepillar/vim-solarized8'
   Plug 'liuchengxu/vista.vim'
   Plug 'leafgarland/typescript-vim'
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'maximbaz/lightline-ale'
   Plug 'lukas-reineke/lsp-format.nvim'
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'maximbaz/lightline-ale'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'preservim/nerdtree'
   Plug 'rstacruz/vim-closer'
   Plug 'rust-lang/rust.vim'
@@ -291,9 +294,14 @@ endfunction
 " configure LSPs
 lua <<EOF
 local nvim_lsp = require('lspconfig')
-require("lsp-format").setup {}
+require("lsp-format").setup {
+  typescript = {
+    exclude = { "tsserver" },
+    order = {"null-ls"}
+  }
+}
 
-local on_attach = function(client, bufnr)
+local lsp_on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -301,6 +309,7 @@ local on_attach = function(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
+  -- FIXME: Use vim.keymap
   local opts = { noremap=true, silent=true }
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -318,31 +327,60 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+end
+local lsp_formatting = function(client, bufnr)
+  local util = require 'vim.lsp.util'
+  -- Alternative to binding <cmd>lua vim.lsp.buf.formatting()<CR>
+  vim.keymap.set('n', '<leader>f', function()
+    local params = util.make_formatting_params({})
+    client.request('textDocument/formatting', params, nil, bufnr)
+  end, {buffer=bufnr})
 
-  require("lsp-format").on_attach(client)
+  -- Format on save
+  require "lsp-format".on_attach(client)
+end
+-- TODO: REmove me
+local on_attach = function(client, bufnr)
+  lsp_on_attach(client, bufnr)
+  lsp_formatting(client, bufnr)
 end
 
-local servers = { 'rust_analyzer', 'tsserver', 'elixirls' }
-local server_opts = {
-  elixirls = {
-    cmd = { vim.g.ElixirLS.lsp },
-    settings = { ['elixirLS.dialyzerEnabled'] = false },
+local lspconfig = require 'lspconfig'
+lspconfig['tsserver'].setup {
+  on_attach = function(client, bufnr)
+    lsp_on_attach(client, bufnr)
+  end,
+  flags = {
+    debounce_text_changes = 150,
   }
 }
-for _, lsp in ipairs(servers) do
-  local opts = {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
+lspconfig['elixirls'].setup {
+  cmd = { vim.g.ElixirLS.lsp },
+  settings = { ['elixirLS.dialyzerEnabled'] = false },
+  on_attach = function(client, bufnr)
+    lsp_on_attach(client, bufnr)
+    lsp_formatting(client, bufnr)
+  end,
+  flags = {
+    debounce_text_changes = 150,
   }
-  for k, v in pairs(server_opts[lsp] or {}) do
-    opts[k] = v
-  end
-  nvim_lsp[lsp].setup(opts)
-end
+}
+lspconfig['rust_analyzer'].setup {
+  on_attach = function(client, bufnr)
+    lsp_on_attach(client, bufnr)
+  end,
+  flags = {
+    debounce_text_changes = 150,
+  }
+}
 
+
+-- null-ls handles running formatters/linters as an lsp
+local null_ls = require("null-ls")
+local sources = {
+  null_ls.builtins.formatting.prettier
+}
+null_ls.setup({sources=sources, debug=true})
 EOF
 
 " Some commands
