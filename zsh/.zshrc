@@ -84,7 +84,7 @@ esac
 
 # functions
 function beep() { eval $* ; printf "\a"; }
-function nmpath() {
+function append_node_modules_path() {
   local nmbin="$PWD/node_modules/.bin"
   if [[ -d $nmbin ]];
   then
@@ -92,6 +92,11 @@ function nmpath() {
   else
     echo "Couldn't find $nmbin, not adding to path!"
   fi
+}
+function prepend_path() {
+  [[ -z "$1" ]]  && { echo "provide path"; return 1; }
+  print -v abspath -r -- "$1:P"
+  path=("$abspath" "$path[@]")
 }
 
 function rc_error() {
