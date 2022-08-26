@@ -390,7 +390,8 @@ lspconfig['pylsp'].setup {
 -- null-ls handles running formatters/linters as an lsp
 local null_ls = require("null-ls")
 local sources = {
-  null_ls.builtins.formatting.prettier
+  null_ls.builtins.formatting.prettier,
+  null_ls.builtins.diagnostics.credo
 }
 null_ls.setup({
   on_attach=function(client, bufnr)
