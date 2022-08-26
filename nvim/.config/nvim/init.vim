@@ -74,6 +74,7 @@ call plug#begin(stdpath('data').'/plugged')
   Plug 'nvim-lua/plenary.nvim'
   Plug 'maximbaz/lightline-ale'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'preservim/nerdtree'
   Plug 'rstacruz/vim-closer'
   Plug 'rust-lang/rust.vim'
@@ -394,6 +395,8 @@ null_ls.setup({
   sources=sources,
   -- debug=true
 })
+
+require'treesitter'
 EOF
 
 " Some commands
