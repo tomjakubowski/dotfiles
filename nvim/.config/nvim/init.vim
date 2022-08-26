@@ -79,7 +79,7 @@ call plug#begin(stdpath('data').'/plugged')
   Plug 'rust-lang/rust.vim'
   Plug 'shaunsingh/nord.nvim'
   Plug 'shumphrey/fugitive-gitlab.vim'
-  Plug 'sirver/ultisnips'
+  " Plug 'sirver/ultisnips'
   Plug 'tikhomirov/vim-glsl'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
@@ -98,8 +98,8 @@ call plug#end()
 
 " presentation
 set title
-" set number
-" set numberwidth=3
+set number
+set numberwidth=3
 " set relativenumber
 set nowrap
 set colorcolumn=+0
@@ -371,6 +371,15 @@ lspconfig['elixirls'].setup {
 lspconfig['rust_analyzer'].setup {
   on_attach = function(client, bufnr)
     lsp_on_attach(client, bufnr)
+  end,
+  flags = {
+    debounce_text_changes = 150,
+  }
+}
+lspconfig['pylsp'].setup {
+  on_attach = function(client, bufnr)
+    lsp_on_attach(client, bufnr)
+    lsp_formatting(client, bufnr)
   end,
   flags = {
     debounce_text_changes = 150,
