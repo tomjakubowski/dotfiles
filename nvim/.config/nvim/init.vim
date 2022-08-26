@@ -342,11 +342,6 @@ local lsp_formatting = function(client, bufnr)
   -- Format on save
   require "lsp-format".on_attach(client)
 end
--- TODO: REmove me
-local on_attach = function(client, bufnr)
-  lsp_on_attach(client, bufnr)
-  lsp_formatting(client, bufnr)
-end
 
 local lspconfig = require 'lspconfig'
 lspconfig['tsserver'].setup {
@@ -403,3 +398,5 @@ EOF
 
 " Some commands
 command ChaseLink execute 'file' resolve(expand('%'))
+
+command! Scratch lua require'tools'.makeScratch()
