@@ -154,8 +154,12 @@ nnoremap <leader>R :Rg <C-r>=expand('<cWORD>')<CR>
 nnoremap <leader>o :copen<CR>
 
 " edit files
-nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
 nnoremap <leader>ed :tabedit<CR>:tcd ~/dotfiles<CR>:GitFiles --cached --other --exclude-standard<CR>
+nnoremap <leader>el :tabedit<CR>:tcd ~/.config/nvim/lua<CR>:Files<CR>
+nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
+
+" lua
+nnoremap <leader>lf :luafile %<CR>
 
 " set options
 nnoremap <leader>sn :set number!<CR>
