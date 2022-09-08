@@ -92,8 +92,8 @@ call plug#begin(stdpath('data').'/plugged')
   Plug 'wellle/targets.vim'
   Plug 'zchee/vim-flatbuffers'
 
-  " Plug 'elixir-lsp/elixir-ls', { 'do': { -> g:ElixirLS.compile() } }
-  Plug 'tomjakubowski/elixir-ls', { 'branch': 'formatter_race', 'do': { -> g:ElixirLS.compile() } }
+  Plug 'elixir-lsp/elixir-ls', { 'do': { -> g:ElixirLS.compile() } }
+  " Plug 'tomjakubowski/elixir-ls', { 'branch': 'formatter_race', 'do': { -> g:ElixirLS.compile() } }
 " }}}
 call plug#end()
 
@@ -309,6 +309,7 @@ require("lsp-format").setup {
   }
 }
 
+-- Configure keybindings for LSPs.  Should normally not be used with null-ls
 local lsp_on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -336,6 +337,12 @@ local lsp_on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 end
+
+-- Yay, debug logging
+--vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("info")
+
+-- Configure formatting-on-save via lsp
 local lsp_formatting = function(client, bufnr)
   local util = require 'vim.lsp.util'
   -- Alternative to binding <cmd>lua vim.lsp.buf.formatting()<CR>

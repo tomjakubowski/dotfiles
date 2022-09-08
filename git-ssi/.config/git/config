@@ -5,6 +5,9 @@
 	default = simple
 [core]
 	untrackedCache = true
+[init]
+  defaultBranch = main
+
 
 [transfer]
 	fsckObjects = true
@@ -59,3 +62,4 @@
   path = "local.gitconfig"
 ; [url "https://gitlab-ci-token:@git.2nd.io/"]
 ; 	insteadOf = ssh://git@git.2nd.io/
+

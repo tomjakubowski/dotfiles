@@ -3,20 +3,20 @@ import_if_available(Ecto.Changeset)
 
 defmodule Tjak do
   IEx.configure(
-    inspect: [limit: 20],
-    default_prompt:
-      [
-        # ANSI CHA, move cursor to column 1
-        "\e[G",
-        :light_magenta,
-        # plain string
-        "iex",
-        ">",
-        :white,
-        :reset
-      ]
-      |> IO.ANSI.format()
-      |> IO.chardata_to_string()
+    inspect: [limit: 20]
+    # default_prompt:
+    #   [
+    #     # ANSI CHA, move cursor to column 1
+    #     "\e[G",
+    #     :light_magenta,
+    #     # plain string
+    #     "iex",
+    #     ">",
+    #     :white,
+    #     :reset
+    #   ]
+    #   |> IO.ANSI.format()
+    #   |> IO.chardata_to_string()
   )
 
   def cmdc(text) when is_binary(text) do
