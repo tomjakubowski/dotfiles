@@ -55,7 +55,7 @@ alias mv="mv -i"
 # Magically quote URLs when typing/pasting
 
 autoload -U url-quote-magic bracketed-paste-magic
-zstyle :urlglobber url-local-schema http https ftp s3
+zstyle :urlglobber url-other-schema http https ftp s3
 zle -N self-insert url-quote-magic
 zle -N bracketed-paste bracketed-paste-magic
 
