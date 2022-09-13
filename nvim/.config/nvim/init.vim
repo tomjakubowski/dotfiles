@@ -366,7 +366,7 @@ lspconfig['tsserver'].setup {
 }
 lspconfig['elixirls'].setup {
   cmd = { vim.g.ElixirLS.lsp },
-  settings = { ['elixirLS.dialyzerEnabled'] = false },
+  settings = { elixirLS = { dialyzerEnabled = false }},
   on_attach = function(client, bufnr)
     lsp_on_attach(client, bufnr)
     lsp_formatting(client, bufnr)
