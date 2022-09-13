@@ -52,6 +52,13 @@ alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 # safety first
 alias mv="mv -i"
 
+# Magically quote URLs when typing/pasting
+
+autoload -U url-quote-magic bracketed-paste-magic
+zstyle :urlglobber url-local-schema http https ftp s3
+zle -N self-insert url-quote-magic
+zle -N bracketed-paste bracketed-paste-magic
+
 # keybindings
 bindkey -s '5~' 'reload\n'
 
