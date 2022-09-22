@@ -1,5 +1,6 @@
 path=(
-  ~/OTP/23.3.4.16/bin
+  ~/.mix/escripts
+  ~/OTP/24.3.4.3/bin
   # /opt/homebrew/opt/erlang@23/bin
   # ~/elixir/v1.12.3/bin
   # ~/elixir/v1.12.3/bin

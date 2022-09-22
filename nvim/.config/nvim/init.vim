@@ -398,7 +398,11 @@ lspconfig['pylsp'].setup {
 local null_ls = require("null-ls")
 local sources = {
   null_ls.builtins.formatting.prettier,
-  null_ls.builtins.diagnostics.credo
+  -- TODO: I should be able to enable/disable null_ls sources per project?
+  null_ls.builtins.diagnostics.credo.with({
+    command="credo",
+    args={"suggest", "--format", "json", "--read-from-stdin", "$FILENAME"}
+  })
 }
 null_ls.setup({
   on_attach=function(client, bufnr)
