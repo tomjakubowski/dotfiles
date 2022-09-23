@@ -57,9 +57,8 @@ call plug#begin(stdpath('data').'/plugged')
   Plug 'fatih/vim-go'
   Plug 'Glench/Vim-Jinja2-Syntax'
   Plug 'hashivim/vim-terraform'
-  Plug 'hrsh7th/nvim-compe'
   " TODO: Add way to one-time import these types of plugins like caddyfile
-  " which just have indent/syntax/ftdetect/etc.
+  " which just have indent/syntax/ftdetect/etc. (use a subtree? lol)
   Plug 'isobit/vim-caddyfile'
   Plug 'itchyny/lightline.vim'
   Plug 'jose-elias-alvarez/null-ls.nvim'
