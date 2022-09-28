@@ -1,14 +1,25 @@
+-- Following this guide to port
+-- https://www.notonlycode.org/neovim-lua-config/
+
+function setopts(opts)
+  -- setopts({"foo", xwidth=1})
+  for k, v in pairs(opts) do
+    if type(k) == "string" then
+      vim.opt[k] = v
+    elseif type(k) == "number" and type(v) == "string" then
+      vim.opt[v] = true
+    end
+  end
+end
+
+setopts({"ignorecase", "smartcase", "expandtab"})
+setopts({tabstop=2, softtabstop=2, shiftwidth=2})
+vim.opt.formatoptions:append('n')
+
+setopts({"termguicolors"})
+vim.opt.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
+
 vim.cmd([[
-set smartcase
-
-" tabs spaces wrapping
-set expandtab
-set tabstop=2 softtabstop=2 shiftwidth=2
-set formatoptions+=n
-
-set termguicolors
-set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
-
 let g:lightline = {}
 " lightline config
 " {{{
@@ -416,7 +427,7 @@ require'treesitter'
 
 vim.cmd([[
 " Some commands
-command ChaseLink execute 'file' resolve(expand('%'))
+command! ChaseLink execute 'file' resolve(expand('%'))
 
 command! Scratch lua require'tools'.makeScratch()
 ]])
