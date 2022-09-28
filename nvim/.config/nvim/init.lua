@@ -1,3 +1,4 @@
+vim.cmd([[
 set smartcase
 
 " tabs spaces wrapping
@@ -297,9 +298,9 @@ function ElixirLS.compile()
   echom '>>> compiling ElixirLS'
   let me.id = jobstart('cd ' . me.path . ' && git pull && ' . me.cmd, me)
 endfunction
+]])
 
-" configure LSPs
-lua <<EOF
+-- configure LSPs
 local nvim_lsp = require('lspconfig')
 require("lsp-format").setup {
   typescript = {
@@ -412,9 +413,10 @@ null_ls.setup({
 })
 
 require'treesitter'
-EOF
 
+vim.cmd([[
 " Some commands
 command ChaseLink execute 'file' resolve(expand('%'))
 
 command! Scratch lua require'tools'.makeScratch()
+]])
