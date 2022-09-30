@@ -119,8 +119,8 @@ local function setup_lir()
 	require("lir").setup({
 		show_hidden_files = false,
 		mappings = {
-			["<C-e>"] = actions.edit,
 			["<CR>"] = actions.edit,
+			["<C-e>"] = actions.edit,
 			["<C-s>"] = actions.split,
 			["<C-v>"] = actions.vsplit,
 			["<C-t>"] = actions.tabedit,
