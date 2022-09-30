@@ -107,7 +107,7 @@ vim.g.lightline = {
 	},
 	colorscheme = "nord", -- installed in my dotfiles
 	component = {
-		helloworld = "Hello, world!",
+		helloworld = "keep on keeping on",
 	},
 	component_expand = {
 		lsp_warnings = "lightline#lsp#warnings",
