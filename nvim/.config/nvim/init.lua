@@ -91,42 +91,6 @@ Plug("elixir-lsp/elixir-ls", {
 })
 vim.call("plug#end")
 
--- lightline config
-setopts({ showmode = false })
-vim.g.lightline = {
-	active = {
-		left = { { "mode", "paste" }, { "filename" }, { "gitbranch" } },
-		right = {
-			{ "lineinfo" },
-			{ "fileformat", "fileencoding", "filetype" },
-			-- TODO: implement these
-			-- {"lsp_info", "lsp_hints", "lsp_errors", "lsp_warnings", "lsp_ok"},
-			{ "lsp_errors", "lsp_warnings", "lsp_ok" },
-			{ "helloworld" },
-		},
-	},
-	colorscheme = "nord", -- installed in my dotfiles
-	component = {
-		helloworld = "keep on keeping on",
-	},
-	component_expand = {
-		lsp_warnings = "lightline#lsp#warnings",
-		lsp_errors = "lightline#lsp#errors",
-		lsp_ok = "lightline#lsp#ok",
-	},
-	component_function = {
-		gitbranch = "FugitiveHead",
-	},
-	component_type = {
-		helloworld = "error",
-		gitbranch = "left",
-		lsp_warnings = "warning",
-		lsp_errors = "error",
-		lsp_ok = "right",
-	},
-}
---reload_lightline()
-
 local function setup_lir()
 	local actions = require("lir.actions")
 	require("lir").setup({
@@ -140,6 +104,14 @@ local function setup_lir()
 
 			["-"] = actions.up,
 			["q"] = actions.quit,
+
+			["K"] = actions.mkdir,
+			["N"] = actions.newfile,
+			["R"] = actions.rename,
+			["@"] = actions.cd,
+			["Y"] = actions.yank_path,
+			["."] = actions.toggle_show_hidden,
+			["D"] = actions.delete,
 		},
 		hide_cursor = true,
 		on_init = function()
@@ -460,17 +432,12 @@ null_ls.setup({
 	debug = false,
 })
 
+require("tjak.lightline")
 require("tjak.treesitter")
 
 require("nordic").colorscheme({
 	italic = true,
 })
-
-function reload_lightline()
-	vim.fn["lightline#init"]()
-	vim.fn["lightline#colorscheme"]()
-	vim.fn["lightline#update"]()
-end
 
 vim.cmd([[
 " Some commands
