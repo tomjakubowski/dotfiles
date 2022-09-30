@@ -1,6 +1,14 @@
 -- Following this guide to port
 -- https://www.notonlycode.org/neovim-lua-config/
 
+-- disable netrw, per lir reccos
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- this binding is annoying to lose when config is broken, so define it early
+vim.cmd[[let mapleader=","]]
+vim.cmd[[nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>]]
+
 function setopts(opts)
   -- setopts({"foo", xwidth=1})
   for k, v in pairs(opts) do
@@ -36,7 +44,7 @@ vim.call('plug#begin', stdpath('data') .. '/plugged')
   Plug 'nvim-lua/plenary.nvim'
   Plug('nvim-treesitter/nvim-treesitter', {['do']=':TSUpdate'})
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-  Plug 'preservim/nerdtree'
+
   Plug 'rstacruz/vim-closer'
   Plug 'rust-lang/rust.vim'
   Plug 'andersevenrud/nordic.nvim'
@@ -52,28 +60,64 @@ vim.call('plug#begin', stdpath('data') .. '/plugged')
   Plug 'wellle/targets.vim'
   Plug 'zchee/vim-flatbuffers'
 
+  -- file/project management
+  Plug 'tamago324/lir.nvim'
+
   -- lightline
   Plug 'itchyny/lightline.vim'
-  Plug 'josa42/nvim-lightline-lsp'
 
-  Plug('elixir-lsp/elixir-ls', { ['do']=function() vim.call('g:ElixirLS.compile()') end })
-  --Plug 'tomjakubowski/elixir-ls', { branch='formatter_race', do={ -> g:ElixirLS.compile() } }
+  Plug('elixir-lsp/elixir-ls', { ['do'] = function() 
+    vim.call('g:ElixirLS.compile()') 
+  end })
 vim.call('plug#end')
 
 -- lightline config
 setopts({showmode=false})
-vim.call('lightline#lsp#register')
 vim.g.lightline = {
   active = {
-    left = {{"mode", "paste"}},
+    left = {{"mode", "paste"}, {'gitbranch'}},
     right = {
-      {"linter_checking", "linter_errors", "linter_warnings", "linter_ok"},
       {"lineinfo"},
-      {"fileformat", "fileencoding", "filetype"}
+      -- {"fileformat", "fileencoding", "filetype"},
+      -- {"lsp_info", "lsp_hints", "lsp_errors", "lsp_warnings", "lsp_ok"},
+      {"lsp_status"},
+      {"helloworld"}
     }
   },
-  colorscheme='nord' -- this is installed in my dotfiles
+  colorscheme='nord', -- installed in my dotfiles
+  component={
+    helloworld='Hello, world!',
+  },
+  component_function={
+    gitbranch='FugitiveHead'
+  }
 }
+--reload_lightline()
+
+-- lir setup
+local function setup_lir()
+  local actions = require"lir.actions"
+  require"lir".setup {
+    show_hidden_files=false,
+    mappings = {
+      ['<C-e>']   = actions.edit,
+      ['<CR>']    = actions.edit,
+      ['<C-s>']   = actions.split,
+      ['<C-v>']   = actions.vsplit,
+      ['<C-t>']   = actions.tabedit,
+
+      ['-']       = actions.up,
+      ['q']       = actions.quit
+    },
+    hide_cursor = true,
+    on_init = function() 
+      vim.api.nvim_echo({ { vim.fn.expand("%:p"), "Normal" } }, false, {})
+    end
+  }
+  vim.keymap.set('n', '<C-x><C-j>', "<Cmd>e %:h<CR>")
+end
+setup_lir()
+
 --   active = {
 --     -- left = {{"mode", "paste"}, {"gitbranch", "readonly", "modified"}},
 --     -- right = {
@@ -178,7 +222,9 @@ nnoremap <leader>sn :set number!<CR>
 " }}}
 
 nnoremap <F5> :make<CR>
-nnoremap <C-x><C-j> :NERDTree %:h<CR>
+" nnoremap <C-x><C-j> :NERDTree %:h<CR>
+" nnoremap <C-x><C-j> :NvimTreeToggle %:h<CR>
+" nnoremap <C-x><C-j> :lua toggle_replace()<CR>
 nnoremap <C-f> :Buffers<CR>
 " List project files
 nnoremap <C-p> :Files<CR>
