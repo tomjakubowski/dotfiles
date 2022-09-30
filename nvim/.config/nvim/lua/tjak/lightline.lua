@@ -3,6 +3,15 @@ local M = {}
 -- lightline config
 require("tjak").setopts({ showmode = false })
 
+--   active = {
+--     -- left = {{"mode", "paste"}, {"gitbranch", "readonly", "modified"}},
+--     -- right = {
+--     --   {"linter_checking", "linter_errors", "linter_warnings", "linter_ok"},
+--     --   {"lineinfo"},
+--     --   {"fileformat", "fileencoding", "filetype"}
+--     -- },
+--   },
+
 vim.g.lightline = {
 	active = {
 		left = { { "mode", "paste" }, { "filename" }, { "gitbranch" } },

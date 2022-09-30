@@ -128,32 +128,6 @@ setup_lir()
 -- endwise is configured using the treesitter-endwise plugin, see treesitter.lua
 require("nvim-autopairs").setup({})
 
---   active = {
---     -- left = {{"mode", "paste"}, {"gitbranch", "readonly", "modified"}},
---     -- right = {
---     --   {"linter_checking", "linter_errors", "linter_warnings", "linter_ok"},
---     --   {"lineinfo"},
---     --   {"fileformat", "fileencoding", "filetype"}
---     -- },
---   },
---   -- component_function = {
---   --   gitbranch="FugitiveHead"
---   -- },
---   -- TODO: switch to LSP
---   component_expand = {
---     -- \ 'linter_checking': 'lightline#ale#checking',
---     -- \ 'linter_warnings': 'lightline#ale#warnings',
---     -- \ 'linter_errors': 'lightline#ale#errors',
---     -- \ 'linter_ok': 'lightline#ale#ok',
---   },
---   -- component_type = {
---   --   linter_checking='left',
---   --   linter_warnings='warning',
---   --   linter_errors='error',
---   --   linter_ok='left'
---   -- }
--- }
-
 vim.cmd([[
 " Plugins
 " call plug#begin(stdpath('data').'/plugged')
@@ -303,7 +277,6 @@ endfunction
 ]])
 
 -- configure LSPs
-local nvim_lsp = require("lspconfig")
 require("lsp-format").setup({
 	typescript = {
 		exclude = { "tsserver" },
@@ -312,7 +285,7 @@ require("lsp-format").setup({
 })
 
 -- Configure keybindings for LSPs.  Should normally not be used with null-ls
-local lsp_on_attach = function(client, bufnr)
+local lsp_on_attach = function(_client, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
 	end
