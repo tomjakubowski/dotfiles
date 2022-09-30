@@ -31,40 +31,58 @@ vim.opt.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCurs
 local Plug = vim.fn['plug#']
 local stdpath = vim.fn['stdpath']
 vim.call('plug#begin', stdpath('data') .. '/plugged')
+  -- base libraries
+  Plug 'nvim-lua/plenary.nvim'
+
+  -- eye candy
+  Plug 'junegunn/goyo.vim'
+  Plug 'andersevenrud/nordic.nvim'
+  
+  -- file/project management
+  Plug 'tamago324/lir.nvim'
   Plug 'c-brenn/fuzzy-projectionist.vim'
-  Plug 'elixir-editors/vim-elixir'
-  Plug 'jose-elias-alvarez/null-ls.nvim'
+  Plug 'tpope/vim-projectionist'
+
+  -- fzf
   Plug('junegunn/fzf', { dir='~/.local/fzf', ['do']='./install --all' })
   Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/goyo.vim'
-  Plug 'liuchengxu/vista.vim'
-  Plug 'leafgarland/typescript-vim'
+  
+  -- git 
+  Plug 'tpope/vim-fugitive'
+  Plug 'shumphrey/fugitive-gitlab.vim'
+  
+  -- lightline
+  Plug 'itchyny/lightline.vim'
+
+  -- lsp
+  Plug 'jose-elias-alvarez/null-ls.nvim'
   Plug 'lukas-reineke/lsp-format.nvim'
   Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/plenary.nvim'
+  Plug 'liuchengxu/vista.vim'
+
+  -- text editing
+  Plug 'tpope/vim-commentary'
+  Plug 'windwp/nvim-autopairs'
+  Plug 'RRethy/nvim-treesitter-endwise'
+  Plug 'tpope/vim-surround'
+  Plug 'wellle/targets.vim'
+  
+  -- text navigation
+  Plug 'tpope/vim-unimpaired'
+
+  -- treesitter
   Plug('nvim-treesitter/nvim-treesitter', {['do']=':TSUpdate'})
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
-  Plug 'rstacruz/vim-closer'
+  -- ZZZZ miscellany
+
+  Plug 'elixir-editors/vim-elixir'
+  Plug 'leafgarland/typescript-vim'
+
   Plug 'rust-lang/rust.vim'
-  Plug 'andersevenrud/nordic.nvim'
-  Plug 'shumphrey/fugitive-gitlab.vim'
   Plug 'tikhomirov/vim-glsl'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-sensible'
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-unimpaired'
   Plug 'Vimjas/vim-python-pep8-indent'
-  Plug 'wellle/targets.vim'
-  Plug 'zchee/vim-flatbuffers'
-
-  -- file/project management
-  Plug 'tamago324/lir.nvim'
-
-  -- lightline
-  Plug 'itchyny/lightline.vim'
 
   Plug('elixir-lsp/elixir-ls', { ['do'] = function() 
     vim.call('g:ElixirLS.compile()') 
@@ -78,9 +96,10 @@ vim.g.lightline = {
     left = {{"mode", "paste"}, {'gitbranch'}},
     right = {
       {"lineinfo"},
-      -- {"fileformat", "fileencoding", "filetype"},
+      {"fileformat", "fileencoding", "filetype"},
+      -- TODO: implement these
       -- {"lsp_info", "lsp_hints", "lsp_errors", "lsp_warnings", "lsp_ok"},
-      {"lsp_status"},
+      -- {"lsp_status"},
       {"helloworld"}
     }
   },
@@ -94,7 +113,6 @@ vim.g.lightline = {
 }
 --reload_lightline()
 
--- lir setup
 local function setup_lir()
   local actions = require"lir.actions"
   require"lir".setup {
@@ -117,6 +135,12 @@ local function setup_lir()
   vim.keymap.set('n', '<C-x><C-j>', "<Cmd>e %:h<CR>")
 end
 setup_lir()
+
+-- autopairs
+-- NOTA BENE: when setting up nvim-cmp, consult nvim-autopairs README
+-- for compatibility concerns
+-- endwise is configured using the treesitter-endwise plugin, see treesitter.lua
+require("nvim-autopairs").setup {}
 
 --   active = {
 --     -- left = {{"mode", "paste"}, {"gitbranch", "readonly", "modified"}},
