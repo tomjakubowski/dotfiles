@@ -19,62 +19,52 @@ vim.opt.formatoptions:append('n')
 setopts({"termguicolors"})
 vim.opt.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
 
-vim.cmd([[
-let g:lightline = {}
-" lightline config
-" {{{
-" -- INSERT -- is redundant
-set noshowmode
-let g:lightline.colorscheme = 'nord'
-let g:lightline.active = {}
-let g:lightline.active.left = [
-      \ ['mode', 'paste'],
-      \ ['gitbranch', 'readonly', 'modified'],
-      \ ]
-let g:lightline.active.right = [
-      \ ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'],
-      \ ['lineinfo'],
-      \ ['fileformat', 'fileencoding', 'filetype'],
-      \ ]
-let g:lightline.component_function = {
-      \ 'gitbranch': 'FugitiveHead'
-      \ }
-let g:lightline.component_expand = {
-      \ 'linter_checking': 'lightline#ale#checking',
-      \ 'linter_warnings': 'lightline#ale#warnings',
-      \ 'linter_errors': 'lightline#ale#errors',
-      \ 'linter_ok': 'lightline#ale#ok',
-      \ }
-let g:lightline.component_type = {
-      \ 'linter_checking': 'left',
-      \ 'linter_warnings': 'warning',
-      \ 'linter_errors': 'error',
-      \ 'linter_ok': 'left',
-      \ }
-" }}}
 
-" Plugins
-call plug#begin(stdpath('data').'/plugged')
-" {{{
-  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  " Plug 'Shougo/echodoc.vim'
-  " TODO: ultisnip
-  Plug 'arcticicestudio/nord-vim'
-  Plug 'cespare/vim-toml'
+-- lightline config
+setopts({showmode})
+vim.g.lightline = {
+  active = {
+    left = {{"mode", "paste"}},
+    right = {{"lineinfo"}, {"fileformat", "fileencoding", "filetype"}}
+  },
+  colorscheme='nord' -- this is installed in my dotfiles
+}
+
+--   active = {
+--     -- left = {{"mode", "paste"}, {"gitbranch", "readonly", "modified"}},
+--     -- right = {
+--     --   {"linter_checking", "linter_errors", "linter_warnings", "linter_ok"},
+--     --   {"lineinfo"},
+--     --   {"fileformat", "fileencoding", "filetype"}
+--     -- },
+--   },
+--   -- component_function = {
+--   --   gitbranch="FugitiveHead"
+--   -- },
+--   -- TODO: switch to LSP
+--   component_expand = {
+--     -- \ 'linter_checking': 'lightline#ale#checking',
+--     -- \ 'linter_warnings': 'lightline#ale#warnings',
+--     -- \ 'linter_errors': 'lightline#ale#errors',
+--     -- \ 'linter_ok': 'lightline#ale#ok',
+--   },
+--   -- component_type = {
+--   --   linter_checking='left',
+--   --   linter_warnings='warning',
+--   --   linter_errors='error',
+--   --   linter_ok='left'
+--   -- }
+-- }
+
+local Plug = vim.fn['plug#']
+local stdpath = vim.fn['stdpath']
+vim.call('plug#begin', stdpath('data') .. '/plugged')
   Plug 'c-brenn/fuzzy-projectionist.vim'
-  Plug 'cstrahan/vim-capnp'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'elixir-editors/vim-elixir'
-  Plug 'dag/vim-fish'
-  Plug 'fatih/vim-go'
-  Plug 'Glench/Vim-Jinja2-Syntax'
-  Plug 'hashivim/vim-terraform'
-  " TODO: Add way to one-time import these types of plugins like caddyfile
-  " which just have indent/syntax/ftdetect/etc. (use a subtree? lol)
-  Plug 'isobit/vim-caddyfile'
   Plug 'itchyny/lightline.vim'
   Plug 'jose-elias-alvarez/null-ls.nvim'
-  Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
+  Plug('junegunn/fzf', { dir='~/.local/fzf', ['do']='./install --all' })
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'lifepillar/vim-solarized8'
@@ -84,14 +74,13 @@ call plug#begin(stdpath('data').'/plugged')
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'maximbaz/lightline-ale'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug('nvim-treesitter/nvim-treesitter', {['do']=':TSUpdate'})
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'preservim/nerdtree'
   Plug 'rstacruz/vim-closer'
   Plug 'rust-lang/rust.vim'
-  Plug 'shaunsingh/nord.nvim'
+  Plug 'andersevenrud/nordic.nvim'
   Plug 'shumphrey/fugitive-gitlab.vim'
-  " Plug 'sirver/ultisnips'
   Plug 'tikhomirov/vim-glsl'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
@@ -103,10 +92,16 @@ call plug#begin(stdpath('data').'/plugged')
   Plug 'wellle/targets.vim'
   Plug 'zchee/vim-flatbuffers'
 
-  Plug 'elixir-lsp/elixir-ls', { 'do': { -> g:ElixirLS.compile() } }
-  " Plug 'tomjakubowski/elixir-ls', { 'branch': 'formatter_race', 'do': { -> g:ElixirLS.compile() } }
+  Plug('elixir-lsp/elixir-ls', { ['do']=function() vim.call('g:ElixirLS.compile()') end })
+  --Plug 'tomjakubowski/elixir-ls', { branch='formatter_race', do={ -> g:ElixirLS.compile() } }
+vim.call('plug#end')
+
+vim.cmd([[
+" Plugins
+" call plug#begin(stdpath('data').'/plugged')
+" {{{
 " }}}
-call plug#end()
+"call plug#end()
 
 " presentation
 set title
@@ -117,12 +112,6 @@ set nowrap
 set colorcolumn=+0
 set signcolumn=yes
 set showtabline=2 " always show tab line
-
-let [g:nord_italic, g:nord_underline] = [1, 1]
-let g:nord_bold_vertical_split_line = 1
-" let g:nord_uniform_diff_background = 1
-set background=dark
-colorscheme nord
 
 if $TERM == "xterm-kitty"
   set termguicolors
@@ -168,9 +157,6 @@ nnoremap <leader>o :copen<CR>
 nnoremap <leader>ed :tabedit<CR>:tcd ~/dotfiles<CR>:GitFiles --cached --other --exclude-standard<CR>
 nnoremap <leader>el :tabedit<CR>:tcd ~/.config/nvim/lua<CR>:Files<CR>
 nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
-
-" lua
-nnoremap <leader>lf :luafile %<CR>
 
 " set options
 nnoremap <leader>sn :set number!<CR>
@@ -380,7 +366,9 @@ lspconfig['elixirls'].setup {
   settings = { elixirLS = { dialyzerEnabled = false }},
   on_attach = function(client, bufnr)
     lsp_on_attach(client, bufnr)
-    lsp_formatting(client, bufnr)
+    -- sadly, formatting in ElixirLS is extremely broken at the moment
+    -- using null_ls mix instead
+    -- lsp_formatting(client, bufnr)
   end,
   flags = {
     debounce_text_changes = 150,
@@ -408,6 +396,10 @@ lspconfig['pylsp'].setup {
 -- null-ls handles running formatters/linters as an lsp
 local null_ls = require("null-ls")
 local sources = {
+  null_ls.builtins.formatting.mix.with({
+    -- removing --stdin-filename because Elixir 1.13 doesn't support it
+    args={"format", "-"},
+  }),
   null_ls.builtins.formatting.prettier,
   -- TODO: I should be able to enable/disable null_ls sources per project?
   null_ls.builtins.diagnostics.credo.with({
@@ -417,13 +409,24 @@ local sources = {
 }
 null_ls.setup({
   on_attach=function(client, bufnr)
+    print("attachign null_ls")
     lsp_formatting(client, bufnr)
   end,
   sources=sources,
-  -- debug=true
+  debug=true
 })
 
 require'treesitter'
+
+require('nordic').colorscheme({
+  italic = true
+})
+
+function reload_lightline()
+  vim.fn["lightline#init"]()
+  vim.fn["lightline#colorscheme"]()
+  vim.fn["lightline#update"]()
+end
 
 vim.cmd([[
 " Some commands

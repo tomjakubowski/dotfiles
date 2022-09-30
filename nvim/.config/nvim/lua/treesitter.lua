@@ -1,5 +1,5 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"elixir", "heex", "lua"},
+  ensure_installed = {"elixir", "heex", "lua", "graphql"},
   sync_install = false,
   auto_install = false,
   highlight = {
@@ -26,7 +26,7 @@ require'nvim-treesitter.configs'.setup {
       init_selection = "gnn",
       node_incremental = "grn",
       scope_incremental = "grc",
-      node_decremetnal = "grm"
+      node_decremental = "grm"
     }
   }
 }
