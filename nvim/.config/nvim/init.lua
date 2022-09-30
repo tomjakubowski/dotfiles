@@ -125,7 +125,7 @@ vim.g.lightline = {
 		lsp_ok = "right",
 	},
 }
-reload_lightline()
+--reload_lightline()
 
 local function setup_lir()
 	local actions = require("lir.actions")
