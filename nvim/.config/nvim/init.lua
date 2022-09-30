@@ -20,16 +20,60 @@ setopts({"termguicolors"})
 vim.opt.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
 
 
+local Plug = vim.fn['plug#']
+local stdpath = vim.fn['stdpath']
+vim.call('plug#begin', stdpath('data') .. '/plugged')
+  Plug 'c-brenn/fuzzy-projectionist.vim'
+  Plug 'elixir-editors/vim-elixir'
+  Plug 'jose-elias-alvarez/null-ls.nvim'
+  Plug('junegunn/fzf', { dir='~/.local/fzf', ['do']='./install --all' })
+  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/goyo.vim'
+  Plug 'liuchengxu/vista.vim'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'lukas-reineke/lsp-format.nvim'
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug('nvim-treesitter/nvim-treesitter', {['do']=':TSUpdate'})
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+  Plug 'preservim/nerdtree'
+  Plug 'rstacruz/vim-closer'
+  Plug 'rust-lang/rust.vim'
+  Plug 'andersevenrud/nordic.nvim'
+  Plug 'shumphrey/fugitive-gitlab.vim'
+  Plug 'tikhomirov/vim-glsl'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-projectionist'
+  Plug 'tpope/vim-sensible'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'Vimjas/vim-python-pep8-indent'
+  Plug 'wellle/targets.vim'
+  Plug 'zchee/vim-flatbuffers'
+
+  -- lightline
+  Plug 'itchyny/lightline.vim'
+  Plug 'josa42/nvim-lightline-lsp'
+
+  Plug('elixir-lsp/elixir-ls', { ['do']=function() vim.call('g:ElixirLS.compile()') end })
+  --Plug 'tomjakubowski/elixir-ls', { branch='formatter_race', do={ -> g:ElixirLS.compile() } }
+vim.call('plug#end')
+
 -- lightline config
-setopts({showmode})
+setopts({showmode=false})
+vim.call('lightline#lsp#register')
 vim.g.lightline = {
   active = {
     left = {{"mode", "paste"}},
-    right = {{"lineinfo"}, {"fileformat", "fileencoding", "filetype"}}
+    right = {
+      {"linter_checking", "linter_errors", "linter_warnings", "linter_ok"},
+      {"lineinfo"},
+      {"fileformat", "fileencoding", "filetype"}
+    }
   },
   colorscheme='nord' -- this is installed in my dotfiles
 }
-
 --   active = {
 --     -- left = {{"mode", "paste"}, {"gitbranch", "readonly", "modified"}},
 --     -- right = {
@@ -56,45 +100,6 @@ vim.g.lightline = {
 --   -- }
 -- }
 
-local Plug = vim.fn['plug#']
-local stdpath = vim.fn['stdpath']
-vim.call('plug#begin', stdpath('data') .. '/plugged')
-  Plug 'c-brenn/fuzzy-projectionist.vim'
-  Plug 'editorconfig/editorconfig-vim'
-  Plug 'elixir-editors/vim-elixir'
-  Plug 'itchyny/lightline.vim'
-  Plug 'jose-elias-alvarez/null-ls.nvim'
-  Plug('junegunn/fzf', { dir='~/.local/fzf', ['do']='./install --all' })
-  Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/goyo.vim'
-  Plug 'lifepillar/vim-solarized8'
-  Plug 'liuchengxu/vista.vim'
-  Plug 'leafgarland/typescript-vim'
-  Plug 'lukas-reineke/lsp-format.nvim'
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'maximbaz/lightline-ale'
-  Plug('nvim-treesitter/nvim-treesitter', {['do']=':TSUpdate'})
-  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-  Plug 'preservim/nerdtree'
-  Plug 'rstacruz/vim-closer'
-  Plug 'rust-lang/rust.vim'
-  Plug 'andersevenrud/nordic.nvim'
-  Plug 'shumphrey/fugitive-gitlab.vim'
-  Plug 'tikhomirov/vim-glsl'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-projectionist'
-  Plug 'tpope/vim-sensible'
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-unimpaired'
-  Plug 'Vimjas/vim-python-pep8-indent'
-  Plug 'wellle/targets.vim'
-  Plug 'zchee/vim-flatbuffers'
-
-  Plug('elixir-lsp/elixir-ls', { ['do']=function() vim.call('g:ElixirLS.compile()') end })
-  --Plug 'tomjakubowski/elixir-ls', { branch='formatter_race', do={ -> g:ElixirLS.compile() } }
-vim.call('plug#end')
 
 vim.cmd([[
 " Plugins
@@ -401,19 +406,26 @@ local sources = {
     args={"format", "-"},
   }),
   null_ls.builtins.formatting.prettier,
+
   -- TODO: I should be able to enable/disable null_ls sources per project?
   null_ls.builtins.diagnostics.credo.with({
     command="credo",
     args={"suggest", "--format", "json", "--read-from-stdin", "$FILENAME"}
+  }),
+  null_ls.builtins.diagnostics.selene.with({
+    cwd = function(_params)
+      return vim.fs.dirname(
+        vim.fs.find({'selene.toml'}, {upward = true, path = vim.api.nvim_buf_get_name(0)})[1]
+      ) or vim.fn.expand("~/.config/selene/") -- fallback value
+    end
   })
 }
 null_ls.setup({
   on_attach=function(client, bufnr)
-    print("attachign null_ls")
     lsp_formatting(client, bufnr)
   end,
   sources=sources,
-  debug=true
+  debug=false
 })
 
 require'treesitter'
