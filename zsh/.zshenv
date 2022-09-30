@@ -14,8 +14,8 @@ fi
 
 typeset -U path
 path=("$HOME/.local/bin"
-      "/usr/local/bin"
       "/opt/homebrew/bin"
+      "/usr/local/bin"
       $path[@])
 
 # vim is slightly more likely to work than emacsclient
