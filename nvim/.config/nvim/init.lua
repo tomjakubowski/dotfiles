@@ -6,133 +6,134 @@ vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- this binding is annoying to lose when config is broken, so define it early
-vim.cmd[[let mapleader=","]]
-vim.cmd[[nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>]]
+vim.cmd([[let mapleader=","]])
+vim.cmd([[nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>]])
 
 function setopts(opts)
-  -- setopts({"foo", xwidth=1})
-  for k, v in pairs(opts) do
-    if type(k) == "string" then
-      vim.opt[k] = v
-    elseif type(k) == "number" and type(v) == "string" then
-      vim.opt[v] = true
-    end
-  end
+	-- setopts({"foo", xwidth=1})
+	for k, v in pairs(opts) do
+		if type(k) == "string" then
+			vim.opt[k] = v
+		elseif type(k) == "number" and type(v) == "string" then
+			vim.opt[v] = true
+		end
+	end
 end
 
-setopts({"ignorecase", "smartcase", "expandtab"})
-setopts({tabstop=2, softtabstop=2, shiftwidth=2})
-vim.opt.formatoptions:append('n')
+setopts({ "ignorecase", "smartcase", "expandtab" })
+setopts({ tabstop = 2, softtabstop = 2, shiftwidth = 2 })
+vim.opt.formatoptions:append("n")
 
-setopts({"termguicolors"})
+setopts({ "termguicolors" })
 vim.opt.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
 
+local Plug = vim.fn["plug#"]
+local stdpath = vim.fn["stdpath"]
+vim.call("plug#begin", stdpath("data") .. "/plugged")
+-- base libraries
+Plug("nvim-lua/plenary.nvim")
 
-local Plug = vim.fn['plug#']
-local stdpath = vim.fn['stdpath']
-vim.call('plug#begin', stdpath('data') .. '/plugged')
-  -- base libraries
-  Plug 'nvim-lua/plenary.nvim'
+-- eye candy
+Plug("junegunn/goyo.vim")
+Plug("andersevenrud/nordic.nvim")
 
-  -- eye candy
-  Plug 'junegunn/goyo.vim'
-  Plug 'andersevenrud/nordic.nvim'
-  
-  -- file/project management
-  Plug 'tamago324/lir.nvim'
-  Plug 'c-brenn/fuzzy-projectionist.vim'
-  Plug 'tpope/vim-projectionist'
+-- file/project management
+Plug("tamago324/lir.nvim")
+Plug("c-brenn/fuzzy-projectionist.vim")
+Plug("tpope/vim-projectionist")
 
-  -- fzf
-  Plug('junegunn/fzf', { dir='~/.local/fzf', ['do']='./install --all' })
-  Plug 'junegunn/fzf.vim'
-  
-  -- git 
-  Plug 'tpope/vim-fugitive'
-  Plug 'shumphrey/fugitive-gitlab.vim'
-  
-  -- lightline
-  Plug 'itchyny/lightline.vim'
+-- fzf
+Plug("junegunn/fzf", { dir = "~/.local/fzf", ["do"] = "./install --all" })
+Plug("junegunn/fzf.vim")
 
-  -- lsp
-  Plug 'jose-elias-alvarez/null-ls.nvim'
-  Plug 'lukas-reineke/lsp-format.nvim'
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'liuchengxu/vista.vim'
+-- git
+Plug("tpope/vim-fugitive")
+Plug("shumphrey/fugitive-gitlab.vim")
 
-  -- text editing
-  Plug 'tpope/vim-commentary'
-  Plug 'windwp/nvim-autopairs'
-  Plug 'RRethy/nvim-treesitter-endwise'
-  Plug 'tpope/vim-surround'
-  Plug 'wellle/targets.vim'
-  
-  -- text navigation
-  Plug 'tpope/vim-unimpaired'
+-- lightline
+Plug("itchyny/lightline.vim")
 
-  -- treesitter
-  Plug('nvim-treesitter/nvim-treesitter', {['do']=':TSUpdate'})
-  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+-- lsp
+Plug("jose-elias-alvarez/null-ls.nvim")
+Plug("lukas-reineke/lsp-format.nvim")
+Plug("neovim/nvim-lspconfig")
+Plug("liuchengxu/vista.vim")
 
-  -- ZZZZ miscellany
+-- text editing
+Plug("tpope/vim-commentary")
+Plug("windwp/nvim-autopairs")
+Plug("RRethy/nvim-treesitter-endwise")
+Plug("tpope/vim-surround")
+Plug("wellle/targets.vim")
 
-  Plug 'elixir-editors/vim-elixir'
-  Plug 'leafgarland/typescript-vim'
+-- text navigation
+Plug("tpope/vim-unimpaired")
 
-  Plug 'rust-lang/rust.vim'
-  Plug 'tikhomirov/vim-glsl'
-  Plug 'tpope/vim-sensible'
-  Plug 'Vimjas/vim-python-pep8-indent'
+-- treesitter
+Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+Plug("nvim-treesitter/nvim-treesitter-textobjects")
 
-  Plug('elixir-lsp/elixir-ls', { ['do'] = function() 
-    vim.call('g:ElixirLS.compile()') 
-  end })
-vim.call('plug#end')
+-- ZZZZ miscellany
+
+Plug("elixir-editors/vim-elixir")
+Plug("leafgarland/typescript-vim")
+
+Plug("rust-lang/rust.vim")
+Plug("tikhomirov/vim-glsl")
+Plug("tpope/vim-sensible")
+Plug("Vimjas/vim-python-pep8-indent")
+
+Plug("elixir-lsp/elixir-ls", {
+	["do"] = function()
+		vim.call("g:ElixirLS.compile()")
+	end,
+})
+vim.call("plug#end")
 
 -- lightline config
-setopts({showmode=false})
+setopts({ showmode = false })
 vim.g.lightline = {
-  active = {
-    left = {{"mode", "paste"}, {'gitbranch'}},
-    right = {
-      {"lineinfo"},
-      {"fileformat", "fileencoding", "filetype"},
-      -- TODO: implement these
-      -- {"lsp_info", "lsp_hints", "lsp_errors", "lsp_warnings", "lsp_ok"},
-      -- {"lsp_status"},
-      {"helloworld"}
-    }
-  },
-  colorscheme='nord', -- installed in my dotfiles
-  component={
-    helloworld='Hello, world!',
-  },
-  component_function={
-    gitbranch='FugitiveHead'
-  }
+	active = {
+		left = { { "mode", "paste" }, { "gitbranch" } },
+		right = {
+			{ "lineinfo" },
+			{ "fileformat", "fileencoding", "filetype" },
+			-- TODO: implement these
+			-- {"lsp_info", "lsp_hints", "lsp_errors", "lsp_warnings", "lsp_ok"},
+			-- {"lsp_status"},
+			{ "helloworld" },
+		},
+	},
+	colorscheme = "nord", -- installed in my dotfiles
+	component = {
+		helloworld = "Hello, world!",
+	},
+	component_function = {
+		gitbranch = "FugitiveHead",
+	},
 }
 --reload_lightline()
 
 local function setup_lir()
-  local actions = require"lir.actions"
-  require"lir".setup {
-    show_hidden_files=false,
-    mappings = {
-      ['<C-e>']   = actions.edit,
-      ['<CR>']    = actions.edit,
-      ['<C-s>']   = actions.split,
-      ['<C-v>']   = actions.vsplit,
-      ['<C-t>']   = actions.tabedit,
+	local actions = require("lir.actions")
+	require("lir").setup({
+		show_hidden_files = false,
+		mappings = {
+			["<C-e>"] = actions.edit,
+			["<CR>"] = actions.edit,
+			["<C-s>"] = actions.split,
+			["<C-v>"] = actions.vsplit,
+			["<C-t>"] = actions.tabedit,
 
-      ['-']       = actions.up,
-      ['q']       = actions.quit
-    },
-    hide_cursor = true,
-    on_init = function() 
-      vim.api.nvim_echo({ { vim.fn.expand("%:p"), "Normal" } }, false, {})
-    end
-  }
-  vim.keymap.set('n', '<C-x><C-j>', "<Cmd>e %:h<CR>")
+			["-"] = actions.up,
+			["q"] = actions.quit,
+		},
+		hide_cursor = true,
+		on_init = function()
+			vim.api.nvim_echo({ { vim.fn.expand("%:p"), "Normal" } }, false, {})
+		end,
+	})
+	vim.keymap.set("n", "<C-x><C-j>", "<Cmd>e %:h<CR>")
 end
 setup_lir()
 
@@ -140,7 +141,7 @@ setup_lir()
 -- NOTA BENE: when setting up nvim-cmp, consult nvim-autopairs README
 -- for compatibility concerns
 -- endwise is configured using the treesitter-endwise plugin, see treesitter.lua
-require("nvim-autopairs").setup {}
+require("nvim-autopairs").setup({})
 
 --   active = {
 --     -- left = {{"mode", "paste"}, {"gitbranch", "readonly", "modified"}},
@@ -167,7 +168,6 @@ require("nvim-autopairs").setup {}
 --   --   linter_ok='left'
 --   -- }
 -- }
-
 
 vim.cmd([[
 " Plugins
@@ -373,41 +373,45 @@ endfunction
 ]])
 
 -- configure LSPs
-local nvim_lsp = require('lspconfig')
-require("lsp-format").setup {
-  typescript = {
-    exclude = { "tsserver" },
-    order = {"null-ls"}
-  }
-}
+local nvim_lsp = require("lspconfig")
+require("lsp-format").setup({
+	typescript = {
+		exclude = { "tsserver" },
+		order = { "null-ls" },
+	},
+})
 
 -- Configure keybindings for LSPs.  Should normally not be used with null-ls
 local lsp_on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+	local function buf_set_keymap(...)
+		vim.api.nvim_buf_set_keymap(bufnr, ...)
+	end
+	local function buf_set_option(...)
+		vim.api.nvim_buf_set_option(bufnr, ...)
+	end
 
-  --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+	--Enable completion triggered by <c-x><c-o>
+	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  -- Mappings.
-  -- FIXME: Use vim.keymap
-  local opts = { noremap=true, silent=true }
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+	-- Mappings.
+	-- FIXME: Use vim.keymap
+	local opts = { noremap = true, silent = true }
+	buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+	buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+	buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+	buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	buf_set_keymap("n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+	buf_set_keymap("n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
+	buf_set_keymap("n", "<leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+	buf_set_keymap("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+	buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+	buf_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+	buf_set_keymap("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+	buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+	buf_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
 -- Yay, debug logging
@@ -416,98 +420,98 @@ vim.lsp.set_log_level("info")
 
 -- Configure formatting-on-save via lsp
 local lsp_formatting = function(client, bufnr)
-  local util = require 'vim.lsp.util'
-  -- Alternative to binding <cmd>lua vim.lsp.buf.formatting()<CR>
-  vim.keymap.set('n', '<leader>f', function()
-    local params = util.make_formatting_params({})
-    client.request('textDocument/formatting', params, nil, bufnr)
-  end, {buffer=bufnr})
+	local util = require("vim.lsp.util")
+	-- Alternative to binding <cmd>lua vim.lsp.buf.formatting()<CR>
+	vim.keymap.set("n", "<leader>f", function()
+		local params = util.make_formatting_params({})
+		client.request("textDocument/formatting", params, nil, bufnr)
+	end, { buffer = bufnr })
 
-  -- Format on save
-  require "lsp-format".on_attach(client)
+	-- Format on save
+	require("lsp-format").on_attach(client)
 end
 
-local lspconfig = require 'lspconfig'
-lspconfig['tsserver'].setup {
-  on_attach = function(client, bufnr)
-    lsp_on_attach(client, bufnr)
-  end,
-  flags = {
-    debounce_text_changes = 150,
-  }
-}
-lspconfig['elixirls'].setup {
-  cmd = { vim.g.ElixirLS.lsp },
-  settings = { elixirLS = { dialyzerEnabled = false }},
-  on_attach = function(client, bufnr)
-    lsp_on_attach(client, bufnr)
-    -- sadly, formatting in ElixirLS is extremely broken at the moment
-    -- using null_ls mix instead
-    -- lsp_formatting(client, bufnr)
-  end,
-  flags = {
-    debounce_text_changes = 150,
-  }
-}
-lspconfig['rust_analyzer'].setup {
-  on_attach = function(client, bufnr)
-    lsp_on_attach(client, bufnr)
-  end,
-  flags = {
-    debounce_text_changes = 150,
-  }
-}
-lspconfig['pylsp'].setup {
-  on_attach = function(client, bufnr)
-    lsp_on_attach(client, bufnr)
-    lsp_formatting(client, bufnr)
-  end,
-  flags = {
-    debounce_text_changes = 150,
-  }
-}
-
+local lspconfig = require("lspconfig")
+lspconfig["tsserver"].setup({
+	on_attach = function(client, bufnr)
+		lsp_on_attach(client, bufnr)
+	end,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+lspconfig["elixirls"].setup({
+	cmd = { vim.g.ElixirLS.lsp },
+	settings = { elixirLS = { dialyzerEnabled = false } },
+	on_attach = function(client, bufnr)
+		lsp_on_attach(client, bufnr)
+		-- sadly, formatting in ElixirLS is extremely broken at the moment
+		-- using null_ls mix instead
+		-- lsp_formatting(client, bufnr)
+	end,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+lspconfig["rust_analyzer"].setup({
+	on_attach = function(client, bufnr)
+		lsp_on_attach(client, bufnr)
+	end,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+lspconfig["pylsp"].setup({
+	on_attach = function(client, bufnr)
+		lsp_on_attach(client, bufnr)
+		lsp_formatting(client, bufnr)
+	end,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
 
 -- null-ls handles running formatters/linters as an lsp
 local null_ls = require("null-ls")
 local sources = {
-  null_ls.builtins.formatting.mix.with({
-    -- removing --stdin-filename because Elixir 1.13 doesn't support it
-    args={"format", "-"},
-  }),
-  null_ls.builtins.formatting.prettier,
+	null_ls.builtins.formatting.mix.with({
+		-- removing --stdin-filename because Elixir 1.13 doesn't support it
+		args = { "format", "-" },
+	}),
+	null_ls.builtins.formatting.prettier,
+	null_ls.builtins.formatting.stylua,
 
-  -- TODO: I should be able to enable/disable null_ls sources per project?
-  null_ls.builtins.diagnostics.credo.with({
-    command="credo",
-    args={"suggest", "--format", "json", "--read-from-stdin", "$FILENAME"}
-  }),
-  null_ls.builtins.diagnostics.selene.with({
-    cwd = function(_params)
-      return vim.fs.dirname(
-        vim.fs.find({'selene.toml'}, {upward = true, path = vim.api.nvim_buf_get_name(0)})[1]
-      ) or vim.fn.expand("~/.config/selene/") -- fallback value
-    end
-  })
+	-- TODO: I should be able to enable/disable null_ls sources per project?
+	null_ls.builtins.diagnostics.credo.with({
+		command = "credo",
+		args = { "suggest", "--format", "json", "--read-from-stdin", "$FILENAME" },
+	}),
+	null_ls.builtins.diagnostics.selene.with({
+		cwd = function(_params)
+			return vim.fs.dirname(
+				vim.fs.find({ "selene.toml" }, { upward = true, path = vim.api.nvim_buf_get_name(0) })[1]
+			) or vim.fn.expand("~/.config/selene/") -- fallback value
+		end,
+	}),
 }
 null_ls.setup({
-  on_attach=function(client, bufnr)
-    lsp_formatting(client, bufnr)
-  end,
-  sources=sources,
-  debug=false
+	on_attach = function(client, bufnr)
+		lsp_formatting(client, bufnr)
+	end,
+	sources = sources,
+	debug = false,
 })
 
-require'treesitter'
+require("treesitter")
 
-require('nordic').colorscheme({
-  italic = true
+require("nordic").colorscheme({
+	italic = true,
 })
 
 function reload_lightline()
-  vim.fn["lightline#init"]()
-  vim.fn["lightline#colorscheme"]()
-  vim.fn["lightline#update"]()
+	vim.fn["lightline#init"]()
+	vim.fn["lightline#colorscheme"]()
+	vim.fn["lightline#update"]()
 end
 
 vim.cmd([[
