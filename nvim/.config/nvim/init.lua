@@ -58,6 +58,7 @@ Plug("jose-elias-alvarez/null-ls.nvim")
 Plug("lukas-reineke/lsp-format.nvim")
 Plug("neovim/nvim-lspconfig")
 Plug("liuchengxu/vista.vim")
+Plug("josa42/nvim-lightline-lsp")
 
 -- text editing
 Plug("tpope/vim-commentary")
@@ -94,13 +95,13 @@ vim.call("plug#end")
 setopts({ showmode = false })
 vim.g.lightline = {
 	active = {
-		left = { { "mode", "paste" }, { "gitbranch" } },
+		left = { { "mode", "paste" }, { "filename" }, { "gitbranch" } },
 		right = {
 			{ "lineinfo" },
 			{ "fileformat", "fileencoding", "filetype" },
 			-- TODO: implement these
 			-- {"lsp_info", "lsp_hints", "lsp_errors", "lsp_warnings", "lsp_ok"},
-			-- {"lsp_status"},
+			{ "lsp_errors", "lsp_warnings", "lsp_ok" },
 			{ "helloworld" },
 		},
 	},
@@ -108,11 +109,23 @@ vim.g.lightline = {
 	component = {
 		helloworld = "Hello, world!",
 	},
+	component_expand = {
+		lsp_warnings = "lightline#lsp#warnings",
+		lsp_errors = "lightline#lsp#errors",
+		lsp_ok = "lightline#lsp#ok",
+	},
 	component_function = {
 		gitbranch = "FugitiveHead",
 	},
+	component_type = {
+		helloworld = "error",
+		gitbranch = "left",
+		lsp_warnings = "warning",
+		lsp_errors = "error",
+		lsp_ok = "right",
+	},
 }
---reload_lightline()
+reload_lightline()
 
 local function setup_lir()
 	local actions = require("lir.actions")
@@ -178,7 +191,7 @@ vim.cmd([[
 
 " presentation
 set title
-set number
+"set number
 set numberwidth=3
 " set relativenumber
 set nowrap
@@ -233,17 +246,7 @@ nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
 
 " set options
 nnoremap <leader>sn :set number!<CR>
-
-" ale bindings {{{
-" nnoremap <leader>ah :ALEHover<CR>
-" nnoremap <leader>gg :ALEGoToDefinition<CR>
-" nnoremap <leader>gT :tab ALEGoToDefinition<CR>
-" nnoremap <leader>? :ALEDetail<CR>
-" nnoremap <silent> ]E :ALENext -error<cr>
-" nnoremap <silent> [E :ALEPrevious -error<cr>
-" nnoremap <silent> ]W :ALENext -warning<cr>
-" nnoremap <silent> [W :ALEPrevious -warning<cr>
-" }}}
+nnoremap <leader>rn :set relativenumber!<CR>
 
 nnoremap <F5> :make<CR>
 " nnoremap <C-x><C-j> :NERDTree %:h<CR>
@@ -261,57 +264,12 @@ inoremap <c-u> <esc>viwUgi
 " source line under file
 vnoremap <leader>vs y:@"<CR>
 
-" ale
-let g:ale_fix_on_save = 1
-" todo: set linters / fixers here rather than in ftplugins
-let g:ale_linters = {
-      \ 'elixir': [],
-      \ 'javascript': ['eslint'],
-      \ 'python': ['pyls', 'flake8', 'pylint'],
-      \ 'shell': ['shellcheck'],
-      \ 'typescript': ['eslint', 'tslint']
-      \}
-let g:ale_fixers = {
-      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'elixir': ['mix_format'],
-      \ 'javascript': ['prettier'],
-      \ 'python': ['yapf', 'black'],
-      \ 'rust': ['rustfmt'],
-      \ 'typescript': ['prettier']
-      \}
-
-" let g:ale_elixir_elixir_ls_release = expand("~/opt/elixir-ls")
-" let g:ale_elixir_elixir_ls_config = {
-"       \ 'elixirLS': { 'dialyzerEnabled': v:false }
-"       \ }
-
-let g:ale_open_list = 0
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_virtualtext_cursor = 1
-let g:ale_rust_rustfmt_options = '--edition 2018'
-
 " fzf
 augroup fzf
   autocmd!
   autocmd FileType fzf set laststatus=0 noshowmode noruler
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 augroup END
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
-if exists("g:deoplete#custom#source")
-  call g:deoplete#custom#source('_',
-    \ 'max_menu_width', 0)
-endif
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" echodoc
-let g:echodoc#enable_at_startup = 1
-
-" netrw
-let g:netrw_sort_sequence="[\/]$,*"
-let g:netrw_list_hide='^\.git$'
 
 autocmd FileType gitcommit :inoremap <buffer> <C-c><C-c> <esc>:wq<cr>
 autocmd FileType gitcommit :nnoremap <buffer> <C-c><C-c> :wq<cr>
