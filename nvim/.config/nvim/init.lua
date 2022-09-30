@@ -460,7 +460,7 @@ null_ls.setup({
 	debug = false,
 })
 
-require("treesitter")
+require("tjak.treesitter")
 
 require("nordic").colorscheme({
 	italic = true,
@@ -476,5 +476,5 @@ vim.cmd([[
 " Some commands
 command! ChaseLink execute 'file' resolve(expand('%'))
 
-command! Scratch lua require'tools'.makeScratch()
+command! Scratch lua require'tjak.tools'.makeScratch()
 ]])
