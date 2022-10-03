@@ -103,13 +103,19 @@ local sources = {
 		-- removing --stdin-filename because Elixir 1.13 doesn't support it
 		args = { "format", "-" },
 	}),
-	null_ls.builtins.formatting.prettier,
+	null_ls.builtins.formatting.prettier.with({
+		condition = function(utils)
+			return utils.root_has_file({ ".prettierignore " })
+		end,
+	}),
 	null_ls.builtins.formatting.stylua,
 
-	-- TODO: I should be able to enable/disable null_ls sources per project?
 	null_ls.builtins.diagnostics.credo.with({
 		command = "credo",
 		args = { "suggest", "--format", "json", "--read-from-stdin", "$FILENAME" },
+		condition = function(utils)
+			return utils.root_has_file({ ".credo.exs" })
+		end,
 	}),
 	null_ls.builtins.diagnostics.selene.with({
 		cwd = function(_params)
