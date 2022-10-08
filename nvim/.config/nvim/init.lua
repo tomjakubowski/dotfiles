@@ -23,6 +23,8 @@ end
 setopts({ "ignorecase", "smartcase", "expandtab" })
 setopts({ tabstop = 2, softtabstop = 2, shiftwidth = 2 })
 vim.opt.formatoptions:append("n")
+vim.opt.formatoptions:remove("t")
+setopts({ textwidth = 80 })
 
 setopts({ "termguicolors" })
 vim.opt.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
