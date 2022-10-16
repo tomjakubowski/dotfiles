@@ -61,6 +61,7 @@ Plug("lukas-reineke/lsp-format.nvim")
 Plug("neovim/nvim-lspconfig")
 Plug("liuchengxu/vista.vim")
 Plug("josa42/nvim-lightline-lsp")
+Plug("ray-x/lsp_signature.nvim")
 
 -- text editing
 Plug("tpope/vim-commentary")

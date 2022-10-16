@@ -6,17 +6,21 @@ require("lsp-format").setup({
 	},
 })
 
+require("lsp_signature").setup({
+	-- hint_enable = false,
+})
+
 -- Configure keybindings for LSPs.  Should normally not be used with null-ls
 local lsp_on_attach = function(_client, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
 	end
-	local function buf_set_option(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
-	end
+	-- local function buf_set_option(...)
+	-- 	vim.api.nvim_buf_set_option(bufnr, ...)
+	-- end
 
-	--Enable completion triggered by <c-x><c-o>
-	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+	-- omnifunc, tagfnc, formatexpr automatically set when feature is provided
+	-- by language server
 
 	-- Mappings.
 	-- FIXME: Use vim.keymap
@@ -100,8 +104,10 @@ lspconfig["pylsp"].setup({
 local null_ls = require("null-ls")
 local sources = {
 	null_ls.builtins.formatting.mix.with({
-		-- removing --stdin-filename because Elixir 1.13 doesn't support it
-		args = { "format", "-" },
+		-- Elixir 1.13 doesn't support --stdin-filename
+		-- But it's necessary when using a project with .formatter.exs
+		-- in a subdirectory
+		args = { "format", "-", "--stdin-filename", "$FILENAME" },
 	}),
 	null_ls.builtins.formatting.prettier.with({
 		condition = function(utils)
