@@ -1,5 +1,17 @@
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "elixir", "heex", "lua", "graphql", "comment", "javascript", "typescript", "json" },
+	ensure_installed = {
+		"comment",
+		"elixir",
+		"go",
+		"graphql",
+		"heex",
+		"javascript",
+		"json",
+		"lua",
+		"markdown",
+		"typescript",
+		"yaml",
+	},
 	sync_install = false,
 	auto_install = false,
 	highlight = {
