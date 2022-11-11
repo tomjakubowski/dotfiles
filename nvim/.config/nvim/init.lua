@@ -188,12 +188,6 @@ autocmd FileType gitcommit :nnoremap <buffer> <C-c><C-c> :wq<cr>
 " FIXME: the next one should be doable without a recursive mapping
 autocmd FileType fugitive :nmap <buffer> <tab> =
 
-augroup svelte
-  autocmd!
-  autocmd BufNewFile,BufRead *.svelte set ft=html
-  autocmd BufNewFile,BufRead *.svelte let b:ale_linters = []
-augroup END
-
 augroup tf
   autocmd!
   autocmd FileType tf set commentstring=;\ %s
