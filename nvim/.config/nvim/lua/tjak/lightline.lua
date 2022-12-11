@@ -1,5 +1,7 @@
 local M = {}
 
+-- TODO: Consider using https://github.com/nvim-lua/lsp-status.nvim
+
 -- lightline config
 require("tjak").setopts({ showmode = false })
 
@@ -29,6 +31,9 @@ vim.g.lightline = {
 		helloworld = "keep on keeping on",
 	},
 	component_expand = {
+		lsp_clients = "lightline#lsp#clients",
+		-- this function seems to not be defined?
+		-- lsp_status = "lightline#lsp#status",
 		lsp_warnings = "lightline#lsp#warnings",
 		lsp_errors = "lightline#lsp#errors",
 		lsp_ok = "lightline#lsp#ok",
@@ -37,7 +42,7 @@ vim.g.lightline = {
 		gitbranch = "FugitiveHead",
 	},
 	component_type = {
-		helloworld = "error",
+		helloworld = "left",
 		gitbranch = "left",
 		lsp_warnings = "warning",
 		lsp_errors = "error",

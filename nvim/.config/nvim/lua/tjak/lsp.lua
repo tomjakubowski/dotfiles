@@ -11,7 +11,11 @@ require("lsp_signature").setup({
 })
 
 -- Configure keybindings for LSPs.  Should normally not be used with null-ls
-local lsp_on_attach = function(_client, bufnr)
+local lsp_status = require("lsp-status")
+lsp_status.register_progress()
+
+-- Configure keybindings and lsp status for LSPs.  Should normally not be used with null-ls
+local lsp_on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
 	end
@@ -21,6 +25,7 @@ local lsp_on_attach = function(_client, bufnr)
 
 	-- omnifunc, tagfnc, formatexpr automatically set when feature is provided
 	-- by language server
+	lsp_status.on_attach(client)
 
 	-- Mappings.
 	-- FIXME: Use vim.keymap

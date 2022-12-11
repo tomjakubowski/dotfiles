@@ -29,6 +29,7 @@ setopts({ textwidth = 80 })
 setopts({ "termguicolors" })
 vim.opt.guicursor = "n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor"
 
+-- TODO: tpope makes the great point that defaulting to Github is bad.  Fix that
 local Plug = vim.fn["plug#"]
 local stdpath = vim.fn["stdpath"]
 vim.call("plug#begin", stdpath("data") .. "/plugged")
@@ -54,6 +55,7 @@ Plug("shumphrey/fugitive-gitlab.vim")
 
 -- lightline
 Plug("itchyny/lightline.vim")
+Plug("nvim-lua/lsp-status.nvim")
 
 -- lsp
 Plug("jose-elias-alvarez/null-ls.nvim")
@@ -237,7 +239,6 @@ function ElixirLS.compile()
   let me.id = jobstart('cd ' . me.path . ' && git pull && ' . me.cmd, me)
 endfunction
 ]])
-
 require("tjak.lightline")
 require("tjak.lir")
 require("tjak.lsp")
