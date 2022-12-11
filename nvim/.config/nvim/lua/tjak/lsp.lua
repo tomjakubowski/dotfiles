@@ -85,12 +85,22 @@ lspconfig["elixirls"].setup({
 lspconfig["rust_analyzer"].setup({
 	on_attach = function(client, bufnr)
 		lsp_on_attach(client, bufnr)
+		lsp_formatting(client, bufnr)
 	end,
 	flags = {
 		debounce_text_changes = 150,
 	},
 })
 lspconfig["pylsp"].setup({
+	on_attach = function(client, bufnr)
+		lsp_on_attach(client, bufnr)
+		lsp_formatting(client, bufnr)
+	end,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+lspconfig["svelte"].setup({
 	on_attach = function(client, bufnr)
 		lsp_on_attach(client, bufnr)
 		lsp_formatting(client, bufnr)

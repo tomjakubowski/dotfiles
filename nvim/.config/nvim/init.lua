@@ -95,7 +95,7 @@ Plug("elixir-lsp/elixir-ls", {
 vim.call("plug#end")
 
 -- autopairs
--- NOTA BENE: when setting up nvim-cmp, consult nvim-autopairs README
+-- NOTABENE: when setting up nvim-cmp, consult nvim-autopairs README
 -- for compatibility concerns
 -- endwise is configured using the treesitter-endwise plugin, see treesitter.lua
 require("nvim-autopairs").setup({})
@@ -160,6 +160,8 @@ nnoremap <leader>ev :tabedit $MYVIMRC<CR>:tcd %:h<CR>
 nnoremap <leader>sn :set number!<CR>
 nnoremap <leader>rn :set relativenumber!<CR>
 
+inoremap <F2> <C-O>:set paste!<CR>
+nnoremap <F2> :set paste!<CR>
 nnoremap <F5> :make<CR>
 " nnoremap <C-x><C-j> :NERDTree %:h<CR>
 " nnoremap <C-x><C-j> :NvimTreeToggle %:h<CR>
