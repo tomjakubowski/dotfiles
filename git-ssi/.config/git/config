@@ -3,6 +3,7 @@
 	name = Tom Jakubowski
 [push]
 	default = simple
+	autoSetupRemote = true
 [core]
 	untrackedCache = true
 [init]
@@ -36,6 +37,7 @@
   fupdate = "push origin --force-with-lease"
 
   d = "diff"
+  dt = "difftool"
   l = "log"
   sta = "status"
   stat = "status"
@@ -62,4 +64,17 @@
   path = "local.gitconfig"
 ; [url "https://gitlab-ci-token:@git.2nd.io/"]
 ; 	insteadOf = ssh://git@git.2nd.io/
-
+[diff]
+	tool = Kaleidoscope
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+	trustExitCode = true
+[merge]
+	tool = Kaleidoscope
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[mergetool]
+	prompt = false

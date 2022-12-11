@@ -47,6 +47,7 @@ alias ec="emacsclient -c -n"
 alias irc="abduco -A irc zsh -c 'weechat -d $XDG_CONFIG_HOME/weechat'"
 alias nv="nvim"
 alias reload="exec zsh"
+alias repry='fc -e - mix\ test=iex\ -S\ mix\ test\ --trace mix\ test'
 alias usystemctl="systemctl --user"
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
 
@@ -235,7 +236,14 @@ if [[ -n "${SHELL_FINALLY}" ]]; then
 fi
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+init_pyenv() {
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+}
+
 #
 # super duper annoying.  macos zsh seems to prepend system paths to $path after
 # sourcing ~/.zshenv. so set a few here again
-prepend_path "/opt/homebrew/bin"
+prepend_path "/opt/homebrew/bin" 
+prepend_path "$HOME/.local/bin"

@@ -1,7 +1,7 @@
 import_if_available(Ecto.Query)
 import_if_available(Ecto.Changeset)
 
-defmodule Tjak do
+defmodule TJ do
   IEx.configure(
     inspect: [limit: 20]
     # default_prompt:
@@ -19,17 +19,20 @@ defmodule Tjak do
     #   |> IO.chardata_to_string()
   )
 
-  def cmdc(text) when is_binary(text) do
+  @doc "Copy text to clipboard"
+  def copy(text) when is_binary(text) do
     port = Port.open({:spawn, "pbcopy"}, [])
     true = Port.command(port, text)
     true = Port.close(port)
     :ok
   end
 
-  def cmdc(term, opts \\ []),
-    do: inspect(term, Keyword.merge([limit: :infinity, pretty: true], opts)) |> cmdc()
+  @doc "Copy inspect(term) to clipboard"
+  def copy(term, opts \\ []),
+    do: inspect(term, Keyword.merge([limit: :infinity, pretty: true], opts)) |> copy()
 
-  def cmdv() do
+  @doc "Paste from clipboard"
+  def paste() do
     port = Port.open({:spawn, "pbpaste"}, [])
 
     receive do
