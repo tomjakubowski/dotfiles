@@ -81,7 +81,7 @@ lspconfig["elixirls"].setup({
 		lsp_on_attach(client, bufnr)
 		-- sadly, formatting in ElixirLS is extremely broken at the moment
 		-- using null_ls mix instead
-		-- lsp_formatting(client, bufnr)
+		lsp_formatting(client, bufnr)
 	end,
 	flags = {
 		debounce_text_changes = 150,
@@ -118,12 +118,12 @@ lspconfig["svelte"].setup({
 -- null-ls handles running formatters/linters as an lsp
 local null_ls = require("null-ls")
 local sources = {
-	null_ls.builtins.formatting.mix.with({
-		-- Elixir 1.13 doesn't support --stdin-filename
-		-- But it's necessary when using a project with .formatter.exs
-		-- in a subdirectory
-		args = { "format", "-", "--stdin-filename", "$FILENAME" },
-	}),
+	-- null_ls.builtins.formatting.mix.with({
+	-- Elixir 1.13 doesn't support --stdin-filename
+	-- But it's necessary when using a project with .formatter.exs
+	-- in a subdirectory
+	-- args = { "format", "-", "--stdin-filename", "$FILENAME" },
+	-- }),
 	null_ls.builtins.formatting.prettier.with({
 		condition = function(utils)
 			return utils.root_has_file({ ".prettierignore " })
