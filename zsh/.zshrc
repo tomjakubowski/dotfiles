@@ -18,6 +18,9 @@ fpath=(
   "${fpath[@]}"
   )
 
+# autoload contents of ~/.zfunc
+autoload -U ~/.zfunc/**/*(.:t)
+
 
 # History options
 HISTFILE=~/.zsh_history
@@ -222,10 +225,6 @@ function() {
 }
 
 [[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
-# [[ "$TOM_IN_VSCODE" = "1" && -e ~/.nvm/nvm.sh ]] && source ~/.nvm/nvm.sh
-# test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
-
-# zprof
 
 if [[ -n "${SHELL_BECOME_EXEC}" ]]; then
   exec ${SHELL_BECOME_EXEC}
@@ -237,13 +236,63 @@ fi
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
-init_pyenv() {
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-}
-
 #
 # super duper annoying.  macos zsh seems to prepend system paths to $path after
 # sourcing ~/.zshenv. so set a few here again
 prepend_path "/opt/homebrew/bin" 
 prepend_path "$HOME/.local/bin"
+
+init_pyenv() {
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+}
+
+# init_pyenv
+
+iterm() {
+  local sub=$1
+  shift
+  if [[ "$sub" == "clear" ]]; then
+    clear && printf '\e[3J'
+    return 0
+  else
+    echo "unknown subcommand $sub"
+    return 1
+  fi
+}
+
+export PYTHONBREAKPOINT='IPython.core.debugger.set_trace'
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+fix-conda-path() {
+  local conda_path=()
+  local i=0
+  local p=''
+  while ((i=$path[(I)*miniconda*])); do
+    p=$path[$i]
+    conda_path+=("$p")
+    path[$i]=()
+  done
+  for p in $conda_path; do
+    path=("$p" "$path[@]")
+  done
+  echo Moved $conda_path to head of the path
+}
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
