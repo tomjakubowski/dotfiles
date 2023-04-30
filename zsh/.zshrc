@@ -4,6 +4,9 @@ setopt beep
 setopt extendedglob
 setopt nomatch
 
+# directories
+setopt autocd autopushd pushdignoredups
+
 bindkey -e
 
 if type brew &>/dev/null; then
@@ -49,10 +52,13 @@ alias abduco="abduco -e '^q'"
 alias ec="emacsclient -c -n"
 alias irc="abduco -A irc zsh -c 'weechat -d $XDG_CONFIG_HOME/weechat'"
 alias nv="nvim"
+pidonport() { lsof -t -i:$1 }
+alias pidp=pidonport
 alias reload="exec zsh"
 alias repry='fc -e - mix\ test=iex\ -S\ mix\ test\ --trace mix\ test'
 alias usystemctl="systemctl --user"
 alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
+warp() { cd $(readlink "$1") }
 
 # safety first
 alias mv="mv -i"
@@ -68,6 +74,7 @@ zle -N bracketed-paste bracketed-paste-magic
 bindkey -s '5~' 'reload\n'
 
 # Alphavit
+alias d='dirs -v | head -10'
 alias e=nvim # edit
 alias f=fzf # find / fuzzy # filter
 alias g=rg
@@ -75,12 +82,41 @@ alias G=git
 alias j=jq
 alias j.=jq .
 
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+
 function l() {
   if [[ "$#" == 0 ]]; then
     less
   else
     "$@" | less
   fi
+}
+
+with_lnav() {
+  with_tty $@ 2>&1 | lnav -q
+}
+
+with_lnav_q() {
+  with_tty $@ 2>&1 | lnav -q
+}
+
+with_x() {
+  (set -x; $@)
+}
+
+with_tty() {
+  local lines=$(tput lines)
+  local cols=$(tput cols)
+  local cmd=($@)
+  with_x socat - SYSTEM:"stty rows $lines cols $cols; ${cmd}",pty,setsid,ctty,stderr
 }
 
 # Prompt
