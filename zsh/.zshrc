@@ -63,6 +63,9 @@ warp() { cd $(readlink "$1") }
 # safety first
 alias mv="mv -i"
 
+# rustutils
+alias fd='fd --color=never --no-ignore'
+
 # Magically quote URLs when typing/pasting
 
 autoload -U url-quote-magic bracketed-paste-magic
@@ -74,6 +77,9 @@ zle -N bracketed-paste bracketed-paste-magic
 bindkey -s '5~' 'reload\n'
 
 # Alphavit
+alias b='bazel'
+alias bb='bazel build'
+alias bt='bazel test'
 alias d='dirs -v | head -10'
 alias e=nvim # edit
 alias f=fzf # find / fuzzy # filter
@@ -92,6 +98,8 @@ alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
 
+alias ding='afplay /System/Library/Sounds/Ping.aiff'
+
 function l() {
   if [[ "$#" == 0 ]]; then
     less
@@ -100,24 +108,19 @@ function l() {
   fi
 }
 
-with_lnav() {
-  with_tty $@ 2>&1 | lnav -q
+unbuf() {
+  unbuffer $@ 2>&1
 }
 
-with_lnav_q() {
-  with_tty $@ 2>&1 | lnav -q
+with_lnav() {
+  unbuf | lnav
 }
 
 with_x() {
   (set -x; $@)
 }
 
-with_tty() {
-  local lines=$(tput lines)
-  local cols=$(tput cols)
-  local cmd=($@)
-  with_x socat - SYSTEM:"stty rows $lines cols $cols; ${cmd}",pty,setsid,ctty,stderr
-}
+alias with_tty=unbuffer
 
 # Prompt
 
@@ -132,6 +135,7 @@ esac
 
 # functions
 function beep() { eval $* ; printf "\a"; }
+function ding() { eval $* ; ding; }
 function append_node_modules_path() {
   local nmbin="$PWD/node_modules/.bin"
   if [[ -d $nmbin ]];
@@ -220,7 +224,7 @@ install_python_devtools() {
     python-language-server
 }
 
-tcargo() {
+tmpcargo() {
   local crateroot
   scratch
   cargo init --name "tcargo" "$@"
@@ -241,11 +245,11 @@ function() {
   setopt prompt_subst
   autoload -U colors && colors
 
-  local succ='%(?.%#.%F{red}%B%#%f%b)'
+  local succ='%(?.%F{blue}'›'%f.%F{red}%B'›'%f%b)'
   local host
   local bg_jobs='%(1j.[%j].)'
   if [[ -n "$SSH_CLIENT" ]]; then
-    host="%F{green}%m%f:"
+    host="%F{green}%m%f›"
   else
     host=""
   fi
@@ -275,7 +279,7 @@ export PATH="$HOME/.poetry/bin:$PATH"
 #
 # super duper annoying.  macos zsh seems to prepend system paths to $path after
 # sourcing ~/.zshenv. so set a few here again
-prepend_path "/opt/homebrew/bin" 
+prepend_path "/opt/homebrew/bin"
 prepend_path "$HOME/.local/bin"
 
 init_pyenv() {
@@ -316,6 +320,42 @@ fix-conda-path() {
   echo Moved $conda_path to head of the path
 }
 
+function Launch() {
+  ("$@" &)
+}
+
+for sound in /System/Library/Sounds/*.aiff ~/Library/Sounds/*.aiff(N); do
+  alias ${sound:t}="afplay $sound"
+done
+function QQ() {
+  stat=$?
+  if (($stat == 0)); then
+    killall -q afplay
+    UEFAChampionsLeague.aiff
+  else
+    (killall -q afplay; Horns.aiff &)
+  fi
+  return $stat
+}
+
+function RR() {
+  local code=$?
+  local cmd=$(fc -ln -1)
+  if [[ $cmd == "RR" ]]; then
+    echo 'RR wont RR itself'
+    return 1
+  fi
+  until eval $cmd
+  do
+    # eval $cmd
+    # code=$?
+  done
+}
+
+,find-in-bazel-out() {
+    fd --glob -p "**/$1" ~/prospective/prospective/bazel-out
+}
+
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -332,3 +372,15 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE='/opt/homebrew/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/Users/tom/micromamba';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
