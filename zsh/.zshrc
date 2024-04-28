@@ -22,7 +22,7 @@ fpath=(
   )
 
 # autoload contents of ~/.zfunc
-autoload -U ~/.zfunc/**/*(.:t)
+[[ -d ~/.zfunc ]] && autoload -U ~/.zfunc/**/*(.:t)
 
 
 # History options
