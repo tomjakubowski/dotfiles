@@ -324,9 +324,11 @@ function Launch() {
   ("$@" &)
 }
 
-for sound in /System/Library/Sounds/*.aiff ~/Library/Sounds/*.aiff(N); do
-  alias ${sound:t}="afplay $sound"
-done
+if command -v afplay > /dev/null; then
+  for sound in /System/Library/Sounds/*.aiff(N) ~/Library/Sounds/*.aiff(N); do
+    alias ${sound:t}="afplay $sound"
+  done
+fi
 function QQ() {
   stat=$?
   if (($stat == 0)); then
